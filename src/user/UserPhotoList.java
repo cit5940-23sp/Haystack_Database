@@ -1,34 +1,39 @@
 package user;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import haystack.Photo;
 
 public class UserPhotoList implements IUserPhotoList {
 
+    private List<UserPhotoNode> masterPhotoList;
+    int deletedPhotoCount;     
+     
+    public UserPhotoList() {
+        masterPhotoList = new LinkedList<UserPhotoNode>();
+        deletedPhotoCount = 0;
+    }
+    
     @Override
     public int numberOfPhotos() {
         // TODO Auto-generated method stub
-        return 0;
+        return masterPhotoList.size() - deletedPhotoCount;
     }
 
     @Override
-    public void addPhotoToUserList(User uniqueUserID, int key, int alternateKey, int cookie, int haystackID) {
+    public void addPhotoToUserList(UserPhotoNode upn) {
         // TODO Auto-generated method stub
+        masterPhotoList.add(upn);
         
     }
 
     @Override
-    public void deletePhotoFromUserList(User uniqueUserID, int key, int alternateKey) {
+    public void deletePhotoFromUserList(UserPhotoNode upn) {
         // TODO Auto-generated method stub
-        
+        masterPhotoList.remove(upn);
     }
 
-    @Override
-    public void updatePhotoInUserList(User uniqueUserID, int key, int alternateKey) {
-        // TODO Auto-generated method stub
-        
-    }
 
     public List<Photo> getPhotos() {
         // TODO Auto-generated method stub
