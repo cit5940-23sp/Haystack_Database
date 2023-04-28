@@ -34,4 +34,10 @@ public interface IUser {
     void deleteFriend(int uniqueFriendID)
     
     
+    /**
+     * User adds a new photo 
+     */
+    void addPhoto();
+    
+    
 }
