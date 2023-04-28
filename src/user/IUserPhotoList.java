@@ -15,13 +15,11 @@ public interface IUserPhotoList {
      * @param cookie 
      * @param haystackID - haystack that the photo is saved in 
      */
-    void addPhotoToUserList(User uniqueUserID, int key, int alternateKey, 
-            int cookie, int haystackID);
+    void addPhotoToUserList(UserPhotoNode upn);
     
-    void deletePhotoFromUserList(User uniqueUserID, int key, int alternateKey);
+    void deletePhotoFromUserList(UserPhotoNode upn);
     
-    void updatePhotoInUserList(User uniqueUserID, int key, int alternateKey);
-    
+   
     /**
      * Returns number of photos in UserPhotoList 
      */

@@ -2,6 +2,7 @@ package user;
 
 import java.util.HashSet;
 
+
 public interface IUser {
 
 // private int uniqueUserID;
@@ -39,7 +40,7 @@ public interface IUser {
     /**
      * User adds a new photo 
      */
-    void addPhoto();
+    void addPhoto(String filePath);
     
     
 }
