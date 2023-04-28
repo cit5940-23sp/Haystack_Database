@@ -1,5 +1,9 @@
 package user;
 
+import java.util.List;
+
+import haystack.Photo;
+
 public interface IUserPhotoList {
 
 // private List<UserPhotoNode> masterPhotoList;

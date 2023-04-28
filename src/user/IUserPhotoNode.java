@@ -1,5 +1,7 @@
 package user;
 
+import java.util.Map;
+
 public interface IUserPhotoNode {
 
    //private int haystackID 

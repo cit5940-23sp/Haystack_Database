@@ -1,8 +1,10 @@
 package haystack;
 
+import java.util.List;
+
 public interface IListOfHaystacks {
 
-    List <HaystackObjectStore> listOfHaystacks;
+    public static final List<HaystackObjectStore> listOfHaystacks = null;
     
     /**
      * Create a new haystack 

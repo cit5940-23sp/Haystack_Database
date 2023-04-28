@@ -1,4 +1,5 @@
 package haystack;
+import photo.IPhoto;
 
 public interface IHaystackObjectStore {
 

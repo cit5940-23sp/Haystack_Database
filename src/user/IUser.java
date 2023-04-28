@@ -1,5 +1,7 @@
 package user;
 
+import java.util.HashSet;
+
 public interface IUser {
 
 // private int uniqueUserID;
@@ -19,7 +21,7 @@ public interface IUser {
      * Get User's friend list 
      * @return User's friend list 
      */
-    HashSet <User> getUserFriendsList();
+    HashSet<User> getUserFriendsList();
     
     
     /**
@@ -31,7 +33,7 @@ public interface IUser {
     /**
      * Delete friend from User's friend list 
      */
-    void deleteFriend(int uniqueFriendID)
+    void deleteFriend(int uniqueFriendID);
     
     
     /**
