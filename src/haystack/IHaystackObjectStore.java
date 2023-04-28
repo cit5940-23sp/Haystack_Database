@@ -22,10 +22,10 @@ public interface IHaystackObjectStore {
      */
     void deletePhoto(int offset);
     
-    /**
-     * Set the photo as public or private 
-     */
-    void setPublicPrivate(int offset);
+//    /**
+//     * Set the photo as public or private 
+//     */
+//    void setPublicPrivate(int offset);
     
     
 }

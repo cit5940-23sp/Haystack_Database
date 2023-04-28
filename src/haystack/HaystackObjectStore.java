@@ -20,10 +20,10 @@ public class HaystackObjectStore implements IHaystackObjectStore {
 
     }
 
-    @Override
-    public void setPublicPrivate(int offset) {
-        // TODO Auto-generated method stub
-
-    }
+//    @Override
+//    public void setPublicPrivate(int offset) {
+//        // TODO Auto-generated method stub
+//
+//    }
 
 }
