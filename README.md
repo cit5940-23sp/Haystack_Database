@@ -6,7 +6,10 @@ Files used by Ada
 
 
 Files used by Elena 
-
+1. Photo.java
+2. IPhoto.java
+3. HaystackObjectStore.java
+4. IHaystackObjectStore.java
 
 
 Files used by Alette
