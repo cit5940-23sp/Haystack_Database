@@ -1,8 +1,12 @@
 package user;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
-import photo.Photo;
+import graph.Coordinates;
+import graph.GraphL;
+//import photo.Photo;
 
 
 public class User implements IUser {
@@ -12,13 +16,33 @@ public class User implements IUser {
   private String userName;
   private UserPhotoList userPhotoList; 
   private HashSet <User> friendsList;
+  private Coordinates addressCoor;
     
-    public User(String userName, int uniqueUserID) {
+    /**
+     * Constructor for a User object.
+     * @param userName, which is an input from User 
+     * @param uniqueUserID, which is generated systematically 
+     * @param latitude, which is an input from User
+     * @param longitude, which is an input from User 
+     */
+    public User(String userName, int uniqueUserID, 
+            int latitude, int longitude, 
+            UserLocationMap userLocationMap, UserGraph graphOfConnections) {
         
+        //initialize unique user ID and username 
         this.uniqueUserID = uniqueUserID;
         this.userName = userName;
+        
+        //initialize empty photo list and friends list 
         userPhotoList = new UserPhotoList();
         friendsList = new HashSet<User>();
+        
+        //initialize the address coordinates of User 
+        addressCoor = new Coordinates(latitude, longitude);
+
+        userLocationMap.addUser(uniqueUserID, addressCoor);
+        graphOfConnections.addNewUser();
+        
     }
     
     
@@ -41,27 +65,49 @@ public class User implements IUser {
 
     }
 
-    @Override
-    public void addPhoto(String filePath, ListOfHaystacks loh) {
-        
-        Photo photoToAdd = new Photo(filePath);
-        
-        int haystackID = photoToAdd.getHaystackID();
-        int key = photoToAdd.getKey();
-        int alternateKey = photoToAdd.getAlternateKey();
-        
-        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey);
-        userPhotoList.addPhotoToUserList(upn);
-        
-        loh.addPhoto(photoToAdd);
-        
-        // TODO Auto-generated method stub
-        
-    }
+//    @Override
+//    public void addPhoto(String filePath, ListOfHaystacks loh) {
+//        
+//        Photo photoToAdd = new Photo(filePath);
+//        
+//        int haystackID = photoToAdd.getHaystackID();
+//        int key = photoToAdd.getKey();
+//        int alternateKey = photoToAdd.getAlternateKey();
+//        
+//        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey);
+//        userPhotoList.addPhotoToUserList(upn);
+//        
+//        loh.addPhoto(photoToAdd);
+//        
+//        // TODO Auto-generated method stub
+//        
+//    }
 
     public HashSet<User> getUserFriendsList() {
         // TODO Auto-generated method stub
         return null;
     }
+
+
+    @Override
+    public String getUserName() {
+        // TODO Auto-generated method stub
+        return this.userName;
+    }
+
+
+    @Override
+    public int getUniqueUserID() {
+        // TODO Auto-generated method stub
+        return this.uniqueUserID;
+    }
+
+
+    @Override
+    public HashSet<User> getFriendsList() {
+        // TODO Auto-generated method stub
+        return this.friendsList;
+    }
+    
 
 }

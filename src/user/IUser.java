@@ -37,10 +37,24 @@ public interface IUser {
     void deleteFriend(int uniqueFriendID);
     
     
-    /**
-     * User adds a new photo 
-     */
-    void addPhoto(String filePath);
+//    /**
+//     * User adds a new photo 
+//     */
+//    void addPhoto(String filePath, ListOfHaystacks loh);
     
+    /**
+     * Returns name of user  
+     */
+    String getUserName();
+
+    /**
+     * Returns unique userID of user 
+     */
+    int getUniqueUserID();
+    
+    /**
+     * Returns friends list of user 
+     */
+    HashSet <User> getFriendsList();
     
 }
