@@ -1,7 +1,9 @@
 package haystack;
 
-public interface IIndexFile {
+import java.util.Map;
 
+public interface IIndexFile {
+    int SIZE = 100;
     //private List<Map<String, ?>> indexFile;
     
     /**
@@ -12,7 +14,7 @@ public interface IIndexFile {
     /**
      * Get an existing index record 
      */
-    Index getIndex(int alternateKey);
+    Map<String, Integer> getFlags(String k);
     
     
 }
