@@ -15,14 +15,14 @@ class IndexFileTest {
 
     IndexKey k;
     IndexVal v;
-    IndexFile f = new IndexFile();
+    IndexFile f = new IndexFile(0);
 
     @BeforeEach
     void setUp() throws Exception {
         k = new IndexKey(0, 1);
         Map<Integer, Integer> flags = new HashMap<Integer, Integer>();
         flags.put(2, 3);
-        v = new IndexVal(flags, 4, 5);
+        v = new IndexVal(4, 5);
 
     }
 
