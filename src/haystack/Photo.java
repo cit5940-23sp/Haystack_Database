@@ -3,6 +3,7 @@ package haystack;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ public class Photo implements IPhoto {
     private byte padding;
 
     public Photo(String filePath) {
-        loadImage(filePath);
+        this.data = loadImage(filePath);
         this.flags = new HashMap<Integer, Integer>();
         this.flags.put(IPhoto.EDITED, 0);
         this.flags.put(IPhoto.DELETED, 0);
@@ -71,13 +72,17 @@ public class Photo implements IPhoto {
         return this.padding;
     }
 
-    public static BufferedImage loadImage(String file_path) {
+    public static byte[] loadImage(String file_path) {
         File input = new File(file_path);
         BufferedImage buf_image;
         try {
             buf_image = ImageIO.read(input);
-            buf_image = binarizeImage(buf_image);
-            return buf_image; // return raster
+            
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(buf_image, "jpg", bos );
+            
+            byte [] data = bos.toByteArray();
+            return data; // return raster
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
