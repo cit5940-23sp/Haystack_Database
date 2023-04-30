@@ -15,9 +15,14 @@ public class ListOfHaystacks implements IListOfHaystacks{
     
     
     ListOfHaystacks(){
+        
         listOfHaystacks = new ArrayList<TupleForHaystack>();
         
-        HaystackObjectStore haystack = new HaystackObjectStore();
+        currentHaystack = 0;
+        
+        String file_path = "Database_0.txt";
+        
+        HaystackObjectStore haystack = new HaystackObjectStore(file_path);
         
         IndexFile index = new IndexFile();
         
@@ -25,9 +30,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
         
         listOfHaystacks.add(tup);
         
-        currentHaystack = 0;
-        
-        remainingSpace = MAXIMUM_BYTES;
+        remainingSpace = haystack.MAXIMUM_BYTES;
         
         
     }
@@ -43,15 +46,15 @@ public class ListOfHaystacks implements IListOfHaystacks{
         
         HaystackObjectStore haystack = curTup.getHaystack();
         
-        int offset = haystack.appendPhoto(inputPhoto);
+        long offset = haystack.appendPhoto(inputPhoto);
         
         Map<Integer, Integer> flags = new HashMap<Integer, Integer>();
                 
-        IndexKey indexKey = new IndexKey(inputPhoto.getSize(), offset, flags);
+        IndexVal indexVal = new IndexVal(flags, offset, inputPhoto.getSize());
         
-        IndexVal indexVal = new IndexVal(inputPhoto.getKey(), inputPhoto.getAlternateKey());
-        
-        indexFile.addIndex(indexKey, indexVal);
+        IndexKey indexKey = new IndexKey(inputPhoto.getKey(), inputPhoto.getAlternateKey());
+      
+        index.addIndex(indexKey, indexVal);
         
         return haystackID;
         
@@ -77,17 +80,22 @@ public class ListOfHaystacks implements IListOfHaystacks{
     @Override
     public void createNewHaystack() {
         // TODO Auto-generated method stub
-        HaystackObjectStore haystack = new HaystackObjectStore();
+        
+        
+        currentHaystack ++;
+        
+        String file_path = "Database_" + String.valueOf(currentHaystack) + ".txt";
+        
+        HaystackObjectStore haystack = new HaystackObjectStore(file_path);
         
         IndexFile index = new IndexFile();
         
         TupleForHaystack tup = new TupleForHaystack(index, haystack);
         
         listOfHaystacks.add(tup);
+
         
-        currentHaystack ++;
-        
-        remainingSpace = MAXIMUM_BYTES;
+        remainingSpace = haystack.MAXIMUM_BYTES;
         
         
     }
