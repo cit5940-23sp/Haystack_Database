@@ -6,7 +6,8 @@ import java.util.List;
 
 import graph.Coordinates;
 import graph.GraphL;
-//import photo.Photo;
+import haystack.ListOfHaystacks;
+import haystack.Photo;
 
 
 public class User implements IUser {
@@ -65,23 +66,24 @@ public class User implements IUser {
 
     }
 
-//    @Override
-//    public void addPhoto(String filePath, ListOfHaystacks loh) {
-//        
-//        Photo photoToAdd = new Photo(filePath);
-//        
+    @Override
+    public void addPhoto(String filePath, ListOfHaystacks loh) {
+        
+        Photo photoToAdd = new Photo(filePath);
+        
 //        int haystackID = photoToAdd.getHaystackID();
-//        int key = photoToAdd.getKey();
-//        int alternateKey = photoToAdd.getAlternateKey();
-//        
-//        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey);
-//        userPhotoList.addPhotoToUserList(upn);
-//        
-//        loh.addPhoto(photoToAdd);
-//        
-//        // TODO Auto-generated method stub
-//        
-//    }
+        int key = photoToAdd.getKey();
+        int alternateKey = photoToAdd.getAlternateKey();
+        
+        
+        int haystackID = loh.addPhotoToHaystack(photoToAdd);
+
+        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey);
+        userPhotoList.addPhotoToUserList(upn);
+
+        // TODO Auto-generated method stub
+        
+    }
 
     public HashSet<User> getUserFriendsList() {
         // TODO Auto-generated method stub

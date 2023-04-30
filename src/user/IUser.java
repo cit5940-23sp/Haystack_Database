@@ -2,6 +2,8 @@ package user;
 
 import java.util.HashSet;
 
+import haystack.ListOfHaystacks;
+
 
 public interface IUser {
 
@@ -12,6 +14,7 @@ public interface IUser {
      */
     UserPhotoList getUserPhotoList();
     
+    void addPhoto(String filePath, ListOfHaystacks loh);
 
     /**
      * Get User's friend list 
