@@ -45,11 +45,12 @@ public class IndexFile implements IIndexFile {
         return size;
     }
     
-    public byte getPhoto(int key, int alternateKey) {
+    public byte[] getPhoto(int key, int alternateKey) {
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
-        HaystackObjectStore hsos = new HaystackObjectStore();
-        
-        return 0;
+        byte[] ans;
+        ans = haystack.getPhoto(v.getOffset(), v.getSize());
+
+        return ans;
     }
     
     
