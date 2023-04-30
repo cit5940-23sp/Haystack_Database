@@ -10,27 +10,24 @@ import graph.TupleForHaystack;
 public class ListOfHaystacks implements IListOfHaystacks{
 
     int remainingSpace;
-    List<TupleForHaystack> listOfHaystacks;
+    List<IndexFile> listOfHaystacks;
     int currentHaystack;
     
     
     ListOfHaystacks(){
         
-        listOfHaystacks = new ArrayList<TupleForHaystack>();
+        listOfHaystacks = new ArrayList<IndexFile>();
         
         currentHaystack = 0;
         
         String file_path = "Database_0.txt";
         
-        HaystackObjectStore haystack = new HaystackObjectStore(file_path);
+        IndexFile index = new IndexFile(0);
         
-        IndexFile index = new IndexFile();
         
-        TupleForHaystack tup = new TupleForHaystack(index, haystack);
+        listOfHaystacks.add(index);
         
-        listOfHaystacks.add(tup);
-        
-        remainingSpace = haystack.MAXIMUM_BYTES;
+        remainingSpace = Integer.MAX_VALUE;
         
         
     }
@@ -38,23 +35,14 @@ public class ListOfHaystacks implements IListOfHaystacks{
     @Override
     public int addPhotoToHaystack(Photo inputPhoto) {
         // TODO Auto-generated method stub
+        
         int haystackID = assignHaystack(inputPhoto);
         
-        TupleForHaystack curTup = listOfHaystacks.get(haystackID);
+        IndexFile index = listOfHaystacks.get(haystackID);
         
-        IndexFile index = curTup.getIndex();
         
-        HaystackObjectStore haystack = curTup.getHaystack();
-        
-        long offset = haystack.appendPhoto(inputPhoto);
-        
-        Map<Integer, Integer> flags = new HashMap<Integer, Integer>();
-                
-        IndexVal indexVal = new IndexVal(flags, offset, inputPhoto.getSize());
-        
-        IndexKey indexKey = new IndexKey(inputPhoto.getKey(), inputPhoto.getAlternateKey());
-      
-        index.addIndex(indexKey, indexVal);
+        //TEST 
+        index.addPhoto(inputPhoto);
         
         return haystackID;
         
@@ -84,18 +72,12 @@ public class ListOfHaystacks implements IListOfHaystacks{
         
         currentHaystack ++;
         
-        String file_path = "Database_" + String.valueOf(currentHaystack) + ".txt";
         
-        HaystackObjectStore haystack = new HaystackObjectStore(file_path);
+        IndexFile index = new IndexFile(currentHaystack);
         
-        IndexFile index = new IndexFile();
-        
-        TupleForHaystack tup = new TupleForHaystack(index, haystack);
-        
-        listOfHaystacks.add(tup);
+        listOfHaystacks.add(index);
 
-        
-        remainingSpace = haystack.MAXIMUM_BYTES;
+        remainingSpace = Integer.MAX_VALUE;
         
         
     }
