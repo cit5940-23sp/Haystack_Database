@@ -84,6 +84,22 @@ public class User implements IUser {
         // TODO Auto-generated method stub
         
     }
+    
+    @Override
+    public void getPhoto(int idx, ListOfHaystacks loh) {
+        
+        UserPhotoList upl = getUserPhotoList();
+        
+        UserPhotoNode upn = upl.getPhoto(idx);
+        
+        int key = upn.getKey();
+        int alternateKey = upn.getAlternateKey();
+        int haystackID = upn.getHaystackID();
+        
+        byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey, haystackID);
+        
+        
+    }
 
     public HashSet<User> getUserFriendsList() {
         // TODO Auto-generated method stub
