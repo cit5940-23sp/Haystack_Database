@@ -24,7 +24,7 @@ class PhotoTest {
     void loadImageRasterTest() {
 //        Photo photo = new Photo("cat.jpeg");
         // Create an ImageIcon from the image
-        BufferedImage image = Photo.loadImage("cat.jpeg");
+        byte[] image = Photo.loadImage("cat.jpeg");
         ImageIcon icon = new ImageIcon(image);
 
         // Create a JLabel to display the image
@@ -37,5 +37,6 @@ class PhotoTest {
         frame.pack();
         frame.setVisible(true);
     }
+    
 
 }

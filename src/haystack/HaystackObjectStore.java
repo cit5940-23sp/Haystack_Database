@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Map;
 
 import photo.IPhoto;
@@ -106,7 +107,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     }
 
     @Override
-    public int getPhoto(int offset) {
+    public byte[] getPhoto(long offset, int size) {
         try {
             RandomAccessFile rand = new RandomAccessFile(this.file, "r");
             
@@ -122,7 +123,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             //if it is not the same format, retrieve fail -1
             if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
                 rand.close();
-                return -1;
+                return null;
             }
             
             //read key for 2 bytes
@@ -144,30 +145,32 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             //can't access deleted photo, return -1
             if(flag1[1] == 0x01) {
                 rand.close();
-                return -1;
+                return null;
             }
             //read the size of 4 bytes
-            byte[] size = new byte[4];
-            rand.read(size);
-            int sizeVal = ByteBuffer.wrap(size).getInt();
+            byte[] sizeRead = new byte[4];
+            rand.read(sizeRead);
             
             //read photo data
-            //TODO need to return some sort of photo format to the caller
-            //?who is the caller
-            while(sizeVal > 0) {
+            //return byte[] of the photo to caller
+            byte[] data = new byte[size];
+            int i = 0;
+            while(size > 0) {
                 byte read = rand.readByte();
-                sizeVal--;
+                data[i] = read;
+                i++;
+                size--;
             }
-            
+          
             rand.close();
+            return data;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return -1;
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
-            return -1;
+            return null;
         }
-        return 0;
     }
 
     @Override

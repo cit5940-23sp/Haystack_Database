@@ -17,10 +17,11 @@ public interface IHaystackObjectStore {
     /**
      * Retrieve photo from current haystack using offset.
      * @param offset file position in haystack
-     * @return 0 if photo is found and accessible,
-     * return -1 if photo is not found or not accessible
+     * @param the size of the photo
+     * @return the byte[] data of the photo if photo is found and accessible,
+     * return null if photo is not found or not accessible
      */
-    public int getPhoto(int offset); 
+    public byte[] getPhoto(long offset, int size); 
     
     /**
      * Delete photo by changing the flag
