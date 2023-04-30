@@ -108,6 +108,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             //check if the header is the same magic number
             //if it is not the same format, retrieve fail -1
             if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
+                rand.close();
                 return -1;
             }
             
@@ -129,6 +130,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             //if flag DELETED's value is 1, meaning photo is deleted
             //can't access deleted photo, return -1
             if(flag1[1] == 0x01) {
+                rand.close();
                 return -1;
             }
             //read the size of 4 bytes
@@ -144,26 +146,71 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                 sizeVal--;
             }
             
-            
+            rand.close();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            return -1;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            return -1;
         }
         return 0;
     }
 
     @Override
-    public void deletePhoto(int offset) {
-        // TODO Auto-generated method stub
-
+    public int deletePhoto(int offset) {
+        File file = new File("Database.txt");
+        try {
+            RandomAccessFile rand = new RandomAccessFile(file, "rw");
+            
+            rand.seek(offset);
+            
+            //read things
+            //read magic number for 4 bytes
+            byte[] magic= new byte[4];
+            rand.read(magic);
+            int magicNumber = ByteBuffer.wrap(magic).getInt();
+            
+            //check if the header is the same magic number
+            //if it is not the same format, retrieve fail -1
+            if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
+                rand.close();
+                return -1;
+            }
+            
+            //read key for 2 bytes
+            byte[] key = new byte[2];
+            rand.read(key);
+            
+            //read alternate key for 2 bytes
+            byte[] alternateKey = new byte[2];
+            rand.read(alternateKey);
+            
+            //read flags <key 1 byte> <value 1 byte>
+            byte[] flag0 = new byte[2];
+            rand.read(flag0);
+            
+            byte[] flag1Key = new byte[1];
+            rand.read(flag1Key);
+            
+            //change the flag by overwriting the value of the flag1
+            byte delete = 0x01;
+            rand.write(delete);
+            
+            rand.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return -1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+        return 0;
+        
     }
 
 //    @Override
 //    public void setPublicPrivate(int offset) {
-//        // TODO Auto-generated method stub
 //
 //    }
 

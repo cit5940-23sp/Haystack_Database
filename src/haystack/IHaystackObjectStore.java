@@ -16,14 +16,16 @@ public interface IHaystackObjectStore {
      * Retrieve photo from current haystack using offset.
      * @param offset file position in haystack
      * @return 0 if photo is found and accessible,
-     * return 1 if photo is not found or not accessible
+     * return -1 if photo is not found or not accessible
      */
     public int getPhoto(int offset); 
     
     /**
      * Delete photo by changing the flag
+     * @param offset photo position in haystack
+     * @return -1 if fail to delete(photo not found, invalid offset/magic number), return 0 on success
      */
-    public void deletePhoto(int offset);
+    public int deletePhoto(int offset);
     
 //    /**
 //     * Set the photo as public or private 
