@@ -14,26 +14,36 @@ import java.util.Map;
 import photo.IPhoto;
 
 public class HaystackObjectStore implements IHaystackObjectStore {
-
-    /**
-     * Write to the end of disk file
-     */
+    
+    private File file;
+    private long EOF;
+    
+    public HaystackObjectStore(String filePath) {
+        this.file = new File(filePath);
+        this.EOF = 0;
+    }
+    
     @Override
-    public void appendPhoto(Photo newPhoto) {
+    public long appendPhoto(Photo newPhoto) {
         // TODO Auto-generated method stub
         try {
             //append write to the file
-            FileOutputStream out = new FileOutputStream("Database.txt", true);
+            FileOutputStream out = new FileOutputStream(this.file, true);
+            
+            this.EOF = this.file.length() - 1;
             
             //convert new photo to bytes and write to file
             convertPhotoToBytes(newPhoto, out);
             
             out.flush();
             out.close();
+            
+            return this.EOF;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return -1;
     }
     
     /**
@@ -87,15 +97,17 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         //write data bytes[] to out
         out.write(p.getData());
         
-        //write padding
-        out.write(p.getPadding());
+//        //write padding
+//        out.write(p.getPadding());
+        
+        
+        
     }
 
     @Override
     public int getPhoto(int offset) {
-        File file = new File("Database.txt");
         try {
-            RandomAccessFile rand = new RandomAccessFile(file, "r");
+            RandomAccessFile rand = new RandomAccessFile(this.file, "r");
             
             rand.seek(offset);
             
@@ -159,9 +171,8 @@ public class HaystackObjectStore implements IHaystackObjectStore {
 
     @Override
     public int deletePhoto(int offset) {
-        File file = new File("Database.txt");
         try {
-            RandomAccessFile rand = new RandomAccessFile(file, "rw");
+            RandomAccessFile rand = new RandomAccessFile(this.file, "rw");
             
             rand.seek(offset);
             
