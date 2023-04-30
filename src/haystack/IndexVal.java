@@ -4,16 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class IndexVal {
-    private Map<String, Integer> flags;
+    private Map<Integer, Integer> flags;
     private int offset;
     private int size;
     
+    public IndexVal(Map<Integer, Integer> flags, int offset, int size) {
+        this.flags = flags;
+        this.offset = offset;
+        this.size = size;
+    }
 
-    public Map<String, Integer> getFlags() {
+    public Map<Integer, Integer> getFlags() {
         return flags;
     }
     
-    public void setFlags(HashMap<String, Integer> flags) {
+    public void setFlags(HashMap<Integer, Integer> flags) {
         this.flags = flags;
     }
 
@@ -33,8 +38,8 @@ public class IndexVal {
         this.offset = offset;
     }
     
-    public void updateFlag(String fs, int fi) {
-        Map<String, Integer> updatedFlag = new HashMap<String, Integer>();
+    public void updateFlag(int fs, int fi) {
+        Map<Integer, Integer> updatedFlag = new HashMap<Integer, Integer>();
         updatedFlag.put(fs, fi);
         flags = updatedFlag;
     }

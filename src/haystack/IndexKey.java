@@ -3,11 +3,15 @@ package haystack;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IndexKey implements IIndex {
+public class IndexKey {
     private int key;
     private int alternateKey;
 
-    
+    public IndexKey(int key, int alternateKey) {
+        this.key = key;
+        this.alternateKey = alternateKey;
+    }
+        
     public int getKey() {
         return key;
     }

@@ -12,9 +12,9 @@ public class IndexFile implements IIndexFile {
 
 
     @Override
-    public Map<String, Integer> getFlags(IndexKey k) {
+    public Map<Integer, Integer> getFlags(IndexKey k) {
         IndexVal v = hm.get(k);
-        Map<String, Integer> flags = new HashMap<String, Integer>();
+        Map<Integer, Integer> flags = new HashMap<Integer, Integer>();
         flags = v.getFlags();
         return flags;
     }

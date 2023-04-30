@@ -14,7 +14,7 @@ public interface IIndexFile {
     /**
      * Get an existing index record 
      */
-    Map<String, Integer> getFlags(IndexKey k);
+    Map<Integer, Integer> getFlags(IndexKey k);
     
     
 }
