@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class IndexVal {
     private Map<Integer, Integer> flags;
-    private int offset;
+    private long offset;
     private int size;
     
-    public IndexVal(Map<Integer, Integer> flags, int offset, int size) {
+    public IndexVal(Map<Integer, Integer> flags, long offset, int size) {
         this.flags = flags;
         this.offset = offset;
         this.size = size;
@@ -30,7 +30,7 @@ public class IndexVal {
         this.size = size;
     }
     
-    public int getOffset() {
+    public long getOffset() {
         return offset;
     }
 
@@ -45,7 +45,7 @@ public class IndexVal {
     }
     
     public void getPhoto() {
-        int off = getOffset();
+        long off = getOffset();
         
     }
 

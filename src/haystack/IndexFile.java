@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import haystack.QuadraHashMap.QuadraticHashMap;
+import photo.IPhoto;
 
 public class IndexFile implements IIndexFile {
 
     QuadraticHashMap hm = new QuadraticHashMap(HMMaxSize);
-
 
     @Override
     public Map<Integer, Integer> getFlags(IndexKey k) {
@@ -18,6 +18,12 @@ public class IndexFile implements IIndexFile {
         flags = v.getFlags();
         return flags;
     }
+    
+    public void updateFlags(IndexKey k) {
+        IndexVal v = hm.get(k);
+        Map<Integer, Integer> flags = v.getFlags();
+        flags.put(IPhoto.DELETED,1);
+    }
 
 
     @Override
@@ -25,5 +31,4 @@ public class IndexFile implements IIndexFile {
         hm.insert(newIndexKey, newIndexVal);
     }
     
-
 }
