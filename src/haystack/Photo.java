@@ -16,8 +16,8 @@ public class Photo implements IPhoto {
     private int alternateKey;
     private Map<String, Integer> flags;
     private int size;
-    private Byte[] data;
-    private Byte padding;
+    private byte[] data;
+    private byte padding;
 
     public Photo(String filePath) {
         loadImageRaster(filePath);
@@ -51,16 +51,20 @@ public class Photo implements IPhoto {
         this.size = size;
     }
 
-    public Byte[] getData() {
+    public byte[] getData() {
         return data;
     }
 
-    public void setData(Byte[] data) {
+    public void setData(byte[] data) {
         this.data = data;
     }
 
-    public void setPadding(Byte padding) {
+    public void setPadding(byte padding) {
         this.padding = padding;
+    }
+    
+    public byte getPadding() {
+        return this.padding;
     }
 
     public Raster loadImageRaster(String file_path) {
