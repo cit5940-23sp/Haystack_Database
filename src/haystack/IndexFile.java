@@ -8,7 +8,7 @@ import haystack.QuadraHashMap.QuadraticHashMap;
 
 public class IndexFile implements IIndexFile {
 
-    QuadraticHashMap hm = new QuadraticHashMap(SIZE);
+    QuadraticHashMap hm = new QuadraticHashMap(HMMaxSize);
 
 
     @Override
@@ -23,7 +23,7 @@ public class IndexFile implements IIndexFile {
     @Override
     public void addIndex(IndexKey newIndexKey, IndexVal newIndexVal) {
         hm.insert(newIndexKey, newIndexVal);
-              
     }
+    
 
 }

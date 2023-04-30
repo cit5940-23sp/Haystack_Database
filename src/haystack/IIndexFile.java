@@ -3,7 +3,7 @@ package haystack;
 import java.util.Map;
 
 public interface IIndexFile {
-    int SIZE = 100;
+    int HMMaxSize = 1000;
     //private List<Map<String, ?>> indexFile;
     
     /**
