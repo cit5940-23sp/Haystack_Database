@@ -5,12 +5,7 @@ import java.util.HashSet;
 
 public interface IUser {
 
-// private int uniqueUserID;
-// private String userName;
-// private UserPhotoList userPhotoList; 
-// private HashSet <User> friendsList;
-    
-    
+
     /**
      * Get User's photo list 
      * @return User's photo list 
