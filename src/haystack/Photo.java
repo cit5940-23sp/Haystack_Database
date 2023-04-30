@@ -21,7 +21,7 @@ public class Photo implements IPhoto {
     private byte padding;
 
     public Photo(String filePath) {
-        loadImageRaster(filePath);
+        loadImage(filePath);
         this.flags = new HashMap<Integer, Integer>();
         this.flags.put(IPhoto.EDITED, 0);
         this.flags.put(IPhoto.DELETED, 0);
@@ -71,13 +71,13 @@ public class Photo implements IPhoto {
         return this.padding;
     }
 
-    public static Raster loadImageRaster(String file_path) {
+    public static BufferedImage loadImage(String file_path) {
         File input = new File(file_path);
         BufferedImage buf_image;
         try {
             buf_image = ImageIO.read(input);
             buf_image = binarizeImage(buf_image);
-            return buf_image.getData(); // return raster
+            return buf_image; // return raster
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
