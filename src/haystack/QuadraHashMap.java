@@ -7,24 +7,24 @@ public class QuadraHashMap {
     static class QuadraticHashMap
     {    
         private int currentSize, maxSize;       
-        private String[] keys;   
-        private String[] vals;    
+        private IndexKey[] keys;   
+        private IndexVal[] vals;    
      
         /** Constructor **/
         public QuadraticHashMap(int capacity) 
         {
             currentSize = 0;
             maxSize = capacity;
-            keys = new String[maxSize];
-            vals = new String[maxSize];
+            keys = new IndexKey[maxSize];
+            vals = new IndexVal[maxSize];
         }  
      
         /** Function to clear hash table **/
         public void makeEmpty()
         {
             currentSize = 0;
-            keys = new String[maxSize];
-            vals = new String[maxSize];
+            keys = new IndexKey[maxSize];
+            vals = new IndexVal[maxSize];
         }
      
         /** Function to get size of hash table **/
@@ -45,20 +45,20 @@ public class QuadraHashMap {
             return getSize() == 0;
         }
      
-        /** Fucntion to check if hash table contains a key **/
-        public boolean contains(String key) 
+        /** Function to check if hash table contains a key **/
+        public boolean contains(IndexKey key) 
         {
             return get(key) !=  null;
         }
      
-        /** Functiont to get hash code of a given key **/
-        private int hash(String key) 
+        /** Function to get hash code of a given key **/
+        private int hash(IndexKey key) 
         {
             return key.hashCode() % maxSize;
         }    
      
         /** Function to insert key-value pair **/
-        public void insert(String key, String val) 
+        public void insert(IndexKey key, IndexVal val) 
         {                
             int tmp = hash(key);
             int i = tmp, h = 1;
@@ -81,7 +81,7 @@ public class QuadraHashMap {
         }
      
         /** Function to get value for a given key **/
-        public String get(String key) 
+        public IndexVal get(IndexKey key) 
         {
             int i = hash(key), h = 1;
             while (keys[i] != null)
@@ -95,7 +95,7 @@ public class QuadraHashMap {
         }
      
         /** Function to remove key and its value **/
-        public void remove(String key) 
+        public void remove(IndexKey key) 
         {
             if (!contains(key)) 
                 return;
@@ -104,13 +104,16 @@ public class QuadraHashMap {
             int i = hash(key), h = 1;
             while (!key.equals(keys[i])) 
                 i = (i + h * h++) % maxSize;        
-            keys[i] = vals[i] = null;
+            keys[i] = null;
+            vals[i] = null;
      
             /** rehash all keys **/        
             for (i = (i + h * h++) % maxSize; keys[i] != null; i = (i + h * h++) % maxSize)
             {
-                String tmp1 = keys[i], tmp2 = vals[i];
-                keys[i] = vals[i] = null;
+                IndexKey tmp1 = keys[i];
+                IndexVal tmp2 = vals[i];
+                keys[i] = null;
+                vals[i] = null;
                 currentSize--;  
                 insert(tmp1, tmp2);            
             }

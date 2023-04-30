@@ -9,12 +9,12 @@ public interface IIndexFile {
     /**
      * Add a new index record 
      */
-    void addIndex(Index newIndex);
+    void addIndex(IndexKey newIndexKey, IndexVal newIndexVal);
     
     /**
      * Get an existing index record 
      */
-    Map<String, Integer> getFlags(String k);
+    Map<String, Integer> getFlags(IndexKey k);
     
     
 }
