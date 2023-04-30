@@ -19,15 +19,14 @@ public class ListOfHaystacks implements IListOfHaystacks{
         listOfHaystacks = new ArrayList<IndexFile>();
         
         currentHaystack = 0;
-        
-        String file_path = "Database_0.txt";
-        
+//        
+//        String file_path = "Database_0.txt";
+//        
         IndexFile index = new IndexFile(0);
-        
         
         listOfHaystacks.add(index);
         
-        remainingSpace = Integer.MAX_VALUE;
+        remainingSpace = IHaystackObjectStore.MAXIMUM_BYTES;
         
         
     }
@@ -48,6 +47,16 @@ public class ListOfHaystacks implements IListOfHaystacks{
         
     }
 
+    public byte[] getPhotoFromHaystack(int key, int alternateKey, int haystackID) {
+        // TODO Auto-generated method stub
+        
+        IndexFile index = listOfHaystacks.get(haystackID);
+        
+        byte[] imageByte = index.getPhoto(key, alternateKey);
+        
+        return imageByte;
+        
+    }
     
     @Override
     public int assignHaystack(Photo inputPhoto) {
@@ -69,15 +78,14 @@ public class ListOfHaystacks implements IListOfHaystacks{
     public void createNewHaystack() {
         // TODO Auto-generated method stub
         
-        
         currentHaystack ++;
-        
         
         IndexFile index = new IndexFile(currentHaystack);
         
         listOfHaystacks.add(index);
 
-        remainingSpace = Integer.MAX_VALUE;
+        remainingSpace = IHaystackObjectStore.MAXIMUM_BYTES;
+        
         
         
     }
