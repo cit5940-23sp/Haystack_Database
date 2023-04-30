@@ -10,24 +10,24 @@ import graph.TupleForHaystack;
 public class ListOfHaystacks implements IListOfHaystacks{
 
     int remainingSpace;
-    List<TupleForHaystack> listOfHaystacks;
+    List<IndexFile> listOfHaystacks;
     int currentHaystack;
     
     
     ListOfHaystacks(){
-        listOfHaystacks = new ArrayList<TupleForHaystack>();
         
-        HaystackObjectStore haystack = new HaystackObjectStore();
-        
-        IndexFile index = new IndexFile();
-        
-        TupleForHaystack tup = new TupleForHaystack(index, haystack);
-        
-        listOfHaystacks.add(tup);
+        listOfHaystacks = new ArrayList<IndexFile>();
         
         currentHaystack = 0;
         
-        remainingSpace = MAXIMUM_BYTES;
+        String file_path = "Database_0.txt";
+        
+        IndexFile index = new IndexFile(0);
+        
+        
+        listOfHaystacks.add(index);
+        
+        remainingSpace = Integer.MAX_VALUE;
         
         
     }
@@ -35,23 +35,14 @@ public class ListOfHaystacks implements IListOfHaystacks{
     @Override
     public int addPhotoToHaystack(Photo inputPhoto) {
         // TODO Auto-generated method stub
+        
         int haystackID = assignHaystack(inputPhoto);
         
-        TupleForHaystack curTup = listOfHaystacks.get(haystackID);
+        IndexFile index = listOfHaystacks.get(haystackID);
         
-        IndexFile index = curTup.getIndex();
         
-        HaystackObjectStore haystack = curTup.getHaystack();
-        
-        int offset = haystack.appendPhoto(inputPhoto);
-        
-        Map<Integer, Integer> flags = new HashMap<Integer, Integer>();
-                
-        IndexKey indexKey = new IndexKey(inputPhoto.getSize(), offset, flags);
-        
-        IndexVal indexVal = new IndexVal(inputPhoto.getKey(), inputPhoto.getAlternateKey());
-        
-        indexFile.addIndex(indexKey, indexVal);
+        //TEST 
+        index.addPhoto(inputPhoto);
         
         return haystackID;
         
@@ -77,17 +68,16 @@ public class ListOfHaystacks implements IListOfHaystacks{
     @Override
     public void createNewHaystack() {
         // TODO Auto-generated method stub
-        HaystackObjectStore haystack = new HaystackObjectStore();
         
-        IndexFile index = new IndexFile();
-        
-        TupleForHaystack tup = new TupleForHaystack(index, haystack);
-        
-        listOfHaystacks.add(tup);
         
         currentHaystack ++;
         
-        remainingSpace = MAXIMUM_BYTES;
+        
+        IndexFile index = new IndexFile(currentHaystack);
+        
+        listOfHaystacks.add(index);
+
+        remainingSpace = Integer.MAX_VALUE;
         
         
     }

@@ -18,6 +18,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     private File file;
     private long EOF;
     
+    
     public HaystackObjectStore(String filePath) {
         this.file = new File(filePath);
         this.EOF = 0;

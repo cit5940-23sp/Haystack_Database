@@ -8,16 +8,16 @@ public class TupleForHaystack {
     private HaystackObjectStore haystack;
     private IndexFile index;
     
-    TupleForHaystack(IndexFile index, HaystackObjectStore haystack){
-        haystack = haystack;
-        index = index;
+    public TupleForHaystack(IndexFile index, HaystackObjectStore haystack){
+        this.haystack = haystack;
+        this.index = index;
     }
     
-    HaystackObjectStore getHaystack() {
+    public HaystackObjectStore getHaystack() {
         return haystack;
     }
     
-    IndexFile getIndex() {
+    public IndexFile getIndex() {
         return index;
     }
     
