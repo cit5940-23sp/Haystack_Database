@@ -33,6 +33,26 @@ public class IndexFile implements IIndexFile {
         return flags;
     }
     
+    public long getOffset(IndexKey k) {
+        IndexVal v = hm.get(k);
+        long offset = v.getOffset();
+        return offset;
+    }
+    
+    public long getSize(IndexKey k) {
+        IndexVal v = hm.get(k);
+        int size = v.getSize();
+        return size;
+    }
+    
+    public byte getPhoto(int key, int alternateKey) {
+        IndexVal v = hm.get(new IndexKey(key, alternateKey));
+        HaystackObjectStore hsos = new HaystackObjectStore();
+        
+        return 0;
+    }
+    
+    
     public void updateFlags(IndexKey k) {
         IndexVal v = hm.get(k);
         Map<Integer, Integer> flags = v.getFlags();
