@@ -3,13 +3,17 @@ package haystack;
 import java.util.HashMap;
 import java.util.Map;
 
+import photo.IPhoto;
+
 public class IndexVal {
     private Map<Integer, Integer> flags;
     private long offset;
     private int size;
     
-    public IndexVal(Map<Integer, Integer> flags, long offset, int size) {
-        this.flags = flags;
+    public IndexVal(long offset, int size) {
+        this.flags = new HashMap<Integer, Integer>();
+        flags.put(IPhoto.EDITED, 0);
+        flags.put(IPhoto.DELETED, 0);
         this.offset = offset;
         this.size = size;
     }
