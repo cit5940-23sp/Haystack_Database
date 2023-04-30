@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -14,13 +15,16 @@ import photo.IPhoto;
 public class Photo implements IPhoto {
     private int key;
     private int alternateKey;
-    private Map<String, Integer> flags;
+    private Map<Integer, Integer> flags;
     private int size;
     private byte[] data;
     private byte padding;
 
     public Photo(String filePath) {
         loadImageRaster(filePath);
+        this.flags = new HashMap<Integer, Integer>();
+        this.flags.put(IPhoto.EDITED, 0);
+        this.flags.put(IPhoto.DELETED, 0);
     }
 
     public int getKey() {
@@ -39,7 +43,7 @@ public class Photo implements IPhoto {
         this.alternateKey = alternateKey;
     }
 
-    public Map<String, Integer> getFlags() {
+    public Map<Integer, Integer> getFlags() {
         return flags;
     }
 

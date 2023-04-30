@@ -10,17 +10,20 @@ public interface IHaystackObjectStore {
     /**
      * Add a new photo into the haystack 
      */
-    void appendPhoto(Photo newPhoto);
+    public void appendPhoto(Photo newPhoto);
     
     /**
-     * Retrieve photo from current haystack using offset  
+     * Retrieve photo from current haystack using offset.
+     * @param offset file position in haystack
+     * @return 0 if photo is found and accessible,
+     * return 1 if photo is not found or not accessible
      */
-    void getPhoto(int offset); 
+    public int getPhoto(int offset); 
     
     /**
      * Delete photo by changing the flag
      */
-    void deletePhoto(int offset);
+    public void deletePhoto(int offset);
     
 //    /**
 //     * Set the photo as public or private 

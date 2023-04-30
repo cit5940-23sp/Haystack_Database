@@ -8,7 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.math.BigInteger;
+import java.nio.ByteBuffer;
 import java.util.Map;
+
+import photo.IPhoto;
 
 public class HaystackObjectStore implements IHaystackObjectStore {
 
@@ -40,6 +43,11 @@ public class HaystackObjectStore implements IHaystackObjectStore {
      * @throws IOException
      */
     public void convertPhotoToBytes(Photo p, FileOutputStream out) throws IOException {
+        //convert MAGIC NUMBER to byte & write
+        BigInteger magic = BigInteger.valueOf(IPhoto.HEADER_MAGIC_NUMBER);      
+        byte[] magicB = magic.toByteArray();
+        out.write(magicB);
+        
         //get photo key & convert to byte & write
         int key = p.getKey();
         BigInteger keyInt = BigInteger.valueOf(key);      
@@ -53,11 +61,11 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         out.write(alternateKeyB);
         
         //parse flags, convert to binary and write
-        Map<String, Integer> flags = p.getFlags();
-        for(Map.Entry<String, Integer> e : flags.entrySet()) {
+        Map<Integer, Integer> flags = p.getFlags();
+        for(Map.Entry<Integer, Integer> e : flags.entrySet()) {
             //flag keys
-            String flagKey = e.getKey();
-            byte[] flagKeyB = flagKey.getBytes();
+            BigInteger flagKey = BigInteger.valueOf(e.getKey());  
+            byte[] flagKeyB = flagKey.toByteArray();
             out.write(flagKeyB);
             
             BigInteger flagVal = BigInteger.valueOf(e.getValue());  
@@ -66,10 +74,15 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         }
         
         //get size & convert to byte & write
+        //size is 32 bit/ 4 bytes long
         int size = p.getKey();
         BigInteger sizeInt = BigInteger.valueOf(size);      
         byte[] sizeB = sizeInt.toByteArray();
-        out.write(sizeB);
+        
+        //add padding to make it 4bytes
+        byte[] paddedBytes = new byte[4];
+        System.arraycopy(sizeB, 0, paddedBytes, 4 - sizeB.length, sizeB.length);
+        out.write(paddedBytes);
         
         //write data bytes[] to out
         out.write(p.getData());
@@ -79,7 +92,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     }
 
     @Override
-    public void getPhoto(int offset) {
+    public int getPhoto(int offset) {
         File file = new File("Database.txt");
         try {
             RandomAccessFile rand = new RandomAccessFile(file, "r");
@@ -87,7 +100,49 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             rand.seek(offset);
             
             //read things
+            //read magic number for 4 bytes
+            byte[] magic= new byte[4];
+            rand.read(magic);
+            int magicNumber = ByteBuffer.wrap(magic).getInt();
             
+            //check if the header is the same magic number
+            //if it is not the same format, retrieve fail -1
+            if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
+                return -1;
+            }
+            
+            //read key for 2 bytes
+            byte[] key = new byte[2];
+            rand.read(key);
+            
+            //read alternate key for 2 bytes
+            byte[] alternateKey = new byte[2];
+            rand.read(alternateKey);
+            
+            //read flags <key 1 byte> <value 1 byte>
+            byte[] flag0 = new byte[2];
+            rand.read(flag0);
+            
+            byte[] flag1 = new byte[2];
+            rand.read(flag1);
+            
+            //if flag DELETED's value is 1, meaning photo is deleted
+            //can't access deleted photo, return -1
+            if(flag1[1] == 0x01) {
+                return -1;
+            }
+            //read the size of 4 bytes
+            byte[] size = new byte[4];
+            rand.read(size);
+            int sizeVal = ByteBuffer.wrap(size).getInt();
+            
+            //read photo data
+            //TODO need to return some sort of photo format to the caller
+            //?who is the caller
+            while(sizeVal > 0) {
+                byte read = rand.readByte();
+                sizeVal--;
+            }
             
             
         } catch (FileNotFoundException e) {
@@ -97,6 +152,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return 0;
     }
 
     @Override
