@@ -1,19 +1,24 @@
 package haystack;
 
 import java.util.List;
+import java.util.Map;
+
 
 public interface IListOfHaystacks {
 
-    public static final List<HaystackObjectStore> listOfHaystacks = null;
+//    public static final List<Map<String, ?>> listOfHaystacks;
     
     /**
      * Create a new haystack 
      */
-    void createNewHaystack();
+    public void createNewHaystack();
     
     /**
      * Compaction of database by removing deleted photos 
      */
-    void compressHaystacks();
+    public void compressHaystacks();
     
+    public int assignHaystack(Photo inputPhoto);
+    
+    public int addPhotoToHaystack(Photo inputPhoto);
 }

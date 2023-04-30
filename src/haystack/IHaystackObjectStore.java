@@ -5,12 +5,14 @@ public interface IHaystackObjectStore {
 
     //private int haystackID; 
     //private List<String> haystackObject; 
-    public static final int MAXIMUM_CAPACITY = 200; 
+    public static final int MAXIMUM_BYTES = Integer.MAX_VALUE; 
     
     /**
-     * Add a new photo into the haystack 
+     * Write to the end of disk file
+     * @param newPhoto
+     * @return offset (starting of the newly appended file)
      */
-    public void appendPhoto(Photo newPhoto);
+    public long appendPhoto(Photo newPhoto);
     
     /**
      * Retrieve photo from current haystack using offset.

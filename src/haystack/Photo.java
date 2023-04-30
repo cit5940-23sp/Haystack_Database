@@ -71,7 +71,7 @@ public class Photo implements IPhoto {
         return this.padding;
     }
 
-    public Raster loadImageRaster(String file_path) {
+    public static Raster loadImageRaster(String file_path) {
         File input = new File(file_path);
         BufferedImage buf_image;
         try {
