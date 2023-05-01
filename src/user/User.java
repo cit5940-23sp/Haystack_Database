@@ -1,5 +1,6 @@
 package user;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -89,7 +90,7 @@ public class User implements IUser {
     }
     
     @Override
-    public void getPhoto(int key, ListOfHaystacks loh) {
+    public Image getPhoto(int key, ListOfHaystacks loh) {
         
         UserPhotoNode upn = userPhotoList.getPhoto(key);
         
@@ -98,7 +99,9 @@ public class User implements IUser {
         
         byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey, haystackID);
         
-        IPhoto.bytesToImage(imageByte);
+        Image returnImg = IPhoto.bytesToImage(imageByte);
+        
+        return returnImg;
         
     }
 
@@ -125,9 +128,28 @@ public class User implements IUser {
         
         loh.deletePhotoFromHaystack(key, alternateKey, haystackID);
         
+        upn.setDeleted();
+        
     }
     
     
+    @Override 
+    public void updatePhoto(String filePath, int key, ListOfHaystacks loh) {
+        
+        Photo photoToAdd = new Photo(filePath);
+        
+        UserPhotoNode upn = userPhotoList.getPhoto(key);
+        
+        int alternateKey = upn.getAlternateKey();
+        int haystackID = upn.getHaystackID();
+        
+        int newHaystackID = loh.updatePhotoFromHaystack(key, alternateKey, haystackID);
+        
+        upn.setHaystackID(newHaystackID);
+        upn.setFilename(filePath);
+        
+    }
+   
     
     public HashSet<User> getUserFriendsList() {
         // TODO Auto-generated method stub

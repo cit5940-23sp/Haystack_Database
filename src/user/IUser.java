@@ -31,6 +31,8 @@ public interface IUser {
     
     
     void deletePhoto(int key, ListOfHaystacks loh);
+    
+    void updatePhoto(String filePath, int key, ListOfHaystacks loh);
 
     void displayPhotoList();
     

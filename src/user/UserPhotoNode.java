@@ -79,6 +79,15 @@ public class UserPhotoNode implements IUserPhotoNode{
         return filePath;
     }
     
+    
+    /**
+     * Get filePath 
+     * @return filePath
+     */
+    public void setFilename(String filePath) {
+        this.filePath = filePath;
+    }
+    
     /**
      * Get alternateKey 
      * @return alternateKey 
@@ -93,5 +102,13 @@ public class UserPhotoNode implements IUserPhotoNode{
      */
     public void setDeleted() {
         this.deleted = 1;
+    }
+    
+    /**
+     * Set haystackID
+     *  
+     */
+    public void setHaystackID(int haystackID) {
+        this.haystackID = haystackID;
     }
 }
