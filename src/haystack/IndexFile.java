@@ -16,12 +16,9 @@ public class IndexFile implements IIndexFile {
     HaystackObjectStore haystack;
     
     IndexFile(int indexID){
- 
-        this.indexID = indexID;
-        
-        String file_path = "Database_" + String.valueOf(indexID) + ".txt";
-
-        haystack = new HaystackObjectStore(file_path); 
+    this.indexID = indexID;
+    String file_path = "Database_" + String.valueOf(indexID) + ".txt";
+    haystack = new HaystackObjectStore(file_path); 
         
     }
 
@@ -33,18 +30,21 @@ public class IndexFile implements IIndexFile {
         return flags;
     }
     
+    @Override
     public long getOffset(IndexKey k) {
         IndexVal v = hm.get(k);
         long offset = v.getOffset();
         return offset;
     }
     
+    @Override
     public long getSize(IndexKey k) {
         IndexVal v = hm.get(k);
         int size = v.getSize();
         return size;
     }
     
+    @Override
     public byte[] getPhoto(int key, int alternateKey) {
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
         byte[] ans;
@@ -53,7 +53,7 @@ public class IndexFile implements IIndexFile {
         return ans;
     }
     
-    
+    @Override
     public void updateFlags(IndexKey k) {
         IndexVal v = hm.get(k);
         Map<Integer, Integer> flags = v.getFlags();
@@ -63,23 +63,17 @@ public class IndexFile implements IIndexFile {
 
     @Override
     public void addIndex(IndexKey newIndexKey, IndexVal newIndexVal) {
-        hm.insert(newIndexKey, newIndexVal);
+        if (!hm.isFull()) {
+            hm.insert(newIndexKey, newIndexVal);
+        }
     }
     
-    
+    @Override
     public void addPhoto(Photo inputPhoto) {
-        
-      
         long offset = haystack.appendPhoto(inputPhoto);
-        
-        Map<Integer, Integer> flags = new HashMap<Integer, Integer>();
-        
         IndexVal indexVal = new IndexVal(offset, inputPhoto.getSize());
-        
         IndexKey indexKey = new IndexKey(inputPhoto.getKey(), inputPhoto.getAlternateKey());
-      
         addIndex(indexKey, indexVal);
-        
     }
 
 }
