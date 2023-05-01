@@ -123,6 +123,7 @@ class HaystackTest {
         User newUser = new User(userName, nextUserID, latitude, 
                 longitude, userLocationMap, graphOfConnections );
         
+        newUser.addPhoto("./DogOrange.jpeg", loh);
         newUser.addPhoto("./cat.jpeg", loh);
         newUser.addPhoto("./cat.jpeg", loh);
         newUser.addPhoto("./cat.jpeg", loh);
@@ -143,32 +144,22 @@ class HaystackTest {
         newUser.addPhoto("./cat.jpeg", loh);
         newUser.addPhoto("./cat.jpeg", loh);
         newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./DogOrange.jpeg", loh);
+        newUser.addPhoto("./DogOrange.jpeg", loh);
+        newUser.addPhoto("./DogOrange.jpeg", loh);
+        newUser.addPhoto("./DogOrange.jpeg", loh);
+        newUser.addPhoto("./DogOrange.jpeg", loh);
+        newUser.addPhoto("./DogOrange.jpeg", loh);
+        newUser.addPhoto("./DogOrange.jpeg", loh);
 
         
         System.out.println("Photo added");
         
-        newUser.deletePhoto(3, loh);
+        newUser.updatePhoto("./Puppy.jpeg", 3, loh);
         
         System.out.println("Photo updated");
         
-        newUser.updatePhoto("./Puppy.jpeg", 3, loh);
-        
+
         System.out.println("Get photo");
         
         newUser.getPhoto(3, loh);

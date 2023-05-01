@@ -68,6 +68,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
         // TODO Auto-generated method stub
         
         System.out.println("HaystackID: " + haystackID);
+        
         IndexFile index = listOfHaystacks.get(haystackID);
         
         byte[] imageByte = index.getPhoto(key, alternateKey);
