@@ -6,7 +6,7 @@ public class UserGraph implements IUserGraph {
 
     GraphL graphOfConnections;
     
-    UserGraph(){
+    public UserGraph(){
         this.graphOfConnections = new GraphL();
     }
 
