@@ -24,7 +24,7 @@ class PhotoTest {
     void loadImageRasterTest() {
 //        Photo photo = new Photo("cat.jpeg");
         // Create an ImageIcon from the image
-        byte[] image = Photo.loadImage("cat.jpeg");
+        byte[] image = IPhoto.loadImageToBytes("cat.jpeg");
         ImageIcon icon = new ImageIcon(image);
 
         // Create a JLabel to display the image

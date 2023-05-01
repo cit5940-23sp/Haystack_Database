@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import photo.IPhoto;
 
 import javax.imageio.ImageIO;
 
@@ -22,7 +23,7 @@ public class Photo implements IPhoto {
     private byte padding;
 
     public Photo(String filePath) {
-        this.data = loadImage(filePath);
+        this.data = IPhoto.loadImageToBytes(filePath);
         this.flags = new HashMap<Integer, Integer>();
         this.flags.put(IPhoto.EDITED, 0);
         this.flags.put(IPhoto.DELETED, 0);
@@ -72,33 +73,5 @@ public class Photo implements IPhoto {
         return this.padding;
     }
 
-    public static byte[] loadImage(String file_path) {
-        File input = new File(file_path);
-        BufferedImage buf_image;
-        try {
-            buf_image = ImageIO.read(input);
-            
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ImageIO.write(buf_image, "jpg", bos );
-            
-            byte [] data = bos.toByteArray();
-            return data; // return raster
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static BufferedImage binarizeImage(BufferedImage img_param) {
-        BufferedImage image = new BufferedImage(img_param.getWidth(), img_param.getHeight(),
-                BufferedImage.TYPE_BYTE_BINARY);
-
-        Graphics g = image.getGraphics();
-        g.drawImage(img_param, 0, 0, null);
-        g.dispose();
-
-        return image;
-    }
 
 }
