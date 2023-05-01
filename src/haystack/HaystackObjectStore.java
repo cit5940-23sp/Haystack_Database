@@ -231,7 +231,48 @@ public class HaystackObjectStore implements IHaystackObjectStore {
 
     @Override
     public int updatePhoto(long offset) {
-        // TODO Auto-generated method stub
+        try {
+            RandomAccessFile rand = new RandomAccessFile(this.file, "rw");
+            
+            rand.seek(offset);
+            
+            //read things
+            //read magic number for 4 bytes
+            byte[] magic= new byte[4];
+            rand.read(magic);
+            int magicNumber = ByteBuffer.wrap(magic).getInt();
+            
+            //check if the header is the same magic number
+            //if it is not the same format, retrieve fail -1
+            if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
+                rand.close();
+                return -1;
+            }
+            
+            //read key for 1 bytes
+            byte[] key = new byte[1];
+            rand.read(key);
+            
+            //read alternate key for 1 bytes
+            byte[] alternateKey = new byte[1];
+            rand.read(alternateKey);
+            
+            //read flags <key 1 byte> <value 1 byte>
+            byte[] flag0Key = new byte[1];
+            rand.read(flag0Key);
+            
+            //change the flag by overwriting the value of the flag1
+            byte edit = 0x01;
+            rand.write(edit);
+            
+            rand.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return -1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
         return 0;
     }
     

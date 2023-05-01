@@ -67,6 +67,16 @@ public class IndexFile implements IIndexFile {
         flags.put(IPhoto.DELETED,1);
         haystack.deletePhoto(v.getOffset());
     }
+    
+    @Override
+    public void updatePhoto(int key, int alternateKey, Photo inputPhoto) {
+        
+        IndexVal v = hm.get(new IndexKey(key, alternateKey));
+        Map<Integer, Integer> flags = v.getFlags();
+        flags.put(IPhoto.EDITED,1);
+        addPhoto(inputPhoto);
+        
+    }
 
 
     @Override
