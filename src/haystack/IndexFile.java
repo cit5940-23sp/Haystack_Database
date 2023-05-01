@@ -69,13 +69,11 @@ public class IndexFile implements IIndexFile {
     }
     
     @Override
-    public void updatePhoto(int key, int alternateKey, Photo inputPhoto) {
+    public void updatePhoto(int key, int alternateKey) {
         
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
         Map<Integer, Integer> flags = v.getFlags();
-        flags.put(IPhoto.EDITED,1);
-        addPhoto(inputPhoto);
-        
+        flags.put(IPhoto.EDITED,1);        
     }
 
 

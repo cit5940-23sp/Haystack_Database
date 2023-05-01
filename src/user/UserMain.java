@@ -65,7 +65,7 @@ public class UserMain {
 
         switch(Option) {
         case "1":
-            
+            insertPhoto(scan);
         case "2":
         case "3":
             
@@ -74,8 +74,10 @@ public class UserMain {
         }     
     }
     
-    public void insertPhoto() {
-        
+    public void insertPhoto(Scanner scan) {
+        System.out.println("Insert Photo in the database");
+
+
     }
 
     
