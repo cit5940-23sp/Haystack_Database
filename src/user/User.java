@@ -8,6 +8,7 @@ import graph.Coordinates;
 import graph.GraphL;
 import haystack.ListOfHaystacks;
 import haystack.Photo;
+import photo.IPhoto;
 
 
 public class User implements IUser {
@@ -97,7 +98,8 @@ public class User implements IUser {
         int haystackID = upn.getHaystackID();
         
         byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey, haystackID);
-            
+        
+        IPhoto.bytesToImage(imageByte);
         
     }
 

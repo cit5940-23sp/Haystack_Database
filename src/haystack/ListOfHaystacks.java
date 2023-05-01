@@ -12,6 +12,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
     int remainingSpace;
     List<IndexFile> listOfHaystacks;
     int currentHaystack;
+    int curKey;
     
     
     ListOfHaystacks(){
@@ -28,12 +29,19 @@ public class ListOfHaystacks implements IListOfHaystacks{
         
         remainingSpace = IHaystackObjectStore.MAXIMUM_BYTES;
         
+        curKey = 0;
         
     }
 
     @Override
     public int addPhotoToHaystack(Photo inputPhoto) {
         // TODO Auto-generated method stub
+        
+        inputPhoto.setKey(curKey);
+        
+        curKey++;
+        
+        inputPhoto.setAlternateKey(0);
         
         int haystackID = assignHaystack(inputPhoto);
         
@@ -94,7 +102,6 @@ public class ListOfHaystacks implements IListOfHaystacks{
         listOfHaystacks.add(index);
 
         remainingSpace = IHaystackObjectStore.MAXIMUM_BYTES;
-        
         
         
     }
