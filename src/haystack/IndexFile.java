@@ -51,6 +51,7 @@ public class IndexFile implements IIndexFile {
         System.out.println("AltKey" + alternateKey);
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
         if(v.getFlags().get(1)==1) {
+            System.out.println("Image wanted deleted");
             return null;
         }
         byte[] ans;
