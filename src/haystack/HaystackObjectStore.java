@@ -59,12 +59,14 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         BigInteger magic = BigInteger.valueOf(IPhoto.HEADER_MAGIC_NUMBER);      
         byte[] magicB = magic.toByteArray();
         out.write(magicB);
+        System.out.println("magic number size:" + magicB.length);
         
         //get photo key & convert to byte & write
         int key = p.getKey();
         BigInteger keyInt = BigInteger.valueOf(key);      
         byte[] keyB = keyInt.toByteArray();
         out.write(keyB);
+        
                 
         //get photo alternate key & convert to byte & write
         int alternateKey = p.getAlternateKey();
@@ -112,17 +114,18 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             RandomAccessFile rand = new RandomAccessFile(this.file, "r");
             
             rand.seek(offset);
-            
+            System.out.print(offset);
             //read things
             //read magic number for 4 bytes
             byte[] magic= new byte[4];
             rand.read(magic);
             int magicNumber = ByteBuffer.wrap(magic).getInt();
-            
+            System.out.println(magicNumber);
             //check if the header is the same magic number
             //if it is not the same format, retrieve fail -1
             if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
                 rand.close();
+                System.out.println("Not the same Magic number");
                 return null;
             }
             

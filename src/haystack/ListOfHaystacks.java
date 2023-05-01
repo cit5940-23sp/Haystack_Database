@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import graph.TupleForHaystack;
+import photo.IPhoto;
 
 public class ListOfHaystacks implements IListOfHaystacks{
 
@@ -80,7 +81,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
         // TODO Auto-generated method stub
         int sizeOfPhoto = inputPhoto.getSize();
         
-        int sizeOfEntry = sizeOfPhoto + 1000;
+        int sizeOfEntry = sizeOfPhoto + IPhoto.META_DATA_LENGTH;
         
         if (sizeOfEntry > remainingSpace) {
             createNewHaystack();

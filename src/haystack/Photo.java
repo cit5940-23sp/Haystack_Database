@@ -25,8 +25,11 @@ public class Photo implements IPhoto {
     public Photo(String filePath) {
         this.data = IPhoto.loadImageToBytes(filePath);
         this.flags = new HashMap<Integer, Integer>();
+        this.size = this.data.length;
         this.flags.put(IPhoto.EDITED, 0);
         this.flags.put(IPhoto.DELETED, 0);
+        this.key = key;
+        this.alternateKey = alternateKey;
     }
 
     public int getKey() {
