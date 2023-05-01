@@ -1,15 +1,15 @@
 package photo;
 
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public interface IPhoto {
     
@@ -51,6 +51,25 @@ public interface IPhoto {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static String chooseFile() {
+        JFileChooser j = new JFileChooser();
+        j.setDialogType(JFileChooser.OPEN_DIALOG);
+        j.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+        j.setCurrentDirectory(new File("/Users/lala/eclipse-workspace/594Java/Haystack_Database"));
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Format(.jpg/png/jpeg)"
+                ,"jpg", "png", "jpeg");
+        j.setFileFilter(filter);
+        
+        int response = j.showOpenDialog(null);
+        
+        if(response == JFileChooser.APPROVE_OPTION) {
+            return j.getSelectedFile().getAbsolutePath();
         }
         return null;
     }

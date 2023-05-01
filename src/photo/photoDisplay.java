@@ -1,12 +1,8 @@
 package photo;
 
 import java.awt.*;
-import java.io.File;
 
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import haystack.ListOfHaystacks;
 import user.User;
@@ -27,29 +23,11 @@ public class photoDisplay extends Canvas {
         g.drawImage(img, 120, 100, this);
 
     }
-    public static String chooseFile() {
-        JFileChooser j = new JFileChooser();
-        j.setDialogType(JFileChooser.OPEN_DIALOG);
-        j.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        
-        j.setCurrentDirectory(new File("/Users/lala/eclipse-workspace/594Java/Haystack_Database"));
-        
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Format(.jpg/png/jpeg)"
-                ,"jpg", "png", "jpeg");
-        j.setFileFilter(filter);
-        
-        int response = j.showOpenDialog(null);
-        
-        if(response == JFileChooser.APPROVE_OPTION) {
-            return j.getSelectedFile().getAbsolutePath();
-        }
-        return null;
-    }
 
     public static void main(String[] args) {
         // Using this process to invoke the constructor,
         // JFileChooser points to user's default directory
-        String file = chooseFile();
+        String file = IPhoto.chooseFile();
         
         ListOfHaystacks loh = new ListOfHaystacks();
 
