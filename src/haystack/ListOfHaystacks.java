@@ -90,13 +90,24 @@ public class ListOfHaystacks implements IListOfHaystacks{
         
         int newHaystackID = assignHaystack(photoToUpdate);
         
-        IndexFile oldIndex = listOfHaystacks.get(haystackID);
+        if (newHaystackID == haystackID) {
+            
+            IndexFile index = listOfHaystacks.get(haystackID);
+            
+            index.updatePhotoSame(key, alternateKey, photoToUpdate);
+            
+        } else {
+            
+            IndexFile oldIndex = listOfHaystacks.get(haystackID);
+            
+            IndexFile newIndex = listOfHaystacks.get(newHaystackID);
+            
+            oldIndex.updatePhoto(key, alternateKey);
+            
+            newIndex.addPhoto(photoToUpdate);
+        }
         
-        IndexFile newIndex = listOfHaystacks.get(newHaystackID);
-        
-        oldIndex.updatePhoto(key, alternateKey);
-        
-        newIndex.addPhoto(photoToUpdate);
+
         
         return newHaystackID;
         
