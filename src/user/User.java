@@ -99,6 +99,10 @@ public class User implements IUser {
         
         byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey, haystackID);
         
+        if (imageByte == null) {
+            System.out.println("Image cannot be found.");
+        }
+        
         Image returnImg = IPhoto.bytesToImage(imageByte);
         
         return returnImg;
