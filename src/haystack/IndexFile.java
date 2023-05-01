@@ -46,6 +46,9 @@ public class IndexFile implements IIndexFile {
     
     @Override
     public byte[] getPhoto(int key, int alternateKey) {
+        
+        System.out.println("Key" + key);
+        System.out.println("AltKey" + alternateKey);
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
         byte[] ans;
         ans = haystack.getPhoto(v.getOffset(), v.getSize());

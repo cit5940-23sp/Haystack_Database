@@ -39,6 +39,8 @@ class HaystackTest {
         
         newUser.addPhoto("cat.jpeg", loh);
         
+        System.out.println("Photo added");
+        
         newUser.getPhoto(0, loh);
 //        
 //        long offset = haystack.appendPhoto(photo);

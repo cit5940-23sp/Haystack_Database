@@ -1,5 +1,6 @@
 package user;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class UserPhotoNode implements IUserPhotoNode{
@@ -20,6 +21,8 @@ public class UserPhotoNode implements IUserPhotoNode{
         this.haystackID = haystackID;
         this.key = key;
         this.alternateKey = alternateKey;
+        
+        metaDataMap = new HashMap<String, Integer>();
         
         this.metaDataMap.put("HaystackID", haystackID);
         this.metaDataMap.put("Key", key);
