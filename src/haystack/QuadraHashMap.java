@@ -89,46 +89,10 @@ public class QuadraHashMap {
                 if (keys[i].equals(key))
                     return vals[i];
                 i = (i + h * h++) % maxSize;
-                System.out.println("i "+ i);
             }            
             return null;
         }
      
-        /** Function to remove key and its value **/
-        public void remove(IndexKey key) 
-        {
-            if (!contains(key)) 
-                return;
-     
-            /** find position key and delete **/
-            int i = hash(key), h = 1;
-            while (!key.equals(keys[i])) 
-                i = (i + h * h++) % maxSize;        
-            keys[i] = null;
-            vals[i] = null;
-     
-            /** rehash all keys **/        
-            for (i = (i + h * h++) % maxSize; keys[i] != null; i = (i + h * h++) % maxSize)
-            {
-                IndexKey tmp1 = keys[i];
-                IndexVal tmp2 = vals[i];
-                keys[i] = null;
-                vals[i] = null;
-                currentSize--;  
-                insert(tmp1, tmp2);            
-            }
-            currentSize--;        
-        }       
-     
-        /** Function to print HashTable **/
-        public void printHashTable()
-        {
-            System.out.println("\nHash Table: ");
-            for (int i = 0; i < maxSize; i++)
-                if (keys[i] != null)
-                    System.out.println(keys[i] +" "+ vals[i]);
-            System.out.println();
-        }   
     }
 
 }

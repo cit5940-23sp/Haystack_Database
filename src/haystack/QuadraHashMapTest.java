@@ -23,7 +23,6 @@ class QuadraHashMapTest {
 
     @Test
     void test() {
-
         QuadraticHashMap qpht = new QuadraticHashMap(1000);
         
         qpht.insert(k, v);
@@ -32,8 +31,6 @@ class QuadraHashMapTest {
 
         qpht.makeEmpty();
         assertEquals(qpht.getSize(),0);
-
-   
     }
 
 }

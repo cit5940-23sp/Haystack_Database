@@ -21,7 +21,6 @@ class IndexFileTest {
     void setUp() throws Exception {
         k = new IndexKey(0, 1);
         Map<Integer, Integer> flags = new HashMap<Integer, Integer>();
-        flags.put(2, 3);
         v = new IndexVal(4, 5);
 
     }
@@ -31,8 +30,16 @@ class IndexFileTest {
         
         f.addIndex(k, v);
         Map<Integer, Integer> updatedFlags = new HashMap<Integer, Integer>();
-        updatedFlags.put(2, 3);
+        updatedFlags.put(0,0);
+        updatedFlags.put(1,0);
         assertEquals(f.getFlags(k),updatedFlags);
+    }
+    
+
+    @Test
+    void testAddPhoto() {
+        Photo photo = new Photo("cat.jpeg");
+       
     }
 
 }
