@@ -103,8 +103,9 @@ public class User implements IUser {
             System.out.println("Image cannot be found.");
         }
         
-        Image returnImg = IPhoto.bytesToImage(imageByte);
-        
+       
+        Image returnImg = IPhoto.bytesToImage(imageByte, key);
+ 
         return returnImg;
         
     }

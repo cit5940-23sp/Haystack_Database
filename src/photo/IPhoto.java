@@ -1,6 +1,7 @@
 package photo;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -41,15 +42,17 @@ public interface IPhoto {
      * User will call this method and output a local file of jpg
      * @param data byte[]
      */
-    public static void bytesToImage(byte[] data) {
+    public static Image bytesToImage(byte[] data, int uniqueID) {
         ByteArrayInputStream input = new ByteArrayInputStream(data);
         try {
             BufferedImage res = ImageIO.read(input);
-            ImageIO.write(res, "jpg", new File("output.jpg") );
+            ImageIO.write(res, "jpg", new File("output" + uniqueID + ".jpg") );
+            return res;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return null;
     }
     
 

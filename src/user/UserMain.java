@@ -5,7 +5,10 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JFrame;
+
 import graph.GraphL;
+import photo.photoDisplay;
 import haystack.ListOfHaystacks;
 
 public class UserMain {
@@ -71,7 +74,7 @@ public class UserMain {
         }     
     }
     
-    public insertPhoto() {
+    public void insertPhoto() {
         
     }
 
@@ -94,7 +97,9 @@ public class UserMain {
             }
             
             um.userOptions(scan);
-            
+            if(answer.equals("exit")) {
+                break;
+            }
 
         }
         

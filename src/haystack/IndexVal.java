@@ -38,7 +38,7 @@ public class IndexVal {
         return offset;
     }
 
-    public void setOffset(int offset) {
+    public void setOffset(long offset) {
         this.offset = offset;
     }
     
