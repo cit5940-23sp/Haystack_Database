@@ -28,7 +28,6 @@ public interface IUserPhotoList {
     /**
      * Traverse through the masterPhotoList and return all photos as a list 
      */
-    List<Photo> getPhotos();
-    
+    UserPhotoNode getPhoto(int index);
     
 }

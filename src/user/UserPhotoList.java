@@ -35,9 +35,11 @@ public class UserPhotoList implements IUserPhotoList {
     }
 
 
-    public List<Photo> getPhotos() {
+    public UserPhotoNode getPhoto(int index) {
         // TODO Auto-generated method stub
-        return null;
+        return masterPhotoList.get(index);
     }
+
+
 
 }

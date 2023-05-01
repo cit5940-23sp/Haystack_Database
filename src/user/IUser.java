@@ -22,6 +22,7 @@ public interface IUser {
      */
     HashSet<User> getUserFriendsList();
     
+    void getPhoto(int idx, ListOfHaystacks loh);
     
     /**
      * Add a friend into User's friend list 
