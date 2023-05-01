@@ -45,9 +45,15 @@ public interface IIndexFile {
     void addPhoto(Photo inputPhoto);
     
     /**
-     * Update the photo in haystack
+     * Update the photo in different haystack
      */
     void updatePhoto(int key, int alternateKey);
+    
+    /**
+     * Update the photo in the same haystack
+     */
+    void updatePhotoSame(int key, int alternateKey, Photo inputPhoto);
+
 
 
 }

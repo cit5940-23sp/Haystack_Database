@@ -70,12 +70,21 @@ public class IndexFile implements IIndexFile {
     
     @Override
     public void updatePhoto(int key, int alternateKey) {
-        
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
         Map<Integer, Integer> flags = v.getFlags();
-        flags.put(IPhoto.EDITED,1);        
+        flags.put(IPhoto.EDITED,1);    
     }
-
+    
+    @Override
+    public void updatePhotoSame(int key, int alternateKey, Photo inputPhoto) {
+        IndexVal v = hm.get(new IndexKey(key, alternateKey));
+        Map<Integer, Integer> flags = v.getFlags();
+        flags.put(IPhoto.EDITED,1);
+        long offset = haystack.appendPhoto(inputPhoto);
+        v.setOffset(offset);
+        v.setSize(inputPhoto.getSize());
+    }
+    
 
     @Override
     public void addIndex(IndexKey newIndexKey, IndexVal newIndexVal) {
