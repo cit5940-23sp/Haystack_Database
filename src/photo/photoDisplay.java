@@ -1,21 +1,49 @@
 package photo;
 
 import java.awt.*;  
-import javax.swing.JFrame;  
+import javax.swing.JFrame;
+
+import haystack.ListOfHaystacks;
+import user.User;
+import user.UserGraph;
+import user.UserLocationMap;  
 
 public class photoDisplay extends Canvas{  
-      
+     private Image img;
+    public photoDisplay(Image img) {
+        this.img = img;
+    }
     public void paint(Graphics g) {  
   
         Toolkit t=Toolkit.getDefaultToolkit();  
-        Image i=t.getImage("cat.jpeg");  
-        g.drawImage(i, 120,100,this);  
+//        Image i=t.getImage("cat.jpeg");  
+        g.drawImage(img, 120,100,this);  
           
     }  
     
     public static void main(String[] args) {  
-        photoDisplay m=new photoDisplay();  
-        JFrame f=new JFrame();  
+        ListOfHaystacks loh = new ListOfHaystacks();
+        
+        String userName = "Tim";
+        
+        int nextUserID = 1;
+        
+        int latitude = 90;
+        
+        int longitude = 90;
+        
+        UserGraph graphOfConnections = new UserGraph();
+        
+        UserLocationMap userLocationMap = new UserLocationMap();
+        
+        User newUser = new User(userName, nextUserID, latitude, 
+                longitude, userLocationMap, graphOfConnections );
+        
+        newUser.addPhoto("./cat.jpeg", loh);
+        Image res = newUser.getPhoto(0, loh);
+        
+        photoDisplay m = new photoDisplay(res);  
+        JFrame f = new JFrame();  
         f.add(m);  
         f.setSize(1000,1000);  
         f.setVisible(true);  
