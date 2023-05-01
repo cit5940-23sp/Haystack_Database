@@ -54,7 +54,7 @@ public class QuadraHashMap {
         /** Function to get hash code of a given key **/
         private int hash(IndexKey key) 
         {
-            return key.hashCode() % maxSize;
+            return Integer.hashCode(key.getKey()) % maxSize;
         }    
      
         /** Function to insert key-value pair **/
@@ -63,7 +63,7 @@ public class QuadraHashMap {
             
             int tmp = hash(key);
             
-            System.out.println("Key added in HM: " + tmp);
+            System.out.println("Hash added in HM: " + tmp);
             int i = tmp, h = 1;
             do
             {
@@ -92,11 +92,16 @@ public class QuadraHashMap {
             System.out.println("Key: " + key.getKey());   
             System.out.println("AltKey: " + key.getAlternateKey());     
             System.out.println("Hash in HM: " + i);
+            System.out.println(keys[i]);
             
             while (keys[i] != null)
             {
-                if (keys[i].equals(key))
-                    return vals[i];
+                if (keys[i].getKey() == key.getKey()) {
+                    
+                    System.out.println("Found key");
+                    return vals[i];                   
+                }
+ 
                 i = (i + h * h++) % maxSize;
             }            
             return null;
