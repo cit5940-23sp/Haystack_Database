@@ -198,12 +198,12 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                 return -1;
             }
             
-            //read key for 2 bytes
-            byte[] key = new byte[2];
+            //read key for 1 bytes
+            byte[] key = new byte[1];
             rand.read(key);
             
-            //read alternate key for 2 bytes
-            byte[] alternateKey = new byte[2];
+            //read alternate key for 1 bytes
+            byte[] alternateKey = new byte[1];
             rand.read(alternateKey);
             
             //read flags <key 1 byte> <value 1 byte>
