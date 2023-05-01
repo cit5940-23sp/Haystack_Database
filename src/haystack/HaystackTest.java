@@ -50,12 +50,15 @@ class HaystackTest {
         newUser.addPhoto("./Puppy.jpeg", loh);
         newUser.addPhoto("./Puppy.jpeg", loh);
         newUser.addPhoto("./Puppy.jpeg", loh);
-
-        
+        newUser.addPhoto("./Puppy.jpeg", loh);
+        newUser.addPhoto("./Puppy.jpeg", loh);
+        newUser.addPhoto("./Puppy.jpeg", loh);
+        newUser.addPhoto("./Puppy.jpeg", loh);
         
         System.out.println("Photo added");
         
         newUser.getPhoto(11, loh);
+
 //        
 //        long offset = haystack.appendPhoto(photo);
 //        byte[] data = haystack.getPhoto(offset, photo.getSize());

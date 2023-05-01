@@ -9,6 +9,7 @@ public class UserPhotoNode implements IUserPhotoNode{
     private int key; 
     private int alternateKey; 
     private int deleted;
+    private String filePath;
     Map<String, Integer> metaDataMap;
     
     /**
@@ -17,12 +18,13 @@ public class UserPhotoNode implements IUserPhotoNode{
      * @param key
      * @param alternateKey
      */
-    public UserPhotoNode(int haystackID, int key, int alternateKey) {
+    public UserPhotoNode(int haystackID, int key, int alternateKey, String filePath) {
         
         this.haystackID = haystackID;
         this.key = key;
         this.alternateKey = alternateKey;
         this.deleted = 0;
+        this.filePath = filePath;
         
         metaDataMap = new HashMap<String, Integer>();
         
@@ -30,6 +32,8 @@ public class UserPhotoNode implements IUserPhotoNode{
         this.metaDataMap.put("Key", key);
         this.metaDataMap.put("AlternateKey", alternateKey);
         this.metaDataMap.put("Deleted", deleted);
+        
+        
     }
     
     /**
@@ -65,6 +69,15 @@ public class UserPhotoNode implements IUserPhotoNode{
         return alternateKey;
     }
 
+    
+    
+    /**
+     * Get filePath 
+     * @return filePath
+     */
+    public String getFilename() {
+        return filePath;
+    }
     
     /**
      * Get alternateKey 

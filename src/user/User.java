@@ -80,7 +80,7 @@ public class User implements IUser {
         int key = returnVal.get(1);
         int alternateKey = returnVal.get(2);
 
-        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey);
+        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey, filePath);
 
         userPhotoList.addPhotoToUserList(upn);
 
@@ -110,7 +110,8 @@ public class User implements IUser {
         
         for (int i = listOfPhotoNodes.size(); i > -1; i--) {
             UserPhotoNode curNode = listOfPhotoNodes.get(i);
-            System.out.println(curNode.getKey());
+            System.out.print(curNode.getKey() + ": ");
+            System.out.println(curNode.getFilename());
         }
     }
     
