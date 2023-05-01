@@ -19,3 +19,11 @@ Files used by Alette
 4. UserPhotoList.java
 5. UserPhotoNode.java
 6. IUserPhotoNode.java
+
+
+# Potential enhancements 
+1. LRU caching in User 
+2. Public/Private views 
+3. Save each photo with different sizes (make alternate key and hashing with alternate key dynamic) 
+4. A* search for recommended friends 
+5. GUI 
