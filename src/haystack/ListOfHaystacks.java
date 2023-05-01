@@ -17,7 +17,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
     int curAltKey;
     
     
-    ListOfHaystacks(){
+    public ListOfHaystacks(){
         
         listOfHaystacks = new ArrayList<IndexFile>();
         
