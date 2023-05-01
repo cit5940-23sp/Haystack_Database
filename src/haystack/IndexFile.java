@@ -54,8 +54,9 @@ public class IndexFile implements IIndexFile {
     }
     
     @Override
-    public void updateFlags(IndexKey k) {
-        IndexVal v = hm.get(k);
+    public void deletePhoto(int key, int alternateKey) {
+        
+        IndexVal v = hm.get(new IndexKey(key, alternateKey));
         Map<Integer, Integer> flags = v.getFlags();
         flags.put(IPhoto.DELETED,1);
     }

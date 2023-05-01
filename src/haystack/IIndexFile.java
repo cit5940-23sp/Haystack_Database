@@ -37,7 +37,7 @@ public interface IIndexFile {
     /**
      * Update the flags to delete:1 from the key
      */
-    void updateFlags(IndexKey k);
+    void deletePhoto(int key, int alternateKey);
     
     /**
      * Add the photo in haystack
