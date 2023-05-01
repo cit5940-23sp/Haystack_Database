@@ -14,6 +14,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
     List<IndexFile> listOfHaystacks;
     int currentHaystack;
     int curKey;
+    int curAltKey;
     
     
     ListOfHaystacks(){
@@ -32,27 +33,34 @@ public class ListOfHaystacks implements IListOfHaystacks{
         
         curKey = 0;
         
+        curAltKey = 0;
+        
     }
 
     @Override
-    public int addPhotoToHaystack(Photo inputPhoto) {
+    public List<Integer> addPhotoToHaystack(Photo inputPhoto) {
         // TODO Auto-generated method stub
         
         inputPhoto.setKey(curKey);
         
-        curKey++;
-        
-        inputPhoto.setAlternateKey(0);
+        inputPhoto.setAlternateKey(curAltKey);
         
         int haystackID = assignHaystack(inputPhoto);
         
         IndexFile index = listOfHaystacks.get(haystackID);
         
-        
         //TEST 
         index.addPhoto(inputPhoto);
         
-        return haystackID;
+        List<Integer> returnVal = new ArrayList<Integer>();
+        
+        returnVal.add(haystackID);
+        returnVal.add(curKey);
+        returnVal.add(curAltKey);
+        
+        curKey++;
+        
+        return returnVal;
         
     }
 

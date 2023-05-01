@@ -73,13 +73,16 @@ public class User implements IUser {
         Photo photoToAdd = new Photo(filePath);
         
 //        int haystackID = photoToAdd.getHaystackID();
-        int key = photoToAdd.getKey();
-        int alternateKey = photoToAdd.getAlternateKey();
         
+        List<Integer> returnVal = loh.addPhotoToHaystack(photoToAdd);
         
-        int haystackID = loh.addPhotoToHaystack(photoToAdd);
+        int haystackID = returnVal.get(0);
+        int key = returnVal.get(1);
+        int alternateKey = returnVal.get(2);
 
         UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey);
+        System.out.println("Key added in upn: " + upn.getKey());
+        System.out.println("AltKey added in upn: " + upn.getAlternateKey());
         userPhotoList.addPhotoToUserList(upn);
 
         // TODO Auto-generated method stub

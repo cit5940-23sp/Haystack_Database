@@ -20,7 +20,7 @@ public interface IListOfHaystacks {
     
     public int assignHaystack(Photo inputPhoto);
     
-    public int addPhotoToHaystack(Photo inputPhoto);
+    public List<Integer> addPhotoToHaystack(Photo inputPhoto);
     
     void deletePhotoFromHaystack(int key, int alternateKey, int haystackID);
 }

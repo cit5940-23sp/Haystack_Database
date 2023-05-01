@@ -18,8 +18,8 @@ class HaystackTest {
 
     @Test
     void appendPhotoTest() {
-        Photo photo = new Photo("cat.jpeg");
-        HaystackObjectStore haystack = new HaystackObjectStore("Database_test1.txt");
+//        Photo photo = new Photo("cat.jpeg");
+//        HaystackObjectStore haystack = new HaystackObjectStore("Database_test1.txt");
         ListOfHaystacks loh = new ListOfHaystacks();
         
         String userName = "Tim";
@@ -37,11 +37,14 @@ class HaystackTest {
         User newUser = new User(userName, nextUserID, latitude, 
                 longitude, userLocationMap, graphOfConnections );
         
-        newUser.addPhoto("cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
         
         System.out.println("Photo added");
         
-        newUser.getPhoto(0, loh);
+        newUser.getPhoto(1, loh);
 //        
 //        long offset = haystack.appendPhoto(photo);
 //        byte[] data = haystack.getPhoto(offset, photo.getSize());

@@ -60,7 +60,10 @@ public class QuadraHashMap {
         /** Function to insert key-value pair **/
         public void insert(IndexKey key, IndexVal val) 
         {                
+            
             int tmp = hash(key);
+            
+            System.out.println("Key added in HM: " + tmp);
             int i = tmp, h = 1;
             do
             {
@@ -69,6 +72,8 @@ public class QuadraHashMap {
                     keys[i] = key;
                     vals[i] = val;
                     currentSize++;
+                    System.out.println("Added into hm");
+                    System.out.println(currentSize);
                     return;
                 }
                 if (keys[i].equals(key)) 
@@ -84,6 +89,10 @@ public class QuadraHashMap {
         public IndexVal get(IndexKey key) 
         {
             int i = hash(key), h = 1;
+            System.out.println("Key: " + key.getKey());   
+            System.out.println("AltKey: " + key.getAlternateKey());     
+            System.out.println("Hash in HM: " + i);
+            
             while (keys[i] != null)
             {
                 if (keys[i].equals(key))
