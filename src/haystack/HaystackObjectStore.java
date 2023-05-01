@@ -228,6 +228,12 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         return 0;
         
     }
+
+    @Override
+    public int updatePhoto(long offset) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
     
     
 
