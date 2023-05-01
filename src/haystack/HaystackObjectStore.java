@@ -179,7 +179,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     }
 
     @Override
-    public int deletePhoto(int offset) {
+    public int deletePhoto(long offset) {
         try {
             RandomAccessFile rand = new RandomAccessFile(this.file, "rw");
             
@@ -228,6 +228,8 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         return 0;
         
     }
+    
+    
 
 //    @Override
 //    public void setPublicPrivate(int offset) {
