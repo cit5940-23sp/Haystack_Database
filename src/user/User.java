@@ -84,6 +84,8 @@ public class User implements IUser {
         UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey, filePath);
 
         userPhotoList.addPhotoToUserList(upn);
+        
+        System.out.println("Added into haystack: " + haystackID);
 
         // TODO Auto-generated method stub
         

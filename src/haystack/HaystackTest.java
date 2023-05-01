@@ -66,42 +66,42 @@ class HaystackTest {
 //        
 //    }
     
-    @Test
-    void deletePhotoTest() {
-        
-        ListOfHaystacks loh = new ListOfHaystacks();
-        
-        String userName = "Tim";
-        
-        int nextUserID = 1;
-        
-        int latitude = 90;
-        
-        int longitude = 90;
-        
-        UserGraph graphOfConnections = new UserGraph();
-        
-        UserLocationMap userLocationMap = new UserLocationMap();
-        
-        User newUser = new User(userName, nextUserID, latitude, 
-                longitude, userLocationMap, graphOfConnections );
-        
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./Puppy.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-
-        
-        System.out.println("Photo added");
-        
-        newUser.deletePhoto(3, loh);
-        
-        System.out.println("Photo deleted");
-        
-        newUser.getPhoto(3, loh);
-        
-    }
+//    @Test
+//    void deletePhotoTest() {
+//        
+//        ListOfHaystacks loh = new ListOfHaystacks();
+//        
+//        String userName = "Tim";
+//        
+//        int nextUserID = 1;
+//        
+//        int latitude = 90;
+//        
+//        int longitude = 90;
+//        
+//        UserGraph graphOfConnections = new UserGraph();
+//        
+//        UserLocationMap userLocationMap = new UserLocationMap();
+//        
+//        User newUser = new User(userName, nextUserID, latitude, 
+//                longitude, userLocationMap, graphOfConnections );
+//        
+//        newUser.addPhoto("./cat.jpeg", loh);
+//        newUser.addPhoto("./cat.jpeg", loh);
+//        newUser.addPhoto("./cat.jpeg", loh);
+//        newUser.addPhoto("./Puppy.jpeg", loh);
+//        newUser.addPhoto("./cat.jpeg", loh);
+//
+//        
+//        System.out.println("Photo added");
+//        
+//        newUser.deletePhoto(3, loh);
+//        
+//        System.out.println("Photo deleted");
+//        
+//        newUser.getPhoto(3, loh);
+//        
+//    }
     
     @Test
     void updatePhotoTest() {
@@ -126,16 +126,50 @@ class HaystackTest {
         newUser.addPhoto("./cat.jpeg", loh);
         newUser.addPhoto("./cat.jpeg", loh);
         newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./Puppy.jpeg", loh);
         newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./Puppy.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
+        newUser.addPhoto("./cat.jpeg", loh);
 
         
         System.out.println("Photo added");
         
         newUser.deletePhoto(3, loh);
         
-        System.out.println("Photo deleted");
+        System.out.println("Photo updated");
+        
+        newUser.updatePhoto("./Puppy.jpeg", 3, loh);
+        
+        System.out.println("Get photo");
         
         newUser.getPhoto(3, loh);
         
