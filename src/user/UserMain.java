@@ -71,7 +71,7 @@ public class UserMain {
         }     
     }
     
-    public insertPhoto() {
+    public void insertPhoto() {
         
     }
 

@@ -50,6 +50,9 @@ public class IndexFile implements IIndexFile {
         System.out.println("Key" + key);
         System.out.println("AltKey" + alternateKey);
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
+        if(v.getFlags().get(1)==1) {
+            return null;
+        }
         byte[] ans;
         ans = haystack.getPhoto(v.getOffset(), v.getSize());
 
@@ -62,6 +65,7 @@ public class IndexFile implements IIndexFile {
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
         Map<Integer, Integer> flags = v.getFlags();
         flags.put(IPhoto.DELETED,1);
+        haystack.deletePhoto(v.getOffset());
     }
 
 
