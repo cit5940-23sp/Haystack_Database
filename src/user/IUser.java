@@ -1,5 +1,6 @@
 package user;
 
+import java.awt.Image;
 import java.util.HashSet;
 
 import haystack.ListOfHaystacks;
@@ -22,7 +23,7 @@ public interface IUser {
      */
     HashSet<User> getUserFriendsList();
     
-    void getPhoto(int idx, ListOfHaystacks loh);
+    Image getPhoto(int key, ListOfHaystacks loh);
     
     /**
      * Add a friend into User's friend list 
@@ -30,8 +31,11 @@ public interface IUser {
     void addFriend(int uniqueFriendID);
     
     
-    void deletePhoto(int idx, ListOfHaystacks loh);
+    void deletePhoto(int key, ListOfHaystacks loh);
+    
+    void updatePhoto(String filePath, int key, ListOfHaystacks loh);
 
+    void displayPhotoList();
     
     /**
      * Delete friend from User's friend list 

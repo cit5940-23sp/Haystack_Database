@@ -86,6 +86,11 @@ public class ListOfHaystacks implements IListOfHaystacks{
     }
     
     @Override
+    public int updatePhotoInHaystack(Photo photoToUpdate, int key, int alternateKey, int haystackID) {
+        
+    }
+    
+    @Override
     public int assignHaystack(Photo inputPhoto) {
         // TODO Auto-generated method stub
         int sizeOfPhoto = inputPhoto.getSize();

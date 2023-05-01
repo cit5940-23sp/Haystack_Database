@@ -1,5 +1,6 @@
 package user;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -80,9 +81,8 @@ public class User implements IUser {
         int key = returnVal.get(1);
         int alternateKey = returnVal.get(2);
 
-        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey);
-        System.out.println("Key added in upn: " + upn.getKey());
-        System.out.println("AltKey added in upn: " + upn.getAlternateKey());
+        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey, filePath);
+
         userPhotoList.addPhotoToUserList(upn);
 
         // TODO Auto-generated method stub
@@ -90,37 +90,66 @@ public class User implements IUser {
     }
     
     @Override
-    public void getPhoto(int idx, ListOfHaystacks loh) {
+    public Image getPhoto(int key, ListOfHaystacks loh) {
         
-        UserPhotoList upl = getUserPhotoList();
+        UserPhotoNode upn = userPhotoList.getPhoto(key);
         
-        UserPhotoNode upn = upl.getPhoto(idx);
-        
-        int key = upn.getKey();
         int alternateKey = upn.getAlternateKey();
         int haystackID = upn.getHaystackID();
         
         byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey, haystackID);
         
-        IPhoto.bytesToImage(imageByte);
+        Image returnImg = IPhoto.bytesToImage(imageByte);
+        
+        return returnImg;
         
     }
 
     
+    @Override
+    public void displayPhotoList() {
+        
+        List<UserPhotoNode> listOfPhotoNodes = userPhotoList.getAllPhotos();
+        
+        for (int i = listOfPhotoNodes.size(); i > -1; i--) {
+            UserPhotoNode curNode = listOfPhotoNodes.get(i);
+            System.out.print(curNode.getKey() + ": ");
+            System.out.println(curNode.getFilename());
+        }
+    }
+    
     @Override 
-    public void deletePhoto(int idx, ListOfHaystacks loh) {
+    public void deletePhoto(int key, ListOfHaystacks loh) {
         
-        UserPhotoList upl = getUserPhotoList();
+        UserPhotoNode upn = userPhotoList.getPhoto(key);
         
-        UserPhotoNode upn = upl.getPhoto(idx);
-        
-        int key = upn.getKey();
         int alternateKey = upn.getAlternateKey();
         int haystackID = upn.getHaystackID();
         
         loh.deletePhotoFromHaystack(key, alternateKey, haystackID);
         
+        upn.setDeleted();
+        
     }
+    
+    
+    @Override 
+    public void updatePhoto(String filePath, int key, ListOfHaystacks loh) {
+        
+        Photo photoToUpdate = new Photo(filePath);
+        
+        UserPhotoNode upn = userPhotoList.getPhoto(key);
+        
+        int alternateKey = upn.getAlternateKey();
+        int haystackID = upn.getHaystackID();
+        
+        int newHaystackID = loh.updatePhotoInHaystack(photoToUpdate, key, alternateKey, haystackID);
+        
+        upn.setHaystackID(newHaystackID);
+        upn.setFilename(filePath);
+        
+    }
+   
     
     public HashSet<User> getUserFriendsList() {
         // TODO Auto-generated method stub

@@ -1,5 +1,6 @@
 package user;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -35,11 +36,33 @@ public class UserPhotoList implements IUserPhotoList {
     }
 
 
-    public UserPhotoNode getPhoto(int index) {
+    public UserPhotoNode getPhoto(int key) {
         // TODO Auto-generated method stub
-        return masterPhotoList.get(index);
+        
+        for (int i = 0; i < masterPhotoList.size(); i++) {
+            if (masterPhotoList.get(i).getKey() == key) {
+                return masterPhotoList.get(i);
+            }
+        }
+        
+        return null;
     }
 
+
+    public List<UserPhotoNode> getAllPhotos() {
+        // TODO Auto-generated method stub
+        
+        List<UserPhotoNode> allPhotos = new ArrayList<UserPhotoNode>();
+        
+        for (int i = 0; i < masterPhotoList.size(); i++) {
+            UserPhotoNode curNode = masterPhotoList.get(i);
+            if (curNode.getDeleted() == 0) {
+                allPhotos.add(curNode);
+            }
+        }
+        
+        return allPhotos;
+    }
 
 
 }
