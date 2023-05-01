@@ -18,8 +18,8 @@ public class UserMain {
     int nextUserID;
     UserGraph graphOfConnections; 
     UserLocationMap userLocationMap;
-    ListOfHaystacks lohs = new ListOfHaystacks();
-
+    ListOfHaystacks loh = new ListOfHaystacks();
+    User newUser;
     
     public UserMain() {
 
@@ -41,7 +41,7 @@ public class UserMain {
         System.out.println("What is your address (longitude)?");
         int longitude = scan.nextInt();
         
-        User newUser = new User(userName, nextUserID, latitude, 
+        newUser = new User(userName, nextUserID, latitude, 
                 longitude, userLocationMap, graphOfConnections );
         
         nextUserID ++;
@@ -75,9 +75,20 @@ public class UserMain {
     }
     
     public void insertPhoto(Scanner scan) {
-        System.out.println("Insert Photo in the database");
-
-
+        System.out.println("Choose the Photo path you want to put in the database");
+        //wait for the filePath from fileFinder in photoDisplay
+        newUser.addPhoto("./cat.jpeg", loh);
+        //maybe add a case when photo is too big
+        System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
+        
+        String answer = scan.nextLine();
+        answer = answer.toLowerCase();
+        if (answer.equals("y")) {
+            insertPhoto(scan);
+        } else {
+            System.out.println("Thanks for adding the photos, please see other options you can perform.");
+            userOptions(scan);
+        }
     }
 
     
