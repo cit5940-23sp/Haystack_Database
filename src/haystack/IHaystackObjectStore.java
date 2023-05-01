@@ -28,8 +28,14 @@ public interface IHaystackObjectStore {
      * @param offset photo position in haystack
      * @return -1 if fail to delete(photo not found, invalid offset/magic number), return 0 on success
      */
-    public int deletePhoto(int offset);
+    public int deletePhoto(long offset);
     
+    /**
+     * Edit photo by changing the flag
+     * @param offset
+     * @return
+     */
+    public int updatePhoto(long offset);
 //    /**
 //     * Set the photo as public or private 
 //     */
