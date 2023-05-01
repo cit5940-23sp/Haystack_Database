@@ -32,7 +32,9 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             //append write to the file
             FileOutputStream out = new FileOutputStream(this.file, true);
             
-            this.EOF = this.file.length() - 1;
+            if(this.file.length() != 0) {
+                this.EOF = this.file.length();
+            }
             
             //convert new photo to bytes and write to file
             convertPhotoToBytes(newPhoto, out);
@@ -129,12 +131,12 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                 return null;
             }
             
-            //read key for 2 bytes
-            byte[] key = new byte[2];
+            //read key for 1 bytes
+            byte[] key = new byte[1];
             rand.read(key);
             
-            //read alternate key for 2 bytes
-            byte[] alternateKey = new byte[2];
+            //read alternate key for 1 bytes
+            byte[] alternateKey = new byte[1];
             rand.read(alternateKey);
             
             //read flags <key 1 byte> <value 1 byte>
