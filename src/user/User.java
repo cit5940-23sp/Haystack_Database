@@ -81,8 +81,7 @@ public class User implements IUser {
         int alternateKey = returnVal.get(2);
 
         UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey);
-        System.out.println("Key added in upn: " + upn.getKey());
-        System.out.println("AltKey added in upn: " + upn.getAlternateKey());
+
         userPhotoList.addPhotoToUserList(upn);
 
         // TODO Auto-generated method stub
@@ -90,13 +89,10 @@ public class User implements IUser {
     }
     
     @Override
-    public void getPhoto(int idx, ListOfHaystacks loh) {
+    public void getPhoto(int key, ListOfHaystacks loh) {
         
-        UserPhotoList upl = getUserPhotoList();
+        UserPhotoNode upn = userPhotoList.getPhoto(key);
         
-        UserPhotoNode upn = upl.getPhoto(idx);
-        
-        int key = upn.getKey();
         int alternateKey = upn.getAlternateKey();
         int haystackID = upn.getHaystackID();
         
@@ -107,20 +103,30 @@ public class User implements IUser {
     }
 
     
+    @Override
+    public void displayPhotoList() {
+        
+        List<UserPhotoNode> listOfPhotoNodes = userPhotoList.getAllPhotos();
+        
+        for (int i = listOfPhotoNodes.size(); i > -1; i--) {
+            UserPhotoNode curNode = listOfPhotoNodes.get(i);
+            System.out.println(curNode.getKey());
+        }
+    }
+    
     @Override 
-    public void deletePhoto(int idx, ListOfHaystacks loh) {
+    public void deletePhoto(int key, ListOfHaystacks loh) {
         
-        UserPhotoList upl = getUserPhotoList();
+        UserPhotoNode upn = userPhotoList.getPhoto(key);
         
-        UserPhotoNode upn = upl.getPhoto(idx);
-        
-        int key = upn.getKey();
         int alternateKey = upn.getAlternateKey();
         int haystackID = upn.getHaystackID();
         
         loh.deletePhotoFromHaystack(key, alternateKey, haystackID);
         
     }
+    
+    
     
     public HashSet<User> getUserFriendsList() {
         // TODO Auto-generated method stub

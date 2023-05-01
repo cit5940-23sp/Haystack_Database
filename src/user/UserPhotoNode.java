@@ -8,6 +8,7 @@ public class UserPhotoNode implements IUserPhotoNode{
     private int haystackID; 
     private int key; 
     private int alternateKey; 
+    private int deleted;
     Map<String, Integer> metaDataMap;
     
     /**
@@ -21,12 +22,14 @@ public class UserPhotoNode implements IUserPhotoNode{
         this.haystackID = haystackID;
         this.key = key;
         this.alternateKey = alternateKey;
+        this.deleted = 0;
         
         metaDataMap = new HashMap<String, Integer>();
         
         this.metaDataMap.put("HaystackID", haystackID);
         this.metaDataMap.put("Key", key);
         this.metaDataMap.put("AlternateKey", alternateKey);
+        this.metaDataMap.put("Deleted", deleted);
     }
     
     /**
@@ -62,4 +65,20 @@ public class UserPhotoNode implements IUserPhotoNode{
         return alternateKey;
     }
 
+    
+    /**
+     * Get alternateKey 
+     * @return alternateKey 
+     */
+    public int getDeleted() {
+        return deleted;
+    }
+    
+    /**
+     * Set photo as deleted
+     *  
+     */
+    public void setDeleted() {
+        this.deleted = 1;
+    }
 }
