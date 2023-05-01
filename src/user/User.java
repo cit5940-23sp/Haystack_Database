@@ -99,7 +99,7 @@ public class User implements IUser {
         
         byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey, haystackID);
         
-        Image returnImg = IPhoto.bytesToImage(imageByte);
+        Image returnImg = IPhoto.bytesToImage(imageByte, key);
         
         return returnImg;
         

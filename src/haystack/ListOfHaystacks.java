@@ -17,7 +17,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
     int curAltKey;
     
     
-    ListOfHaystacks(){
+    public ListOfHaystacks(){
         
         listOfHaystacks = new ArrayList<IndexFile>();
         
@@ -82,11 +82,6 @@ public class ListOfHaystacks implements IListOfHaystacks{
         IndexFile index = listOfHaystacks.get(haystackID);
         
         index.deletePhoto(key, alternateKey);
-        
-    }
-    
-    @Override
-    public int updatePhotoInHaystack(Photo photoToUpdate, int key, int alternateKey, int haystackID) {
         
     }
     

@@ -5,7 +5,10 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JFrame;
+
 import graph.GraphL;
+import photo.photoDisplay;
 
 public class UserMain {
 
@@ -57,6 +60,9 @@ public class UserMain {
             if (answer.equals("y")) {
                 um.createNewUser(scan);
                 scan.nextLine();
+            }
+            if(answer.equals("exit")) {
+                break;
             }
 
         }
