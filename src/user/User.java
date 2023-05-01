@@ -101,6 +101,7 @@ public class User implements IUser {
         
         if (imageByte == null) {
             System.out.println("Image cannot be found.");
+            return null;
         }
         
        
