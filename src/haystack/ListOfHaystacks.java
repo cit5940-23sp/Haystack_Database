@@ -88,9 +88,15 @@ public class ListOfHaystacks implements IListOfHaystacks{
     @Override
     public int updatePhotoInHaystack(Photo photoToUpdate, int key, int alternateKey, int haystackID) {
         
-        IndexFile index = listOfHaystacks.get(haystackID);
+        int newHaystackID = assignHaystack(photoToUpdate);
         
-        int newHaystackID = index.updatePhoto(photoToUpdate, key, alternateKey);
+        IndexFile oldIndex = listOfHaystacks.get(haystackID);
+        
+        IndexFile newIndex = listOfHaystacks.get(newHaystackID);
+        
+        oldIndex.updatePhoto(key, alternateKey);
+        
+        newIndex.addPhoto(photoToUpdate);
         
         return newHaystackID;
         
