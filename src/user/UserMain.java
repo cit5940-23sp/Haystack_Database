@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 import graph.GraphL;
+import haystack.ListOfHaystacks;
 
 public class UserMain {
 
@@ -14,6 +15,8 @@ public class UserMain {
     int nextUserID;
     UserGraph graphOfConnections; 
     UserLocationMap userLocationMap;
+    ListOfHaystacks lohs = new ListOfHaystacks();
+
     
     public UserMain() {
 
@@ -42,6 +45,37 @@ public class UserMain {
         
     }
     
+    public void userOptions(Scanner scan) {
+        
+    
+        System.out.println("-------------------------");
+        System.out.println("Haystack Photo Management System");
+        System.out.println("-------------------------");
+        System.out.println(" 1 -- Insert Photo in the database");
+        System.out.println(" 2 -- Display Photo");
+        System.out.println(" 3 -- Delete Photo");
+        System.out.println(" 4 -- Quit the system");
+        System.out.println("");
+        System.out.println("Please enter your option, eg. '1'.");
+        
+        String Option = scan.nextLine();
+
+        switch(Option) {
+        case "1":
+            
+        case "2":
+        case "3":
+            
+        case "4":
+            System.out.println("Thanks for using the Haystack database!");
+        }     
+    }
+    
+    public insertPhoto() {
+        
+    }
+
+    
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         
@@ -58,6 +92,9 @@ public class UserMain {
                 um.createNewUser(scan);
                 scan.nextLine();
             }
+            
+            um.userOptions(scan);
+            
 
         }
         
