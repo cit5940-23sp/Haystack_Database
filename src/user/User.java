@@ -97,10 +97,26 @@ public class User implements IUser {
         int haystackID = upn.getHaystackID();
         
         byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey, haystackID);
-        
+            
         
     }
 
+    
+    @Override 
+    public void deletePhoto(int idx, ListOfHaystacks loh) {
+        
+        UserPhotoList upl = getUserPhotoList();
+        
+        UserPhotoNode upn = upl.getPhoto(idx);
+        
+        int key = upn.getKey();
+        int alternateKey = upn.getAlternateKey();
+        int haystackID = upn.getHaystackID();
+        
+        loh.deletePhotoFromHaystack(key, alternateKey, haystackID);
+        
+    }
+    
     public HashSet<User> getUserFriendsList() {
         // TODO Auto-generated method stub
         return null;

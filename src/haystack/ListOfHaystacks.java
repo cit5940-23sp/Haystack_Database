@@ -59,6 +59,15 @@ public class ListOfHaystacks implements IListOfHaystacks{
     }
     
     @Override
+    public void deletePhotoFromHaystack(int key, int alternateKey, int haystackID) {
+        
+        IndexFile index = listOfHaystacks.get(haystackID);
+        
+        index.deletePhoto(key, alternateKey);
+        
+    }
+    
+    @Override
     public int assignHaystack(Photo inputPhoto) {
         // TODO Auto-generated method stub
         int sizeOfPhoto = inputPhoto.getSize();

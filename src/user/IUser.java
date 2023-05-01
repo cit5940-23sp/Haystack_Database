@@ -30,6 +30,9 @@ public interface IUser {
     void addFriend(int uniqueFriendID);
     
     
+    void deletePhoto(int idx, ListOfHaystacks loh);
+
+    
     /**
      * Delete friend from User's friend list 
      */
