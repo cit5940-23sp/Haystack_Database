@@ -22,5 +22,7 @@ public interface IListOfHaystacks {
     
     public List<Integer> addPhotoToHaystack(Photo inputPhoto);
     
+    int updatePhotoInHaystack(Photo photoToUpdate, int key, int alternateKey, int haystackID);
+    
     void deletePhotoFromHaystack(int key, int alternateKey, int haystackID);
 }

@@ -136,14 +136,14 @@ public class User implements IUser {
     @Override 
     public void updatePhoto(String filePath, int key, ListOfHaystacks loh) {
         
-        Photo photoToAdd = new Photo(filePath);
+        Photo photoToUpdate = new Photo(filePath);
         
         UserPhotoNode upn = userPhotoList.getPhoto(key);
         
         int alternateKey = upn.getAlternateKey();
         int haystackID = upn.getHaystackID();
         
-        int newHaystackID = loh.updatePhotoFromHaystack(key, alternateKey, haystackID);
+        int newHaystackID = loh.updatePhotoInHaystack(photoToUpdate, key, alternateKey, haystackID);
         
         upn.setHaystackID(newHaystackID);
         upn.setFilename(filePath);
