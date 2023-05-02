@@ -18,6 +18,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     
     private File file;
     private long EOF;
+    private long curPointer;
     
     
     public HaystackObjectStore(String filePath) {
@@ -49,6 +50,18 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         }
         return -1;
     }
+    
+//    public long appendPhoto(byte[] incomingPhoto) {
+//        //append write to the file
+//        try {
+//            FileOutputStream out = new FileOutputStream(this.file, true);
+//        } catch (FileNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//      
+//        
+//    }
     
     /**
      * The function that convert Photo object's content to byte[] and write to out file
@@ -152,9 +165,8 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                 rand.close();
                 return null;
             }
-            //read the size of 4 bytes
-            byte[] sizeRead = new byte[4];
-            rand.read(sizeRead);
+            
+            this.readSize(rand);
             
             //read photo data
             //return byte[] of the photo to caller
@@ -186,25 +198,9 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             rand.seek(offset);
             
             //read things
-            //read magic number for 4 bytes
-            byte[] magic= new byte[4];
-            rand.read(magic);
-            int magicNumber = ByteBuffer.wrap(magic).getInt();
+            this.checkMagicNumber(rand);
             
-            //check if the header is the same magic number
-            //if it is not the same format, retrieve fail -1
-            if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
-                rand.close();
-                return -1;
-            }
-            
-            //read key for 1 bytes
-            byte[] key = new byte[1];
-            rand.read(key);
-            
-            //read alternate key for 1 bytes
-            byte[] alternateKey = new byte[1];
-            rand.read(alternateKey);
+            this.checkKey(rand);
             
             //read flags <key 1 byte> <value 1 byte>
             byte[] flag0 = new byte[2];
@@ -237,25 +233,9 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             rand.seek(offset);
             
             //read things
-            //read magic number for 4 bytes
-            byte[] magic= new byte[4];
-            rand.read(magic);
-            int magicNumber = ByteBuffer.wrap(magic).getInt();
+            this.checkMagicNumber(rand);
             
-            //check if the header is the same magic number
-            //if it is not the same format, retrieve fail -1
-            if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
-                rand.close();
-                return -1;
-            }
-            
-            //read key for 1 bytes
-            byte[] key = new byte[1];
-            rand.read(key);
-            
-            //read alternate key for 1 bytes
-            byte[] alternateKey = new byte[1];
-            rand.read(alternateKey);
+            this.checkKey(rand);
             
             //read flags <key 1 byte> <value 1 byte>
             byte[] flag0Key = new byte[1];
@@ -275,12 +255,91 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         }
         return 0;
     }
-    
 
     
 //    @Override
-//    public void setPublicPrivate(int offset) {
-//
+//    public long migrate() {
+//        try {
+//            RandomAccessFile og = new RandomAccessFile(this.file, "r");
+//            readMetaData(og);
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return 0;
 //    }
+
+//    @Override
+//    public int readMetaData(RandomAccessFile rand) throws IOException {
+//        checkMagicNumber(rand);
+//        checkKey(rand);
+//        checkFlags(rand);
+//        readSize(rand);
+//        return 0;
+//    }
+
+    @Override
+    public int checkMagicNumber(RandomAccessFile rand) throws IOException {
+        //read magic number for 4 bytes
+        byte[] magic= new byte[4];
+        rand.read(magic);
+        int magicNumber = ByteBuffer.wrap(magic).getInt();
+        
+        //check if the header is the same magic number
+        //if it is not the same format, retrieve fail -1
+        if(magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
+            rand.close();
+            return -1;
+        }
+        return 0;
+    }
+
+    @Override
+    public int checkKey(RandomAccessFile rand) throws IOException {
+        //read key for 1 bytes
+        byte[] key = new byte[1];
+        rand.read(key);
+        
+        //read alternate key for 1 bytes
+        byte[] alternateKey = new byte[1];
+        rand.read(alternateKey);
+        return 0;
+    }
+
+    @Override
+    public int readSize(RandomAccessFile rand) throws IOException{
+        //read the size of 4 bytes
+        byte[] sizeRead = new byte[4];
+        rand.read(sizeRead);
+        
+        return 0;
+    }
+    
+    @Override
+    public int compress(IndexFile newIndex) {
+        //read entire haystack and find the non-deleted photo and 
+        //copy old to new index and new haystack in new index
+        return 0;
+    }
+
+    @Override
+    public int migrate() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int readMetaData(RandomAccessFile rand) throws IOException {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean checkIsDeleted(RandomAccessFile rand) throws IOException {
+        // TODO Auto-generated method stub
+        return false;
+    }
+   
+    
 
 }

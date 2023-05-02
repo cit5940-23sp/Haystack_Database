@@ -57,7 +57,7 @@ public interface IIndexFile {
     /**
      * Move all not deleted photo in the next database
      */
-    void compress();
+    void compress(IndexFile newIndexFile);
 
 
 
