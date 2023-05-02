@@ -103,13 +103,6 @@ public class IndexFile implements IIndexFile {
         IndexKey indexKey = new IndexKey(inputPhoto.getKey(), inputPhoto.getAlternateKey());
         addIndex(indexKey, indexVal);
     }
-    
-
-    @Override
-    public void compress() {
-        // TODO Auto-generated method stub
-        
-    }
 
     @Override
     public void compress(IndexFile newIndexFile) {
