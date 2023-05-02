@@ -14,7 +14,7 @@ public interface IUserGraph {
     PriorityQueue<DistUser> getFriendsOfFriends(int uniqueUserID, 
             UserLocationMap userMap, ListOfUsers lou);
     
-    void getFriendRecommondation(int uniqueUserID, ListOfUsers lou, UserLocationMap userMap);
+    PriorityQueue<DistUser> getFriendRecommondation(int uniqueUserID, ListOfUsers lou, UserLocationMap userMap);
     
     void addNewFriend(User curUser, User newFriend, UserLocationMap userMap);
 }

@@ -72,10 +72,7 @@ class UserGraphTest {
         goc.addNewFriend(lou.getUser(8), lou.getUser(3), lou.getUserLocationMap());  
         goc.addNewFriend(lou.getUser(9), lou.getUser(3), lou.getUserLocationMap());   
         
-        goc.getFriendRecommondation(1, lou, ulm);
-        
-        
-        
+        assertEquals(3, goc.getFriendRecommondation(1, lou, ulm).size());
     }
 
 }
