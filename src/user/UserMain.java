@@ -2,6 +2,7 @@ package user;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -20,12 +21,14 @@ public class UserMain {
     UserLocationMap userLocationMap;
     ListOfHaystacks loh = new ListOfHaystacks();
     User newUser;
+    LinkedList<String> photoCaption;
     
     public UserMain() {
 
         nextUserID = 0;
         this.graphOfConnections = new UserGraph();
         this.userLocationMap = new UserLocationMap();
+        this.photoCaption = new LinkedList<String>();
         
     }
     
@@ -67,6 +70,7 @@ public class UserMain {
         case "1":
             insertPhoto(scan);
         case "2":
+            
         case "3":
             
         case "4":
@@ -75,10 +79,13 @@ public class UserMain {
     }
     
     public void insertPhoto(Scanner scan) {
-        System.out.println("Choose the Photo path you want to put in the database");
+        System.out.println("Choose the Photo path you want to put in the database: ");
         //wait for the filePath from fileFinder in photoDisplay
         newUser.addPhoto("./cat.jpeg", loh);
+        System.out.println("What would you like to call the picture?");
         //maybe add a case when photo is too big
+        String caption = scan.nextLine();
+        photoCaption.add(caption);
         System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
         
         String answer = scan.nextLine();
@@ -90,6 +97,22 @@ public class UserMain {
             userOptions(scan);
         }
     }
+    
+    public void displayPhoto(Scanner scan) {
+        System.out.println("Please choose one of the photos in the database: ");
+        int counter=1;
+        for(int i= 0; i<photoCaption.size();i++) {
+            System.out.print(counter);
+            System.out.println(" :"+ photoCaption.get(i));
+        }
+        String Option = scan.nextLine();
+
+       
+        System.out.println();
+        
+        
+    }
+    
 
     
     public static void main(String[] args) {
