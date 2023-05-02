@@ -104,4 +104,9 @@ public class IndexFile implements IIndexFile {
         addIndex(indexKey, indexVal);
     }
 
+    @Override
+    public void compress(IndexFile newIndexFile) {
+        this.haystack.compress(newIndexFile);
+    }
+
 }

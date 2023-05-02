@@ -133,7 +133,6 @@ public class ListOfHaystacks implements IListOfHaystacks{
     
     @Override
     public void createNewHaystack() {
-        // TODO Auto-generated method stub
         
         currentHaystack ++;
         
@@ -148,7 +147,18 @@ public class ListOfHaystacks implements IListOfHaystacks{
 
     @Override
     public int compressHaystacks() {
+        IndexFile index = new IndexFile(curKey);
         
+
+        curKey++;
+        for(IndexFile indexFile: listOfHaystacks) {
+            //if the curKey does not have a index file, create a new index file for new haystack
+            IndexFile newIndexFile = listOfHaystacks.get(curKey);
+            if(newIndexFile == null) {
+                newIndexFile = new IndexFile(curKey);
+            }
+            indexFile.compress(newIndexFile);
+        }
         return 0;
         
     }
