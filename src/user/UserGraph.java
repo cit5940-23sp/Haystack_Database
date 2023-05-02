@@ -31,6 +31,8 @@ public class UserGraph implements IUserGraph {
         
         int distance = userMap.distBetweenUsers(curUser, newFriend);
         
+        System.out.println("distance: " + distance);
+        
         graphOfConnections.addEdge(curUser.getUniqueUserID(), newFriend.getUniqueUserID(), distance);
         graphOfConnections.addEdge(newFriend.getUniqueUserID(), curUser.getUniqueUserID(), distance);
         
@@ -71,7 +73,8 @@ public class UserGraph implements IUserGraph {
     }
     
     @Override
-    public PriorityQueue<DistUser> getFriendsOfFriends(int uniqueUserID) {
+    public PriorityQueue<DistUser> getFriendsOfFriends(int uniqueUserID, 
+            UserLocationMap userMap, ListOfUsers lou) {
         // TODO Auto-generated method stub
         //if threshold is less than zero, return edge case -1 
         
@@ -80,6 +83,11 @@ public class UserGraph implements IUserGraph {
         
         //initialize a queue to keep track of current generation nodes
         Queue <Integer> vertexQueue = new LinkedList <Integer>();
+        
+        
+        //initialize a queue to keep track of next generation nodes 
+        Queue <Integer> tempQueue = new LinkedList <Integer>();
+        
 
         //initialize a priority queue to keep track of top 3 friend recommendations 
         PriorityQueue<DistUser> priorityQueue = new PriorityQueue<DistUser>(new DistUserComparator());
@@ -89,13 +97,21 @@ public class UserGraph implements IUserGraph {
 
         //add seed into vertexQueue 
         vertexQueue.add(uniqueUserID);
+        
+        int curLevel = 0;
+        
 
             //while vertexQueue is not empty 
             while (vertexQueue.size() > 0) {
-
+               
+                curLevel ++;
+                //while vertexQueue is not empty 
+                while (vertexQueue.size() > 0) {
+                
+       
                 //remove vertex from queue 
                 int curVertex = vertexQueue.poll();
-                
+
                 //get neighbors of curVertex 
                 int[] neighbors = getFriends(curVertex);
                 
@@ -104,52 +120,70 @@ public class UserGraph implements IUserGraph {
                     
                     //get neighbor 
                     int vertexToAdd = neighbors[i];
-                    
+//                    System.out.println("Vertex neighbor: " + vertexToAdd);
                     //if vertex has not been visited 
                     if (!verticesVisited.contains(vertexToAdd)) {
                         
                         //add vertex into verticesVisited 
                         verticesVisited.add(vertexToAdd);
+//                        System.out.println("VertexToAdd: " + vertexToAdd);
                         
-                        int distance = graphOfConnections.weight(vertexToAdd, uniqueUserID);
-                     
-                        DistUser distUser = new DistUser(distance, vertexToAdd);
-                        
-                        priorityQueue.add(distUser);
+                        //add vertex into tempQueue 
+                        tempQueue.add(vertexToAdd);
+//                        System.out.println("curLevel: " + curLevel);
+                        if (curLevel == 2) {
+                            
+                            
+                            User user1 = lou.getUser(vertexToAdd);
+                            User user2 = lou.getUser(uniqueUserID);
+                            int distance = userMap.distBetweenUsers(user1, user2);
+
+                            DistUser distUser = new DistUser(distance, vertexToAdd);
+                            
+                            priorityQueue.add(distUser);                            
+                        }
+
                         
                     }
                     
                 }
+                
+
             }
-            
-            
-        while (priorityQueue.size() > 3) {
-            priorityQueue.remove();
+                //go through each vertex in tempQueue and add into vertexQueue 
+                while (tempQueue.size() > 0 && curLevel == 1) {
+                    vertexQueue.add(tempQueue.poll());
+                }
         }
+            
+//            
+//        while (priorityQueue.size() > 3) {
+//            priorityQueue.remove();
+//        }
                 
         return priorityQueue;
         
     }
 
+    
+   
     @Override
-    public void getFriendRecommondation(int uniqueUserID, ListOfUsers lou) {
+    public void getFriendRecommondation(int uniqueUserID, ListOfUsers lou, UserLocationMap userMap) {
         // TODO Auto-generated method stub
         
-        PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID);
+        PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID, userMap, lou);
+        
+        System.out.println(setOfFof.size());
         
         for (DistUser ele : setOfFof) {
             
             User curUser = lou.getUser(ele.getRight());
             
             System.out.println(curUser.getUserName());
-            
+            System.out.println(ele.getLeft());
             
         }
         
-        
     }
-    
-    
-    
     
 }

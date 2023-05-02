@@ -25,6 +25,7 @@ public class GraphL implements Graph {
         numEdge = 0;
         
         nodeArray = new ArrayList<Edge>();
+        nodeValues = new ArrayList<Object>();
     }
 
 
@@ -42,6 +43,7 @@ public class GraphL implements Graph {
     public void addNode() {
         
         nodeArray.add(new Edge(-1, -1, null, null));
+        nodeValues.add(numNodes);
         numNodes ++;
         
         
@@ -79,6 +81,7 @@ public class GraphL implements Graph {
     // one with w (or where it would be)
     private Edge find(int v, int w)
     {
+//        System.out.println("V is " + v);
         Edge curr = nodeArray.get(v);
         while ((curr.next != null) && (curr.next.vertex < w))
             curr = curr.next;
@@ -89,8 +92,9 @@ public class GraphL implements Graph {
     // Adds a new edge from node v to node w with weight wgt
     public void addEdge(int v, int w, int wgt)
     {
-        if (wgt == 0)
-            return; // Can't store weight of 0
+        wgt += 1;
+//        if (wgt == 0)
+//            return; // Can't store weight of 0
         Edge curr = find(v, w);
         if ((curr.next != null) && (curr.next.vertex == w))
             curr.next.weight = wgt;
@@ -145,10 +149,19 @@ public class GraphL implements Graph {
         Edge curr;
         for (curr = nodeArray.get(v).next; curr != null; curr = curr.next)
             cnt++;
-        int[] temp = new int[cnt];
+        int[] temp = new int[cnt + 1];
+        if (cnt == 0) {
+            return temp;
+        }
         cnt = 0;
-        for (curr = nodeArray.get(v); curr != null; curr = curr.next)
-            temp[cnt++] = curr.vertex;
+        for (curr = nodeArray.get(v); curr != null; curr = curr.next) {
+//            System.out.println("Added neighbor: " + curr.vertex);
+            if (curr.vertex == -1) {
+                continue;
+            }
+            temp[cnt++] = curr.vertex;            
+        }
+
         return temp;
     }
 
