@@ -16,7 +16,7 @@ public interface IListOfHaystacks {
     /**
      * Compaction of database by removing deleted photos 
      */
-    public void compressHaystacks();
+    public int compressHaystacks();
     
     public int assignHaystack(Photo inputPhoto);
     
@@ -25,4 +25,5 @@ public interface IListOfHaystacks {
     int updatePhotoInHaystack(Photo photoToUpdate, int key, int alternateKey, int haystackID);
     
     void deletePhotoFromHaystack(int key, int alternateKey, int haystackID);
+    
 }

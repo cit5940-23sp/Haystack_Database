@@ -54,6 +54,11 @@ public interface IIndexFile {
      */
     void updatePhotoSame(int key, int alternateKey, Photo inputPhoto);
 
+    /**
+     * Move all not deleted photo in the next database
+     */
+    void compress();
+
 
 
 }

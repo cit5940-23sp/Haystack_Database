@@ -28,7 +28,7 @@ public class QuadraHashMap {
         }
      
         /** Function to get size of hash table **/
-        public int getSize() 
+        public int getHMSize() 
         {
             return currentSize;
         }
@@ -42,7 +42,7 @@ public class QuadraHashMap {
         /** Function to check if hash table is empty **/
         public boolean isEmpty() 
         {
-            return getSize() == 0;
+            return getHMSize() == 0;
         }
      
         /** Function to check if hash table contains a key **/
@@ -106,6 +106,20 @@ public class QuadraHashMap {
             }            
             return null;
         }
+        
+        public QuadraticHashMap compress() {
+            
+            QuadraticHashMap compressHM = new QuadraticHashMap(1000);
+            for(int i=0; i<vals.length; i++) {
+                if(vals[i].getFlags().get(1)!=1) {
+                    //get the current offset
+                    compressHM.insert(keys[i], vals[i]);
+                }
+            }
+            
+            return compressHM;
+        }
+        
      
     }
 

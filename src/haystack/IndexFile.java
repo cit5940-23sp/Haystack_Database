@@ -69,6 +69,7 @@ public class IndexFile implements IIndexFile {
         haystack.deletePhoto(v.getOffset());
     }
     
+    
     @Override
     public void updatePhoto(int key, int alternateKey) {
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
@@ -93,6 +94,7 @@ public class IndexFile implements IIndexFile {
             hm.insert(newIndexKey, newIndexVal);
         }
     }
+    
     
     @Override
     public void addPhoto(Photo inputPhoto) {
