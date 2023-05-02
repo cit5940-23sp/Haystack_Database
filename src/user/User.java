@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.swing.JFrame;
+
 import graph.Coordinates;
 import graph.GraphL;
 import haystack.ListOfHaystacks;
 import haystack.Photo;
 import photo.IPhoto;
+import photo.photoDisplay;
 
 
 public class User implements IUser {
@@ -103,6 +106,13 @@ public class User implements IUser {
         
         //convert byte array into Image and return to caller 
         Image returnImg = IPhoto.bytesToImage(imageByte, key);
+        
+        photoDisplay m = new photoDisplay(returnImg);
+        JFrame f = new JFrame();
+        f.add(m);
+        f.setSize(1000, 1000);
+        f.setVisible(true);
+        
         return returnImg;
         
     }
@@ -115,7 +125,7 @@ public class User implements IUser {
         List<UserPhotoNode> listOfPhotoNodes = userPhotoList.getAllPhotos();
         
         //go through the list of photos and print available photos 
-        for (int i = listOfPhotoNodes.size(); i > -1; i--) {
+        for (int i = listOfPhotoNodes.size()-1; i > -1; i--) {
             UserPhotoNode curNode = listOfPhotoNodes.get(i);
             System.out.print(curNode.getKey() + ": ");
             System.out.println(curNode.getFilename());
