@@ -10,6 +10,7 @@ import java.io.RandomAccessFile;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import photo.IPhoto;
@@ -24,6 +25,10 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     public HaystackObjectStore(String filePath) {
         this.file = new File(filePath);
         this.EOF = 0;
+    }
+    
+    public File getFile() {
+        return this.file;
     }
     
     @Override
@@ -121,6 +126,34 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         
         
         
+    }
+    
+    /**
+     * Parse incoming data to read key and alternate Key
+     * Convert byte[] to a new photo (delete the meta)
+     * @param incomingData
+     * @return Photo object containing byte[] data, previous key and previous alternate key
+     */
+    public Photo convertBytesToPhoto(byte[] incomingData) {
+        //add padding to make it 4bytes
+        byte[] paddedKey = new byte[4];
+        Arrays.fill(paddedKey, (byte)0);
+        System.arraycopy(incomingData, 4, paddedKey, 2, 1);
+        int key = ByteBuffer.wrap(paddedKey).getInt();
+        
+        //add padding to make it 4bytes
+        byte[] paddedAlterKey = new byte[4];
+        Arrays.fill(paddedAlterKey, (byte)0);
+        System.arraycopy(incomingData, 5, paddedAlterKey, 2, 1);
+        int alterKey = ByteBuffer.wrap(paddedAlterKey).getInt();
+        
+        
+        byte[] photoData = new byte[incomingData.length - IPhoto.META_DATA_LENGTH];
+        for(int i = 0; i < photoData.length; i ++) {
+            photoData[i] = incomingData[i + IPhoto.META_DATA_LENGTH];
+        }
+        Photo res = new Photo(photoData, key, alterKey);
+        return res;
     }
 
     @Override
@@ -319,6 +352,15 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     public int compress(IndexFile newIndex) {
         //read entire haystack and find the non-deleted photo and 
         //copy old to new index and new haystack in new index
+        try {
+            RandomAccessFile oldFile = new RandomAccessFile(this.file, "rw");
+            File newFilePath = newIndex.getHaystack().getFile();
+            RandomAccessFile newFile = new RandomAccessFile(newFilePath, "rw");
+            checkMagicNumber(oldFile);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return 0;
     }
 
@@ -338,6 +380,11 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     public boolean checkIsDeleted(RandomAccessFile rand) throws IOException {
         // TODO Auto-generated method stub
         return false;
+    }
+
+    public long appendPhoto(byte[] photoData) {
+        // TODO Auto-generated method stub
+        return 0;
     }
    
     
