@@ -157,9 +157,9 @@ public class UserGraph implements IUserGraph {
         }
             
 //            
-//        while (priorityQueue.size() > 3) {
-//            priorityQueue.remove();
-//        }
+        while (priorityQueue.size() > 3) {
+            priorityQueue.remove();
+        }
                 
         return priorityQueue;
         
