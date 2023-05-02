@@ -148,7 +148,9 @@ public class ListOfHaystacks implements IListOfHaystacks{
 
     @Override
     public int compressHaystacks() {
+        IndexFile index = new IndexFile(curKey);
         
+
         return 0;
         
     }

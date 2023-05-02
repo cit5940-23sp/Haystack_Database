@@ -26,11 +26,11 @@ class QuadraHashMapTest {
         QuadraticHashMap qpht = new QuadraticHashMap(1000);
         
         qpht.insert(k, v);
-        assertEquals(qpht.getSize(),1);
+        assertEquals(qpht.getHMSize(),1);
         assertEquals(qpht.get(k).getOffset(),4);
 
         qpht.makeEmpty();
-        assertEquals(qpht.getSize(),0);
+        assertEquals(qpht.getHMSize(),0);
     }
 
 }
