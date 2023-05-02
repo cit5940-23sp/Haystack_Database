@@ -51,15 +51,26 @@ public class UserLocationMap implements IUserLocationMap{
 
 
     @Override
-    public double distBetweenUsers(int firstLat, int firstLong, int secondLat, int secondLong) {
-        // TODO Auto-generated method stub
+    public int distBetweenUsers(User user1, User user2) {
+     
         
-        //y2-y1 
+        Coordinates user1Coor = user1.getUserCoor();
+        
+        Coordinates user2Coor = user2.getUserCoor();
+        
+        int firstLat = user1Coor.getLeft();
+        
+        int secondLat = user2Coor.getLeft();
+        
+        int firstLong = user1Coor.getRight();
+        
+        int secondLong = user2Coor.getRight();
+        
         double yDistDiff = (double) secondLong - firstLong;
         
         double xDistDiff = (double) secondLat - firstLat;
         
-        return Math.sqrt(((yDistDiff * yDistDiff) + (xDistDiff * xDistDiff)));
+        return (int) Math.sqrt(((yDistDiff * yDistDiff) + (xDistDiff * xDistDiff)));
     }
     
     

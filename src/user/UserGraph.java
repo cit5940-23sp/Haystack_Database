@@ -1,5 +1,13 @@
 package user;
 
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.AbstractMap.SimpleEntry;
+
+import graph.DistUser;
 import graph.GraphL;
 
 public class UserGraph implements IUserGraph {
@@ -16,22 +24,128 @@ public class UserGraph implements IUserGraph {
         graphOfConnections.addNode();
         
     }
-
+    
     @Override
-    public void getFriends(int uniqueUserID) {
+    public void addNewFriend(User curUser, User newFriend, UserLocationMap userMap) {
         // TODO Auto-generated method stub
+        
+        int distance = userMap.distBetweenUsers(curUser, newFriend);
+        
+        graphOfConnections.addEdge(curUser.getUniqueUserID(), newFriend.getUniqueUserID(), distance);
+        graphOfConnections.addEdge(newFriend.getUniqueUserID(), curUser.getUniqueUserID(), distance);
         
     }
 
     @Override
-    public void getFriendsOfFriends(int uniqueUserID) {
+    public int[] getFriends(int uniqueUserID) {
         // TODO Auto-generated method stub
+        int[] neighbors = graphOfConnections.neighbors(uniqueUserID);
+        
+        return neighbors; 
+        
+    }
+
+
+    static class DistUserComparator implements Comparator<DistUser> {
+
+        @Override
+        public int compare(DistUser o1, DistUser o2) {
+
+            int dist1 = o1.getLeft();
+            
+            int dist2 = o2.getLeft();
+            
+            Integer d1 = dist1;
+            
+            Integer d2 = dist2;
+            
+            if (dist1 - dist2 > 0) {
+                return -1;
+            //else, return 1 
+            } else if (dist1 - dist2 < 0) {
+                return 1;
+            } else {
+                return d1.compareTo(d2);
+            }
+        }
+    }
+    
+    @Override
+    public PriorityQueue<DistUser> getFriendsOfFriends(int uniqueUserID) {
+        // TODO Auto-generated method stub
+        //if threshold is less than zero, return edge case -1 
+        
+        //initialize a set of vertices that have been visited 
+        HashSet <Integer> verticesVisited = new HashSet <Integer>();
+        
+        //initialize a queue to keep track of current generation nodes
+        Queue <Integer> vertexQueue = new LinkedList <Integer>();
+
+        //initialize a priority queue to keep track of top 3 friend recommendations 
+        PriorityQueue<DistUser> priorityQueue = new PriorityQueue<DistUser>(new DistUserComparator());
+        
+        //add seed into vertices visited 
+        verticesVisited.add(uniqueUserID);
+
+        //add seed into vertexQueue 
+        vertexQueue.add(uniqueUserID);
+
+            //while vertexQueue is not empty 
+            while (vertexQueue.size() > 0) {
+
+                //remove vertex from queue 
+                int curVertex = vertexQueue.poll();
+                
+                //get neighbors of curVertex 
+                int[] neighbors = getFriends(curVertex);
+                
+                //go through each neighbor 
+                for (int i = 0; i < neighbors.length; i++) {
+                    
+                    //get neighbor 
+                    int vertexToAdd = neighbors[i];
+                    
+                    //if vertex has not been visited 
+                    if (!verticesVisited.contains(vertexToAdd)) {
+                        
+                        //add vertex into verticesVisited 
+                        verticesVisited.add(vertexToAdd);
+                        
+                        int distance = graphOfConnections.weight(vertexToAdd, uniqueUserID);
+                     
+                        DistUser distUser = new DistUser(distance, vertexToAdd);
+                        
+                        priorityQueue.add(distUser);
+                        
+                    }
+                    
+                }
+            }
+            
+            
+        while (priorityQueue.size() > 3) {
+            priorityQueue.remove();
+        }
+                
+        return priorityQueue;
         
     }
 
     @Override
-    public void getFriendRecommondation(int uniqueUserID) {
+    public void getFriendRecommondation(int uniqueUserID, ListOfUsers lou) {
         // TODO Auto-generated method stub
+        
+        PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID);
+        
+        for (DistUser ele : setOfFof) {
+            
+            User curUser = lou.getUser(ele.getRight());
+            
+            System.out.println(curUser.getUserName());
+            
+            
+        }
+        
         
     }
     

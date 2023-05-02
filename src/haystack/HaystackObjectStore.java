@@ -276,8 +276,8 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         return 0;
     }
     
-    
 
+    
 //    @Override
 //    public void setPublicPrivate(int offset) {
 //

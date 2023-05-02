@@ -149,6 +149,8 @@ public class ListOfHaystacks implements IListOfHaystacks{
     @Override
     public void compressHaystacks() {
         // TODO Auto-generated method stub
+
+        
         
     }
 
