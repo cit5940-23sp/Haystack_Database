@@ -50,11 +50,11 @@ class UserGraphTest {
         lou.addUser("Jim", 90, 180);
         lou.addUser("Kim", 30, 180);
         lou.addUser("Tim", 30, 180);
-        lou.addUser("Jane", 30, 180);
+        lou.addUser("Jane", 30, 70);
         lou.addUser("Brian", 30, 180);
         lou.addUser("Wes", 0, 30);
         lou.addUser("Annie", 30, 180);
-        lou.addUser("Amber", 30, 180);
+        lou.addUser("Amber", 30, 100);
         lou.addUser("Mike", 30, 180);
         lou.addUser("Mickey", 30, 180);
         
@@ -72,10 +72,7 @@ class UserGraphTest {
         goc.addNewFriend(lou.getUser(8), lou.getUser(3), lou.getUserLocationMap());  
         goc.addNewFriend(lou.getUser(9), lou.getUser(3), lou.getUserLocationMap());   
         
-        goc.getFriendRecommondation(1, lou, ulm);
-        
-        
-        
+        assertEquals(3, goc.getFriendRecommondation(1, lou, ulm).size());
     }
 
 }

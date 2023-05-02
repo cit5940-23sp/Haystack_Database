@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class UserPhotoNode implements IUserPhotoNode{
 
-    private int haystackID; 
     private int key; 
     private int alternateKey; 
     private int deleted;
@@ -18,9 +17,8 @@ public class UserPhotoNode implements IUserPhotoNode{
      * @param key
      * @param alternateKey
      */
-    public UserPhotoNode(int haystackID, int key, int alternateKey, String filePath) {
+    public UserPhotoNode(int key, int alternateKey, String filePath) {
         
-        this.haystackID = haystackID;
         this.key = key;
         this.alternateKey = alternateKey;
         this.deleted = 0;
@@ -28,7 +26,6 @@ public class UserPhotoNode implements IUserPhotoNode{
         
         metaDataMap = new HashMap<String, Integer>();
         
-        this.metaDataMap.put("HaystackID", haystackID);
         this.metaDataMap.put("Key", key);
         this.metaDataMap.put("AlternateKey", alternateKey);
         this.metaDataMap.put("Deleted", deleted);
@@ -45,13 +42,6 @@ public class UserPhotoNode implements IUserPhotoNode{
         return metaDataMap;
     }
     
-    /**
-     * Get haystackID 
-     * @return haystackID
-     */
-    public int getHaystackID() {
-        return haystackID;
-    }
     
     /**
      * Get key
@@ -104,11 +94,5 @@ public class UserPhotoNode implements IUserPhotoNode{
         this.deleted = 1;
     }
     
-    /**
-     * Set haystackID
-     *  
-     */
-    public void setHaystackID(int haystackID) {
-        this.haystackID = haystackID;
-    }
+
 }

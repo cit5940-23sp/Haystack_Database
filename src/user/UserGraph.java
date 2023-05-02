@@ -31,8 +31,6 @@ public class UserGraph implements IUserGraph {
         
         int distance = userMap.distBetweenUsers(curUser, newFriend);
         
-        System.out.println("distance: " + distance);
-        
         graphOfConnections.addEdge(curUser.getUniqueUserID(), newFriend.getUniqueUserID(), distance);
         graphOfConnections.addEdge(newFriend.getUniqueUserID(), curUser.getUniqueUserID(), distance);
         
@@ -157,9 +155,7 @@ public class UserGraph implements IUserGraph {
         }
             
 //            
-//        while (priorityQueue.size() > 3) {
-//            priorityQueue.remove();
-//        }
+
                 
         return priorityQueue;
         
@@ -168,22 +164,26 @@ public class UserGraph implements IUserGraph {
     
    
     @Override
-    public void getFriendRecommondation(int uniqueUserID, ListOfUsers lou, UserLocationMap userMap) {
+    public PriorityQueue<DistUser> getFriendRecommondation(int uniqueUserID, ListOfUsers lou, UserLocationMap userMap) {
         // TODO Auto-generated method stub
         
         PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID, userMap, lou);
         
-        System.out.println(setOfFof.size());
+        while (setOfFof.size() > 3) {
+            setOfFof.remove();
+        }
+       
+        System.out.println("Recommended friends for " + lou.getUser(uniqueUserID).getUserName() + ":");
         
         for (DistUser ele : setOfFof) {
             
             User curUser = lou.getUser(ele.getRight());
             
             System.out.println(curUser.getUserName());
-            System.out.println(ele.getLeft());
             
         }
-        
+     
+        return setOfFof;
     }
     
 }

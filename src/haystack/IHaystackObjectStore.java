@@ -64,5 +64,6 @@ public interface IHaystackObjectStore {
     public int readSize(RandomAccessFile rand) throws IOException;
     
     public int compress(IndexFile newIndex);
+    
 
 }

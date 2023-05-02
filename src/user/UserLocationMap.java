@@ -15,10 +15,10 @@ public class UserLocationMap implements IUserLocationMap{
         
         userLocationMap = new ArrayList<ArrayList<HashSet<Integer>>>();
         
-        for (int i = 0; i < 180; i++) {
+        for (int i = 0; i < 181; i++) {
             
             ArrayList<HashSet<Integer>> lat = new ArrayList<HashSet<Integer>>();
-            for (int j = 0; j < 360; j++) {
+            for (int j = 0; j < 361; j++) {
                 HashSet<Integer> setToAdd = new HashSet<Integer>();
                 lat.add(setToAdd);
             }
@@ -26,7 +26,6 @@ public class UserLocationMap implements IUserLocationMap{
             userLocationMap.add(lat);
         }
         
-        System.out.println(userLocationMap.get(0).size());
     }
 
 
