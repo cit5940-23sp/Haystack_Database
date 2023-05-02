@@ -167,11 +167,24 @@ public class User implements IUser {
    
 
     @Override
-    public void addFriend(int uniqueFriendID) {
+    public void addFriend(int uniqueFriendID, ListOfUsers lou) {
         // TODO Auto-generated method stub
-
+        
+        UserGraph goc = lou.getGraphOfConnections();
+        UserLocationMap ulm = lou.getUserLocationMap();
+        User curUser = lou.getUser(uniqueUserID);
+        User friend = lou.getUser(uniqueFriendID);
+        
+        goc.addNewFriend(curUser, friend, ulm);
+        friendsList.add(friend);
+        friend.addFriendToFriendList(curUser);
     }
 
+    @Override
+    public void addFriendToFriendList(User friend) {
+        friendsList.add(friend);
+    }
+    
     @Override
     public void deleteFriend(int uniqueFriendID) {
         // TODO Auto-generated method stub
