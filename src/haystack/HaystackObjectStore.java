@@ -256,6 +256,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         return 0;
     }
 
+    
 //    @Override
 //    public long migrate() {
 //        try {
