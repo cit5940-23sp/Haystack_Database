@@ -73,7 +73,7 @@ public class User implements IUser {
         int alternateKey = returnVal.get(2);
 
         //create a new user photo node with return values 
-        UserPhotoNode upn = new UserPhotoNode(haystackID, key, alternateKey, filePath);
+        UserPhotoNode upn = new UserPhotoNode(key, alternateKey, filePath);
 
         //add user photo node into userPhotoList 
         userPhotoList.addPhotoToUserList(upn);
@@ -90,10 +90,9 @@ public class User implements IUser {
         
         //get alternate key and haystackID 
         int alternateKey = upn.getAlternateKey();
-        int haystackID = upn.getHaystackID();
         
         //get bytes of the photo from list of haystacks 
-        byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey, haystackID);
+        byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey);
         
         //if byte array is empty, notify that image cannot be found 
         if (imageByte == null) {
@@ -130,10 +129,9 @@ public class User implements IUser {
         
         //get alternate key and haystackID 
         int alternateKey = upn.getAlternateKey();
-        int haystackID = upn.getHaystackID();
-        
+
         //delete photo from list of haystacks 
-        loh.deletePhotoFromHaystack(key, alternateKey, haystackID);
+        loh.deletePhotoFromHaystack(key, alternateKey);
         
         //set the user photo node as deleted 
         upn.setDeleted();
@@ -152,13 +150,10 @@ public class User implements IUser {
         
         //get alternateKey and haystackID 
         int alternateKey = upn.getAlternateKey();
-        int haystackID = upn.getHaystackID();
         
         //update photo in list of haystack, getting the new haystackID 
-        int newHaystackID = loh.updatePhotoInHaystack(photoToUpdate, key, alternateKey, haystackID);
+        loh.updatePhotoInHaystack(photoToUpdate, key, alternateKey);
         
-        //reassign haystackID of user photo node 
-        upn.setHaystackID(newHaystackID);
         
         //reassign filename of user photo node 
         upn.setFilename(filePath);

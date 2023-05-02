@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import graph.TupleForHaystack;
 import photo.IPhoto;
@@ -15,6 +16,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
     int currentHaystack;
     int curKey;
     int curAltKey;
+    TreeMap<Integer, Integer> haystackToLastKey;  
     
     
     public ListOfHaystacks(){
@@ -35,6 +37,8 @@ public class ListOfHaystacks implements IListOfHaystacks{
         
         curAltKey = 0;
         
+        haystackToLastKey = new TreeMap<Integer, Integer>(); 
+        
     }
 
     @Override
@@ -46,10 +50,11 @@ public class ListOfHaystacks implements IListOfHaystacks{
         inputPhoto.setAlternateKey(curAltKey);
         
         int haystackID = assignHaystack(inputPhoto);
+
+        haystackToLastKey.put(haystackID, curKey);
         
         IndexFile index = listOfHaystacks.get(haystackID);
-        
-        //TEST 
+
         index.addPhoto(inputPhoto);
         
         List<Integer> returnVal = new ArrayList<Integer>();
@@ -58,14 +63,35 @@ public class ListOfHaystacks implements IListOfHaystacks{
         returnVal.add(curKey);
         returnVal.add(curAltKey);
         
+        
         curKey++;
         
         return returnVal;
         
     }
 
-    public byte[] getPhotoFromHaystack(int key, int alternateKey, int haystackID) {
+    
+    private int findHaystack(int key, int alternateKey) {
+        
+        
+        for (Map.Entry<Integer, Integer> entry : haystackToLastKey.entrySet()) {
+            
+            Integer lastKey = entry.getValue();
+            
+            if (lastKey >= key) {
+                return entry.getKey();
+            }
+            
+        }
+        
+        return -1;
+        
+    }
+    
+    public byte[] getPhotoFromHaystack(int key, int alternateKey) {
         // TODO Auto-generated method stub
+        
+        int haystackID = findHaystack(key, alternateKey);
         
         System.out.println("HaystackID: " + haystackID);
         
@@ -78,7 +104,9 @@ public class ListOfHaystacks implements IListOfHaystacks{
     }
     
     @Override
-    public void deletePhotoFromHaystack(int key, int alternateKey, int haystackID) {
+    public void deletePhotoFromHaystack(int key, int alternateKey) {
+        
+        int haystackID = findHaystack(key, alternateKey);
         
         IndexFile index = listOfHaystacks.get(haystackID);
         
@@ -87,7 +115,9 @@ public class ListOfHaystacks implements IListOfHaystacks{
     }
     
     @Override
-    public int updatePhotoInHaystack(Photo photoToUpdate, int key, int alternateKey, int haystackID) {
+    public int updatePhotoInHaystack(Photo photoToUpdate, int key, int alternateKey) {
+        
+        int haystackID = findHaystack(key, alternateKey);
         
         int newHaystackID = assignHaystack(photoToUpdate);
         
