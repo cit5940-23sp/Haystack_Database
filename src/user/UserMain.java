@@ -6,7 +6,9 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.xml.parsers.FactoryConfigurationError;
 
 import graph.GraphL;
 import photo.IPhoto;
@@ -60,7 +62,7 @@ public class UserMain {
         System.out.println(" 2 -- Display Photo");
         System.out.println(" 3 -- Delete Photo");
         System.out.println(" 4 -- Make new friends");
-        System.out.println(" 4 -- Exit out of the system");
+        System.out.println(" 5 -- Exit out of the system");
         System.out.println("");
         System.out.println("Please enter your option, eg. '1'.");
         
@@ -69,12 +71,16 @@ public class UserMain {
         switch(Option) {
         case "1":
             insertPhoto(scan);
+            break;
         case "2":
             displayPhoto(scan);
+            break;
         case "3":
             deletePhoto(scan);
+            break;
         case "4":
-            System.out.println("Please see your new friend suggestions: ");
+            friendSuggestions(scan);
+            break;
         case "5":
             System.out.println("Thanks for using the Haystack database!");
             break;
@@ -88,7 +94,8 @@ public class UserMain {
         StringBuilder sb = new StringBuilder();
         String path = sb.append(Integer.toString(counter)).toString();
         counter++;
-        path = IPhoto.chooseFile();
+        JFileChooser j = null;
+        path = IPhoto.chooseFile(j);
         newUser.addPhoto(path, loh);
         System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
         
@@ -136,7 +143,10 @@ public class UserMain {
         userOptions(scan);   
     }
 
- 
+    public void friendSuggestions(Scanner scan) {
+        System.out.println("Please see your new friend suggestions: ");
+    }
+
     
     
     public static void main(String[] args) {

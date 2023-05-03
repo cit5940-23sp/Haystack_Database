@@ -2,6 +2,8 @@ package user;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -127,9 +129,10 @@ public class User implements IUser {
         for (int i = listOfPhotoNodes.size()-1; i > -1; i--) {
             UserPhotoNode curNode = listOfPhotoNodes.get(i);
             System.out.print(curNode.getKey() + ": ");
-            String split [] = curNode.getFilename().split("/.");
+            String split [] = curNode.getFilename().split("/");
+            String ans = split[split.length-1];
             
-            System.out.println(split[-2]);
+            System.out.println(ans);
         }
     }
     

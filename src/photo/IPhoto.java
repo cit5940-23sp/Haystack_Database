@@ -55,8 +55,8 @@ public interface IPhoto {
         return null;
     }
     
-    public static String chooseFile() {
-        JFileChooser j = new JFileChooser();
+    public static String chooseFile(JFileChooser j) {
+        j = new JFileChooser();
         j.setDialogType(JFileChooser.OPEN_DIALOG);
         j.setFileSelectionMode(JFileChooser.FILES_ONLY);
         
