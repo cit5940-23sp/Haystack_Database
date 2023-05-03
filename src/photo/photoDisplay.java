@@ -27,7 +27,7 @@ public class photoDisplay extends Canvas {
     public static void main(String[] args) {
         // Using this process to invoke the constructor,
         // JFileChooser points to user's default directory
-        String file = IPhoto.chooseFile();
+        //String file = IPhoto.chooseFile();
         
         ListOfHaystacks loh = new ListOfHaystacks();
 
@@ -46,7 +46,7 @@ public class photoDisplay extends Canvas {
         User newUser = new User(userName, nextUserID, latitude, longitude, userLocationMap, graphOfConnections);
 
 
-        newUser.addPhoto(file, loh);
+        //newUser.addPhoto(file, loh);
         Image res = newUser.getPhoto(0, loh);
 
         photoDisplay m = new photoDisplay(res);
