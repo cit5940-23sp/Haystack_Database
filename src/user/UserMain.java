@@ -53,14 +53,14 @@ public class UserMain {
     public void userOptions(Scanner scan) {
         
     
-        System.out.println("-------------------------");
+        System.out.println("--------------------------------");
         System.out.println("Haystack Photo Management System");
-        System.out.println("-------------------------");
+        System.out.println("--------------------------------");
         System.out.println(" 1 -- Insert Photo in the database");
         System.out.println(" 2 -- Display Photo");
         System.out.println(" 3 -- Delete Photo");
         System.out.println(" 4 -- Make new friends");
-        System.out.println(" 4 -- Quit the system");
+        System.out.println(" 4 -- Exit out of the system");
         System.out.println("");
         System.out.println("Please enter your option, eg. '1'.");
         
@@ -77,13 +77,18 @@ public class UserMain {
             System.out.println("Please see your new friend suggestions: ");
         case "5":
             System.out.println("Thanks for using the Haystack database!");
-            
+            break;
         }     
     }
     
+    int counter = 0;
+
     public void insertPhoto(Scanner scan) {
         System.out.println("Choose the Photo path you want to put in the database: ");
-        String path = IPhoto.chooseFile();
+        StringBuilder sb = new StringBuilder();
+        String path = sb.append(Integer.toString(counter)).toString();
+        counter++;
+        path = IPhoto.chooseFile();
         newUser.addPhoto(path, loh);
         System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
         

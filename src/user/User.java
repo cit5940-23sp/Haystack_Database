@@ -127,7 +127,9 @@ public class User implements IUser {
         for (int i = listOfPhotoNodes.size()-1; i > -1; i--) {
             UserPhotoNode curNode = listOfPhotoNodes.get(i);
             System.out.print(curNode.getKey() + ": ");
-            System.out.println(curNode.getFilename());
+            String split [] = curNode.getFilename().split("/.");
+            
+            System.out.println(split[-2]);
         }
     }
     
