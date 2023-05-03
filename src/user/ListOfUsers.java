@@ -17,6 +17,7 @@ public class ListOfUsers implements IListOfUsers {
         
     }
 
+    @Override
     public void addUser(String userName, int latitude, int longitude) {
         
         User newUser = new User(userName, listOfUsers.size(), latitude, 
@@ -29,14 +30,17 @@ public class ListOfUsers implements IListOfUsers {
         
     }
     
+    @Override
     public User getUser(int uniqueUserID) {
         return listOfUsers.get(uniqueUserID);
     }
     
+    @Override
     public UserGraph getGraphOfConnections() {
         return graphOfConnections;
     }
     
+    @Override
     public UserLocationMap getUserLocationMap() {
         return userLocationMap;
     }

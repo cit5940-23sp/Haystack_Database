@@ -6,9 +6,6 @@ import haystack.Photo;
 
 public interface IUserPhotoList {
 
-// private List<UserPhotoNode> masterPhotoList;
-// int deletedPhotoCount;     
-    
     /**
      * Adds a UserPhotoNode into UserPhotoList 
      * @param uniqueUserID - User's uniqueUser ID used to generate key and alternate key  
@@ -17,9 +14,12 @@ public interface IUserPhotoList {
      */
     void addPhotoToUserList(UserPhotoNode upn);
     
+    /**
+     * Delete a photo from user list 
+     * @param upn
+     */
     void deletePhotoFromUserList(UserPhotoNode upn);
     
-   
     /**
      * Returns number of photos in UserPhotoList 
      */
@@ -29,5 +29,11 @@ public interface IUserPhotoList {
      * Traverse through the masterPhotoList and return all photos as a list 
      */
     UserPhotoNode getPhoto(int index);
+    
+    /**
+     * Get all photos of a user 
+     * @return a list of photos of a user 
+     */
+    List<UserPhotoNode> getAllPhotos();
     
 }

@@ -36,6 +36,7 @@ public class UserPhotoList implements IUserPhotoList {
     }
 
 
+    @Override 
     public UserPhotoNode getPhoto(int key) {
         // TODO Auto-generated method stub
         
@@ -48,7 +49,7 @@ public class UserPhotoList implements IUserPhotoList {
         return null;
     }
 
-
+    @Override 
     public List<UserPhotoNode> getAllPhotos() {
         // TODO Auto-generated method stub
         

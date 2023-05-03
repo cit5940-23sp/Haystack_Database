@@ -29,13 +29,10 @@ public class UserPhotoNode implements IUserPhotoNode{
         this.metaDataMap.put("Key", key);
         this.metaDataMap.put("AlternateKey", alternateKey);
         this.metaDataMap.put("Deleted", deleted);
-        
-        
+
     }
     
-    /**
-     * Get all metadata 
-     */
+
     @Override
     public Map<String, Integer> getMetaData() {
         // TODO Auto-generated method stub
@@ -43,56 +40,34 @@ public class UserPhotoNode implements IUserPhotoNode{
     }
     
     
-    /**
-     * Get key
-     * @return key
-     */
+    @Override 
     public int getKey() {
         return key;
     }
     
-    /**
-     * Get alternateKey 
-     * @return alternateKey 
-     */
+    @Override 
     public int getAlternateKey() {
         return alternateKey;
     }
 
-    
-    
-    /**
-     * Get filePath 
-     * @return filePath
-     */
+    @Override 
     public String getFilename() {
         return filePath;
     }
     
-    
-    /**
-     * Get filePath 
-     * @return filePath
-     */
+    @Override 
     public void setFilename(String filePath) {
         this.filePath = filePath;
     }
     
-    /**
-     * Get alternateKey 
-     * @return alternateKey 
-     */
+    @Override 
     public int getDeleted() {
         return deleted;
     }
     
-    /**
-     * Set photo as deleted
-     *  
-     */
+    @Override 
     public void setDeleted() {
         this.deleted = 1;
-    }
-    
+    }   
 
 }

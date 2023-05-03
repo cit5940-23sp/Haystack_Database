@@ -24,9 +24,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
         listOfHaystacks = new ArrayList<IndexFile>();
         
         currentHaystack = 0;
-//        
-//        String file_path = "Database_0.txt";
-//        
+    
         IndexFile index = new IndexFile(0);
         
         listOfHaystacks.add(index);

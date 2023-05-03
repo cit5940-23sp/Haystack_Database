@@ -63,7 +63,10 @@ public interface IUser {
      */
     void addFriend(int uniqueFriendID, ListOfUsers lou);
     
-    
+    /**
+     * Add a friend to a User's friend list 
+     * @param friend
+     */
     void addFriendToFriendList(User friend);
     
     /**
@@ -86,6 +89,10 @@ public interface IUser {
      */
     HashSet <User> getFriendsList();
     
+    /**
+     * Get user's Coordinates on UserLocationMap
+     * @return
+     */
     public Coordinates getUserCoor();
     
 }
