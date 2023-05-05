@@ -47,6 +47,13 @@ An explanation of how we achieved meaningful and rigorous use of material from t
 2. Magic number implementation  
 
 
+## References and Acknowledgements 
+
+### References
+https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf
+
+### Acknowledgements 
+We would like to thank our professor, Harry Smith, for the teachings and guidance throughout the semester. We would also like to thank the TAs of the course. 
 
 ### To consider 
 1. Code review 
