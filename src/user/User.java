@@ -223,17 +223,12 @@ public class User implements IUser {
     public void addFriendToFriendList(User friend) {
         friendsList.add(friend);
     }
-    
-    @Override
-    public void deleteFriend(int uniqueFriendID) {
-        // TODO Auto-generated method stub
 
-    }
 
     
     public HashSet<User> getUserFriendsList() {
         // TODO Auto-generated method stub
-        return null;
+        return friendsList;
     }
 
 

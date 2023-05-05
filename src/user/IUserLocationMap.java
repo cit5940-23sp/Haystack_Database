@@ -1,8 +1,10 @@
 package user;
 
 import java.util.HashSet;
+import java.util.PriorityQueue;
 
 import graph.Coordinates;
+import graph.DistUser;
 
 public interface IUserLocationMap {
 
@@ -28,5 +30,9 @@ public interface IUserLocationMap {
      * @return distance 
      */
     int distBetweenUsers(User user1, User user2);
+    
+   
+    PriorityQueue<DistUser> getClosestUsers(int latitude, int longitude, ListOfUsers lou, User requestUser); 
+       
     
 }

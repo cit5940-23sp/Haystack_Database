@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 
+import graph.Coordinates;
 import graph.DistUser;
 import graph.GraphL;
 
@@ -166,37 +167,47 @@ public class UserGraph implements IUserGraph {
         
     }
 
-    
+   
    
     @Override
     public List<DistUser> getFriendRecommondation(int uniqueUserID, 
             ListOfUsers lou, UserLocationMap userMap, int numOfRec) {
         // TODO Auto-generated method stub
         
-//        PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID, userMap, lou);
-//        
-//        while (setOfFof.size() > 3) {
-//            setOfFof.remove();
-//        }
-//       
-//        System.out.println("Recommended friends for " + lou.getUser(uniqueUserID).getUserName() + ":");
-//        
-//        for (DistUser ele : setOfFof) {
-//            
-//            User curUser = lou.getUser(ele.getRight());
-//            
-//            System.out.println(curUser.getUserName());
-//            
-//        }
-//     
-//        return setOfFof;
-        
         PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID, userMap, lou);
         
+        HashSet <User> friendsList = lou.getUser(uniqueUserID).getFriendsList();
+        
+        if (setOfFof.size() == 0) {
+            
+            User curUser = lou.getUser(uniqueUserID);
+            Coordinates userCoor = curUser.getUserCoor();
+            
+            int latitude = userCoor.getLeft();
+            int longitude = userCoor.getRight();
+            
+            setOfFof = userMap.getClosestUsers(latitude, longitude, lou, curUser);
+            
+            
+        }
+
         List<DistUser> finalSet = new ArrayList<DistUser>();
         
+        if (setOfFof.size() == 0) {
+            
+            return finalSet;
+       
+        }
+ 
         while (finalSet.size() < numOfRec) {
-            finalSet.add(setOfFof.remove());
+            
+            DistUser curDistUser = setOfFof.remove();
+            
+            User friendUser = lou.getUser(curDistUser.getRight());
+            
+            if (!friendsList.contains(friendUser)) {
+                finalSet.add(curDistUser);
+            }
             
             if (setOfFof.size() == 0) {
                 break;
