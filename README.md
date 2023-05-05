@@ -24,7 +24,7 @@ We found the setup and algorithm of Facebook’s photo storage system fascinatin
 ## 5940 topics covered in code implementation 
 An explanation of how we achieved meaningful and rigorous use of material from three units in this course
 
-### Data structures 
+### Linear data structures / Hashing / Trees 
 1. LinkedList (To store the list of photos that a User has)
 2. Tuple (To store the coordinates of each User on the 2D array, to store distance and User pair for friend recommendation search, to store a mapping between an indexFile and its corresponding haystack)
 3. TreeMap (To map the unique key ID of users to thier corresponding User object, to map the indexing between key and whiuch haystack it is stored in)
