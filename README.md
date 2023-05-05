@@ -6,7 +6,7 @@ We implemented Facebook’s photo storage system, as described in lecture based 
 We found the setup and algorithm of Facebook’s photo storage system fascinating and decided to implement it for ourselves. 
 
 
-## A list of features implemented
+## Features implemented
 
 ### Haystack database photo storage system
 1. Implementation of the Haystack object store using a binary file (where the actual photos are stored in the filesystem) 
