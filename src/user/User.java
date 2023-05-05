@@ -42,7 +42,7 @@ public class User implements IUser {
         this.userName = userName;
         
         //initialize empty photo list and friends list 
-        userPhotoList = new UserPhotoList();
+        setUserPhotoList(new UserPhotoList());
         friendsList = new HashSet<User>();
         
         //initialize the address coordinates of User 
@@ -81,7 +81,7 @@ public class User implements IUser {
         UserPhotoNode upn = new UserPhotoNode(key, alternateKey, filePath, privatePhoto);
 
         //add user photo node into userPhotoList 
-        userPhotoList.addPhotoToUserList(upn);
+        getUserPhotoList().addPhotoToUserList(upn);
       
         System.out.println("Added into haystack: " + haystackID);
         
@@ -108,7 +108,7 @@ public class User implements IUser {
         boolean showIfPrivate = isFriend(requestUser);
         
         //get user photo node from user photo list 
-        UserPhotoNode upn = userPhotoList.getPhoto(key);
+        UserPhotoNode upn = getUserPhotoList().getPhoto(key);
         
         if (upn == null) {
             System.out.println("Image cannot be found: Invalid user ownership.");
@@ -153,7 +153,7 @@ public class User implements IUser {
     public void displayPhotoList() {
         
         //get all non-deleted photos of user 
-        List<UserPhotoNode> listOfPhotoNodes = userPhotoList.getAllPhotos();
+        List<UserPhotoNode> listOfPhotoNodes = getUserPhotoList().getAllPhotos();
         
         //go through the list of photos and print available photos 
         for (int i = listOfPhotoNodes.size()-1; i > -1; i--) {
@@ -170,7 +170,7 @@ public class User implements IUser {
     public void deletePhoto(int key, ListOfHaystacks loh) {
         
         //get photo from user photo list using key 
-        UserPhotoNode upn = userPhotoList.getPhoto(key);
+        UserPhotoNode upn = getUserPhotoList().getPhoto(key);
         
         //get alternate key and haystackID 
         int alternateKey = upn.getAlternateKey();
@@ -191,7 +191,7 @@ public class User implements IUser {
         Photo photoToUpdate = new Photo(filePath);
         
         //get photo from user photo list using key 
-        UserPhotoNode upn = userPhotoList.getPhoto(key);
+        UserPhotoNode upn = getUserPhotoList().getPhoto(key);
         
         //get alternateKey and haystackID 
         int alternateKey = upn.getAlternateKey();
@@ -255,6 +255,11 @@ public class User implements IUser {
     @Override
     public Coordinates getUserCoor() {
         return addressCoor;
+    }
+
+
+    public void setUserPhotoList(UserPhotoList userPhotoList) {
+        this.userPhotoList = userPhotoList;
     }
     
 

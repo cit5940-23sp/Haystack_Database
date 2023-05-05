@@ -18,8 +18,10 @@ public interface IPhoto {
     
     public static final int EDITED = 0;
     public static final int DELETED = 1;
+    public static final int PRIVATE = 2;
+    public static final int NEXT = 3;
     
-    public static final int META_DATA_LENGTH = 14;
+    public static final int META_DATA_LENGTH = 16;
     
     public static byte[] loadImageToBytes(String file_path) {
         File input = new File(file_path);

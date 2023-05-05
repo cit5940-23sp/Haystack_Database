@@ -145,7 +145,6 @@ public class ListOfHaystacks implements IListOfHaystacks{
     
     @Override
     public int assignHaystack(Photo inputPhoto) {
-        // TODO Auto-generated method stub
         int sizeOfPhoto = inputPhoto.getSize();
         
         int sizeOfEntry = sizeOfPhoto + IPhoto.META_DATA_LENGTH;
@@ -160,7 +159,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
     }
     
     @Override
-    public void createNewHaystack() {
+    public IndexFile createNewHaystack() {
         
         currentHaystack ++;
         
@@ -170,7 +169,8 @@ public class ListOfHaystacks implements IListOfHaystacks{
 
         remainingSpace = IHaystackObjectStore.MAXIMUM_BYTES;
         
-        
+        return index;
+ 
     }
 
     @Override
@@ -180,12 +180,11 @@ public class ListOfHaystacks implements IListOfHaystacks{
 
         curKey++;
         for(IndexFile indexFile: listOfHaystacks) {
-            //if the curKey does not have a index file, create a new index file for new haystack
-            IndexFile newIndexFile = listOfHaystacks.get(curKey);
-            if(newIndexFile == null) {
-                newIndexFile = new IndexFile(curKey);
+            if(indexFile.compress(index) == -1) {
+                //if indexFile return -1, that means that the pass-in newIndexFile is full, pass in new one try again
+                IndexFile anotherIndexFile = createNewHaystack();
+                indexFile.compress(anotherIndexFile);
             }
-            indexFile.compress(newIndexFile);
         }
         return 0;
         
