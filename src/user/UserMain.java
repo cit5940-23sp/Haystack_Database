@@ -3,6 +3,7 @@ package user;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.xml.parsers.FactoryConfigurationError;
 
+import graph.DistUser;
 import graph.GraphL;
 import photo.IPhoto;
 import photo.photoDisplay;
@@ -20,16 +22,26 @@ public class UserMain {
     //Graph of users with nodes as Users and edges as connections 
 
     int nextUserID;
-    UserGraph graphOfConnections; 
-    UserLocationMap userLocationMap;
+//    UserGraph graphOfConnections; 
+//    UserLocationMap userLocationMap;
+    ListOfUsers lou;
     ListOfHaystacks loh = new ListOfHaystacks();
-    User newUser;
+    User curUser;
     
     public UserMain() {
 
+        this.lou = new ListOfUsers();
+        
         nextUserID = 0;
-        this.graphOfConnections = new UserGraph();
-        this.userLocationMap = new UserLocationMap();
+//        this.graphOfConnections = lou.getGraphOfConnections()
+//        this.userLocationMap = lou.getUserLocationMap();
+
+        
+        lou.addUser("Amy", 30, 180);
+        lou.addUser("Tom", 30, 180);
+        lou.addUser("Jim", 90, 180);
+        lou.addUser("Kim", 30, 80);
+        lou.addUser("Tim", 30, 90);
         
     }
     
@@ -45,10 +57,10 @@ public class UserMain {
         System.out.println("What is your address (longitude)?");
         int longitude = scan.nextInt();
         
-        newUser = new User(userName, nextUserID, latitude, 
-                longitude, userLocationMap, graphOfConnections );
+        int uniqueUserID = lou.addUser(userName, latitude, longitude);
         
-        nextUserID ++;
+        curUser = lou.getUser(uniqueUserID);
+
         
     }
     
@@ -96,7 +108,7 @@ public class UserMain {
         counter++;
         JFileChooser j = null;
         path = IPhoto.chooseFile(j);
-        newUser.addPhoto(path, loh);
+        curUser.addPhoto(path, loh, false);
         System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
         
         String answer = scan.nextLine();
@@ -111,15 +123,15 @@ public class UserMain {
     
     public void displayPhoto(Scanner scan) {
         System.out.println("Please choose one of the photos in the database: ");
-        newUser.displayPhotoList();
+        curUser.displayPhotoList();
         int photo = Integer.parseInt(scan.nextLine());
-        int photoAmt = newUser.getUserPhotoList().getAllPhotos().size();
+        int photoAmt = curUser.getUserPhotoList().getAllPhotos().size();
 
         if(photo>photoAmt-1 ||photo<0) {
             displayPhoto(scan);
         }else {
-            int displayKey = newUser.getUserPhotoList().getAllPhotos().get(photo).getKey();
-            newUser.getPhoto(displayKey, loh);
+            int displayKey = curUser.getUserPhotoList().getAllPhotos().get(photo).getKey();
+            curUser.getPhoto(displayKey, loh, curUser);
         }
         System.out.println("Please see the photo displayed. Please see other options you can perform: ");
         userOptions(scan);   
@@ -127,24 +139,50 @@ public class UserMain {
     
     public void deletePhoto(Scanner scan) {
         System.out.println("Please choose one of the photos in the database to delete: ");
-        newUser.displayPhotoList();
+        curUser.displayPhotoList();
         int photo = Integer.parseInt(scan.nextLine());
-        int photoAmt = newUser.getUserPhotoList().getAllPhotos().size();
+        int photoAmt = curUser.getUserPhotoList().getAllPhotos().size();
 
         if(photo>photoAmt-1 ||photo<0) {
             deletePhoto(scan);
         }else {
-            int deleteKey = newUser.getUserPhotoList().getAllPhotos().get(photo).getKey();
-            newUser.deletePhoto(deleteKey, loh);
+            int deleteKey = curUser.getUserPhotoList().getAllPhotos().get(photo).getKey();
+            curUser.deletePhoto(deleteKey, loh);
             System.out.println("The photo has been deleted! Please see rest of the photos in the database: ");
-            newUser.displayPhotoList();
+            curUser.displayPhotoList();
         }
         System.out.println("Please see other options you can perform: ");
         userOptions(scan);   
     }
 
     public void friendSuggestions(Scanner scan) {
-        System.out.println("Please see your new friend suggestions: ");
+        
+        System.out.println("Make a new friend. Please see your new friend suggestions: ");
+        
+        UserGraph graphOfConnections = lou.getGraphOfConnections();
+        
+        UserLocationMap userLocationMap = lou.getUserLocationMap();
+        
+        graphOfConnections.getFriendRecommondation(curUser.getUniqueUserID(), lou, userLocationMap, 3);
+        
+        System.out.println("Who do you want to become friends with (enter the ID): ");
+        
+        int friendID = Integer.parseInt(scan.nextLine());
+        
+        curUser.addFriend(friendID, lou);
+        
+        System.out.println("Congrats you made a new friend! Here is your current list of friends");
+        
+        HashSet<User> friendList = curUser.getFriendsList();
+        
+        for (User user : friendList) {
+            System.out.print(user.getUserName() + " || ");
+
+        }
+        System.out.println();
+        
+        userOptions(scan);   
+       
     }
 
     

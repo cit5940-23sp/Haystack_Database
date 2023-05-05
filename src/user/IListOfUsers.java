@@ -1,5 +1,7 @@
 package user;
 
+import java.util.TreeMap;
+
 import graph.Coordinates;
 
 public interface IListOfUsers {
@@ -10,7 +12,7 @@ public interface IListOfUsers {
      * @param latitude
      * @param longitude
      */
-     void addUser(String userName, int latitude, int longitude);
+     int addUser(String userName, int latitude, int longitude);
     
     /**
      * Get User 
@@ -31,4 +33,5 @@ public interface IListOfUsers {
      */
      UserLocationMap getUserLocationMap();
     
+     TreeMap<Integer, User> getListOfUsers();
 }

@@ -69,10 +69,6 @@ public interface IUser {
      */
     void addFriendToFriendList(User friend);
     
-    /**
-     * Delete friend from User's friend list 
-     */
-    void deleteFriend(int uniqueFriendID);
     
     /**
      * Returns name of user  

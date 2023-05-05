@@ -18,7 +18,7 @@ public class ListOfUsers implements IListOfUsers {
     }
 
     @Override
-    public void addUser(String userName, int latitude, int longitude) {
+    public int addUser(String userName, int latitude, int longitude) {
         
         User newUser = new User(userName, listOfUsers.size(), latitude, 
                 longitude, userLocationMap, graphOfConnections);
@@ -27,6 +27,8 @@ public class ListOfUsers implements IListOfUsers {
         Coordinates addressCoor = new Coordinates(latitude, longitude);
         userLocationMap.addUser(newUser.getUniqueUserID(), addressCoor);
         graphOfConnections.addNewUser();
+        
+        return newUser.getUniqueUserID();
         
     }
     
@@ -44,4 +46,10 @@ public class ListOfUsers implements IListOfUsers {
     public UserLocationMap getUserLocationMap() {
         return userLocationMap;
     }
+    
+    @Override
+    public TreeMap<Integer, User> getListOfUsers() {
+        return listOfUsers;
+    }
+    
 }
