@@ -6,7 +6,7 @@ We implemented Facebook’s photo storage system, as described in lecture based 
 We found the setup and algorithm of Facebook’s photo storage system fascinating and decided to implement it for ourselves. 
 
 
-## A list of features implemented 
+## A list of features implemented
 
 ### Haystack database photo storage system
 1. Implementation of the Haystack object store using a binary file (where the actual photos are stored in the filesystem) 
@@ -21,24 +21,29 @@ We found the setup and algorithm of Facebook’s photo storage system fascinatin
 
 
 ## 5940 topics covered in code implementation 
-An explanation of we achieved meaningful and rigorous use of material from three units in this course
+An explanation of how we achieved meaningful and rigorous use of material from three units in this course
 
 ### Data structures 
-1. LinkedList 
-2. Treeset 
-3. Priority Queue (with custom Comparator implementation) 
-4. 2D arrays 
-5. Tuple 
-6. ArrayList 
-7. HashSet 
+1. LinkedList (To store the list of photos that a User has)
+2. TreeSet ( 
+3. TreeMap (To map the unique key ID of users to thier corresponding User object, to map the indexing between key and whiuch haystack it is stored in)
+4. Priority Queue (with custom Comparator implementation) 
+5. 2D arrays (To create a map of the location of each user via latitude and longitude coordinates) 
+6. Tuple (To store the coordinates of each User on the 2D array, to store distance and User pair for friend recommendation search, to store a mapping between an indexFile and its corresponding haystack)
+7. ArrayList (To create the 2D array, to store list of haystacks) 
+8. HashSet (To store the list of friends that a User has, and to store the Users located in a particular location in the 2D array) 
 
-Indexing 
+### Indexing 
 1. Quadratic indexing 
+2. Linear indexing 
 
-Graph 
-1. BFS traversal
-2. Heuristic search 
+### Graph 
+1. Graph represented in an adjacency list 
+2. BFS traversal
+3. Heuristic search 
 
+### Others 
+1. RandomFileAccess 
 
 
 
