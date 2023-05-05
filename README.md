@@ -47,7 +47,7 @@ An explanation of how we achieved meaningful and rigorous use of material from t
 
 
 
-
+### To consider 
 1. Code review 
 2. Milestones 
 3. Use of branches 
