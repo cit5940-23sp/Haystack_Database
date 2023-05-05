@@ -21,7 +21,7 @@ public interface IUser {
      * @param filePath - name of file 
      * @param loh - list of haystacks 
      */
-    void addPhoto(String filePath, ListOfHaystacks loh);
+    void addPhoto(String filePath, ListOfHaystacks loh, boolean privatePhoto);
 
     /**
      * Get a photo from the haystack 
@@ -30,7 +30,7 @@ public interface IUser {
      * @return an Image of the photo requested; null if photo 
      * cannot be found 
      */
-    Image getPhoto(int key, ListOfHaystacks loh);
+    Image getPhoto(int key, ListOfHaystacks loh, User requestUser);
        
     /**
      * Delete photo from the haystack

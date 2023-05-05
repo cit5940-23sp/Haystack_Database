@@ -47,4 +47,16 @@ public interface IUserPhotoNode {
      */
 
     void setDeleted();
+    
+    /**
+     * Set private photo based on decision 
+     * @param decision
+     */
+    void setPrivatePhoto(boolean decision);
+
+    /**
+     * Get settings of photo 
+     * @return
+     */
+    boolean getPrivateSettings();
 }

@@ -10,6 +10,7 @@ public class UserPhotoNode implements IUserPhotoNode{
     private int deleted;
     private String filePath;
     Map<String, Integer> metaDataMap;
+    private boolean privatePhoto;
     
     /**
      * Construct a new UserPhotoNode to be added into UserPhotoList 
@@ -17,12 +18,13 @@ public class UserPhotoNode implements IUserPhotoNode{
      * @param key
      * @param alternateKey
      */
-    public UserPhotoNode(int key, int alternateKey, String filePath) {
+    public UserPhotoNode(int key, int alternateKey, String filePath, boolean privatePhoto) {
         
         this.key = key;
         this.alternateKey = alternateKey;
         this.deleted = 0;
         this.filePath = filePath;
+        this.privatePhoto = privatePhoto;
         
         metaDataMap = new HashMap<String, Integer>();
         
@@ -69,5 +71,16 @@ public class UserPhotoNode implements IUserPhotoNode{
     public void setDeleted() {
         this.deleted = 1;
     }   
+    
+    
+    @Override 
+    public void setPrivatePhoto(boolean decision) {
+        this.privatePhoto = decision;
+    }   
+    
+    @Override 
+    public boolean getPrivateSettings() {
+        return privatePhoto;
+    }
 
 }
