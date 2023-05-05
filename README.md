@@ -1,5 +1,22 @@
 # Haystack_Database
 
+## 5940 topics covered in code implemenation 
+
+Data structures 
+1. Hashset 
+2. Treeset 
+3. Priority Queue (with custom Comparator implementation) 
+4. LinkedList 
+5. ArrayList 
+6. Tuple 
+
+Indexing 
+1. Quadratic indexing 
+
+Graph 
+1. BFS traversal
+2. Heuristic search 
+
 
 Files used by Ada
 
