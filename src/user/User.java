@@ -69,6 +69,12 @@ public class User implements IUser {
         //create photo object to be appended 
         Photo photoToAdd = new Photo(filePath);
         
+        //check photo size
+        if(photoToAdd.getSize() > IPhoto.MAXIMUM_BYTES_DATA) {
+            System.out.println("Photo too big to add! Please choose a photo that is less than 12kb");
+            return;
+        }
+        
         //add photo to list of haystacks and get return values 
         List<Integer> returnVal = loh.addPhotoToHaystack(photoToAdd);
         
@@ -82,7 +88,8 @@ public class User implements IUser {
 
         //add user photo node into userPhotoList 
         getUserPhotoList().addPhotoToUserList(upn);
-      
+        
+        System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
         
     }
     

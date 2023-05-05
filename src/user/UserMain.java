@@ -46,8 +46,12 @@ public class UserMain {
         
         
         User testUser = lou.getUser(0);
-        testUser.addPhoto("./cat.jpeg", loh, true);
-        
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);        
         
     }
     
@@ -121,7 +125,6 @@ public class UserMain {
         JFileChooser j = null;
         path = IPhoto.chooseFile(j);
         curUser.addPhoto(path, loh, false);
-        System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
         
         String answer = scan.nextLine();
         answer = answer.toLowerCase();
