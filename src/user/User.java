@@ -64,7 +64,7 @@ public class User implements IUser {
     }
 
     @Override
-    public void addPhoto(String filePath, ListOfHaystacks loh) {
+    public void addPhoto(String filePath, ListOfHaystacks loh, boolean privatePhoto) {
         
         //create photo object to be appended 
         Photo photoToAdd = new Photo(filePath);
@@ -78,7 +78,7 @@ public class User implements IUser {
         int alternateKey = returnVal.get(2);
 
         //create a new user photo node with return values 
-        UserPhotoNode upn = new UserPhotoNode(key, alternateKey, filePath);
+        UserPhotoNode upn = new UserPhotoNode(key, alternateKey, filePath, privatePhoto);
 
         //add user photo node into userPhotoList 
         userPhotoList.addPhotoToUserList(upn);
@@ -87,11 +87,40 @@ public class User implements IUser {
         
     }
     
+    
+    private boolean isFriend(User requestUser) {
+        
+        if (requestUser.getUniqueUserID() == uniqueUserID) {
+            return true; 
+        }
+        
+        if (friendsList.contains(requestUser)) {
+            return true; 
+        }
+        
+        return false;
+        
+    }
+    
     @Override
-    public Image getPhoto(int key, ListOfHaystacks loh) {
+    public Image getPhoto(int key, ListOfHaystacks loh, User requestUser) {
+        
+        boolean showIfPrivate = isFriend(requestUser);
         
         //get user photo node from user photo list 
         UserPhotoNode upn = userPhotoList.getPhoto(key);
+        
+        if (upn == null) {
+            System.out.println("Image cannot be found: Invalid user ownership.");
+            return null;
+        }
+        
+        if (upn.getPrivateSettings()) {
+           if (!showIfPrivate) {
+               System.out.println("Private photo, for friends only.");
+               return null;
+           }
+        }
         
         //get alternate key and haystackID 
         int alternateKey = upn.getAlternateKey();
@@ -101,9 +130,10 @@ public class User implements IUser {
         
         //if byte array is empty, notify that image cannot be found 
         if (imageByte == null) {
-            System.out.println("Image cannot be found.");
+            System.out.println("Image cannot be found: Photo no longer available.");
             return null;
         }
+        
         
         //convert byte array into Image and return to caller 
         Image returnImg = IPhoto.bytesToImage(imageByte, key);
@@ -168,7 +198,6 @@ public class User implements IUser {
         
         //update photo in list of haystack, getting the new haystackID 
         loh.updatePhotoInHaystack(photoToUpdate, key, alternateKey);
-        
         
         //reassign filename of user photo node 
         upn.setFilename(filePath);

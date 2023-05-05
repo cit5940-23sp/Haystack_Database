@@ -47,7 +47,7 @@ public class photoDisplay extends Canvas {
 
 
         //newUser.addPhoto(file, loh);
-        Image res = newUser.getPhoto(0, loh);
+        Image res = newUser.getPhoto(0, loh, newUser);
 
         photoDisplay m = new photoDisplay(res);
         JFrame f = new JFrame();

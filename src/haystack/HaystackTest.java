@@ -123,34 +123,34 @@ class HaystackTest {
         User newUser = new User(userName, nextUserID, latitude, 
                 longitude, userLocationMap, graphOfConnections );
         
-        newUser.addPhoto("./DogOrange.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./cat.jpeg", loh);
-        newUser.addPhoto("./DogOrange.jpeg", loh);
-        newUser.addPhoto("./DogOrange.jpeg", loh);
-        newUser.addPhoto("./DogOrange.jpeg", loh);
-        newUser.addPhoto("./DogOrange.jpeg", loh);
-        newUser.addPhoto("./DogOrange.jpeg", loh);
-        newUser.addPhoto("./DogOrange.jpeg", loh);
-        newUser.addPhoto("./DogOrange.jpeg", loh);
+        newUser.addPhoto("./DogOrange.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./cat.jpeg", loh, false);
+        newUser.addPhoto("./DogOrange.jpeg", loh, false);
+        newUser.addPhoto("./DogOrange.jpeg", loh, false);
+        newUser.addPhoto("./DogOrange.jpeg", loh, false);
+        newUser.addPhoto("./DogOrange.jpeg", loh, false);
+        newUser.addPhoto("./DogOrange.jpeg", loh, false);
+        newUser.addPhoto("./DogOrange.jpeg", loh, false);
+        newUser.addPhoto("./DogOrange.jpeg", loh, false);
 
         
         System.out.println("Photo added");
@@ -162,7 +162,7 @@ class HaystackTest {
 
         System.out.println("Get photo");
         
-        newUser.getPhoto(3, loh);
+        newUser.getPhoto(3, loh, newUser);
         
     }
 
