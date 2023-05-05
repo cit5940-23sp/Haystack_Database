@@ -3,7 +3,7 @@
 ## Overview of project idea and reason for choosing this idea
 We implemented Facebook’s photo storage system, as described in lecture based on the following paper: https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf
 
-We found the setup and algorithm of Facebook’s photo storage system fascinating and decided to implement it for ourselves. 
+We found the setup and algorithm of Facebook’s photo storage system fascinating and decided to implement it for ourselves. We also used graphs to represent relationships between users for friend recommendation and public/private photo representation. 
 
 
 ## Features implemented
