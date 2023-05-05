@@ -28,6 +28,7 @@ public class Photo implements IPhoto {
         this.size = this.data.length;
         this.flags.put(IPhoto.EDITED, 0);
         this.flags.put(IPhoto.DELETED, 0);
+        this.flags.put(IPhoto.NEXT, -1);
     }
     
     public Photo(byte[] incomingData, int key, int alternateKey) {
@@ -36,6 +37,7 @@ public class Photo implements IPhoto {
         this.size = this.data.length;
         this.flags.put(IPhoto.EDITED, 0);
         this.flags.put(IPhoto.DELETED, 0);
+        this.flags.put(IPhoto.NEXT, -1);
         this.key = key;
         this.alternateKey = alternateKey;
     }
