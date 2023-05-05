@@ -176,7 +176,10 @@ public class ListOfHaystacks implements IListOfHaystacks{
     @Override
     public int compressHaystacks() {
         IndexFile index = createNewHaystack();
-        for(IndexFile indexFile: listOfHaystacks) {
+        int numberOfHaystacks = listOfHaystacks.size();
+        for(int i = 0; i < numberOfHaystacks; i++ ) {
+            
+            IndexFile indexFile = listOfHaystacks.get(i); 
             if(indexFile.compress(index) == -1) {
                 //if indexFile return -1, that means that the pass-in newIndexFile is full, pass in new one try again
                 IndexFile anotherIndexFile = createNewHaystack();

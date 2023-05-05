@@ -163,12 +163,17 @@ class HaystackTest {
         newUser.deletePhoto(4, loh);
         newUser.deletePhoto(5, loh);
         newUser.deletePhoto(6, loh);
+        newUser.deletePhoto(21, loh);
+        newUser.deletePhoto(22, loh);
+        newUser.deletePhoto(23, loh);
         System.out.println("Photo updated");
         
 
-        System.out.println("Get photo");
+        System.out.println("Compress photo");
         
 //        newUser.getPhoto(3, loh, newUser);
+        
+        
        
         loh.compressHaystacks();
         

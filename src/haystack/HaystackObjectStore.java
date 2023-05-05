@@ -423,8 +423,9 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                     // set the pointer to the start of next photo
                     this.curPointer = oldFile.getFilePointer();
                 }
-                oldFile.close();
+                
             }
+//            oldFile.close();
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
