@@ -42,7 +42,8 @@ An explanation of how we achieved meaningful and rigorous use of material from t
 3. Heuristic search 
 
 ### Others 
-1. RandomFileAccess 
+1. File I/O (Read and wrote to binary file, used RandomFileAccess)
+2. Magic number implementation  
 
 
 
@@ -52,6 +53,7 @@ An explanation of how we achieved meaningful and rigorous use of material from t
 3. Use of branches 
 4. Documentation
 5. Style 
+6. Binary search trees 
 
 
 Files used by Ada
