@@ -5,6 +5,11 @@ public class DistUser implements Tuple {
     int distance; 
     int userUniqueID;
     
+    /**
+     * Constructor for DistUser
+     * @param distance
+     * @param userUniqueID
+     */
     public DistUser(int distance, int userUniqueID) {
         
         this.distance = distance;

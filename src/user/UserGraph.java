@@ -14,6 +14,9 @@ public class UserGraph implements IUserGraph {
 
     GraphL graphOfConnections;
     
+    /**
+     * Constructor for UserGraph()
+     */
     public UserGraph(){
         this.graphOfConnections = new GraphL();
     }

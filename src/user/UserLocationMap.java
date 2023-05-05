@@ -10,7 +10,9 @@ public class UserLocationMap implements IUserLocationMap{
   //2D array showing the coordinates of users 
     private ArrayList<ArrayList<HashSet<Integer>>> userLocationMap;
     
-    
+    /**
+     * Constructor for UserLocationMap 
+     */
     public UserLocationMap() {
         
         userLocationMap = new ArrayList<ArrayList<HashSet<Integer>>>();

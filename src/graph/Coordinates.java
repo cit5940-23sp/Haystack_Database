@@ -5,6 +5,11 @@ public class Coordinates implements Tuple {
     private int latitude;
     private int longitude;
     
+    /**
+     * Constructor for Coordinates 
+     * @param latitude
+     * @param longitude
+     */
     public Coordinates(int latitude, int longitude) {
         this.latitude = latitude;
         this.longitude = longitude;

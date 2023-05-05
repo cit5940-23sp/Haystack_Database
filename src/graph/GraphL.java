@@ -3,7 +3,7 @@ package graph;
 import java.util.ArrayList;
 
 /**
- * @author OpenDSA
+ * @author 
  *
  */
 public class GraphL implements Graph {
