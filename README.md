@@ -9,10 +9,11 @@ We found the setup and algorithm of Facebook’s photo storage system fascinatin
 ## Features implemented
 
 ### Haystack database photo storage system
-1. Implementation of the Haystack object store using a binary file (where the actual photos are stored in the filesystem) 
-2. Implementation of the Haystack index file using quadratic hashing (one to one relationship with the haystack, to determine where in the haystack is the photo stored)  
-3. Implementation of the User Photo Store (where it provides a list of photos that the user has, and the key and alternate key of the photo)
+1. Implementation of the Haystack object store using a binary file (Where the actual photos are stored in the filesystem) 
+2. Implementation of the Haystack index file using quadratic hashing (One to one relationship with the haystack, to determine where in the haystack is the photo stored)  
+3. Implementation of the User Photo Store (Where it provides a list of photos that the user has, and the key and alternate key of the photo)
 4. Implementation of user actions on photos (Adding a new photo, Getting a previously added photo, Deleting a previously added photo, Updating a previously added photo, Compaction of the database)
+5. Compaction of Haystack (To remove deleted photos)
 
 ### User friend recommendation 
 1. Implementation of a graph of users (each node represent a user and each edges to represent mutual friendship)
