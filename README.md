@@ -1,14 +1,36 @@
 # Haystack_Database
 
-## 5940 topics covered in code implemenation 
+## Overview of project idea and reason for choosing this idea
+We implemented Facebook’s photo storage system, as described in lecture based on the following paper: https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf
+
+We found the setup and algorithm of Facebook’s photo storage system fascinating and decided to implement it for ourselves. 
+
+
+## A list of features implemented 
+
+### Haystack database 
+1. Implementation of the Haystack object store using a binary file (where the actual photos are stored in the filesystem) 
+2. Implementation of the Haystack index file using quadratic hashing (one to one relationship with the haystack, to determine where in the haystack is the photo stored)  
+3. Implementation of the User Photo Store (where it provides a list of photos that the user has, and the key and alternate key of the photo)
+4. Implementation of user actions on photos (Adding a new photo, Getting a previously added photo, Deleting a previously added photo, Updating a previously added photo, Compaction of the database)
+
+### User friend recommendation 
+1. Implementation of a graph of users (each node represent a user and each edges to represent mutual friendship)
+2. Implementation of a 2D array (to be used in heuristic search of friend recommendation)
+3. Implementation of friend-making and friend-searching actions (Adding a friend, Getting a list of friend recommendations) 
+
+
+## 5940 topics covered in code implementation 
+An explanation of we achieved meaningful and rigorous use of material from three units in this course
 
 ### Data structures 
-1. Hashset 
+1. LinkedList 
 2. Treeset 
 3. Priority Queue (with custom Comparator implementation) 
-4. LinkedList 
-5. ArrayList 
-6. Tuple 
+4. 2D arrays 
+5. Tuple 
+6. ArrayList 
+7. HashSet 
 
 Indexing 
 1. Quadratic indexing 
@@ -18,7 +40,19 @@ Graph
 2. Heuristic search 
 
 
+
+
+
+1. Code review 
+2. Milestones 
+3. Use of branches 
+4. Documentation
+5. Style 
+
+
 Files used by Ada
+
+
 
 
 
