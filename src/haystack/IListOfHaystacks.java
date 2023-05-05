@@ -11,26 +11,26 @@ public interface IListOfHaystacks {
     /**
      * Create a new haystack 
      */
-    public IndexFile createNewHaystack();
+    IndexFile createNewHaystack();
     
     /**
      * Compaction of database by removing deleted photos 
      */
-    public int compressHaystacks();
+    int compressHaystacks();
     
     /**
      * Assign a haystack for the new photo 
      * @param inputPhoto
      * @return haystackID of assigned haystack 
      */
-    public int assignHaystack(Photo inputPhoto);
+    int assignHaystack(Photo inputPhoto);
     
     /**
      * Add a photo into the next available haystack 
      * @param inputPhoto
      * @return a list of outputs 
      */
-    public List<Integer> addPhotoToHaystack(Photo inputPhoto);
+    List<Integer> addPhotoToHaystack(Photo inputPhoto);
     
     /**
      * Update a photo in the haystack 
