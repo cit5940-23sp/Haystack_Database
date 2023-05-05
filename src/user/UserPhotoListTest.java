@@ -29,11 +29,11 @@ class UserPhotoListTest {
         key = 0;
         alternateKey = 1;
         filePath = "cat.jpeg";
-        upn = new UserPhotoNode(key, alternateKey, filePath);
+        upn = new UserPhotoNode(key, alternateKey, filePath, false);
         key2 = 1;
         alternateKey2 = 1;
         filePath2 = "Puppy.jpeg";
-        upn2 = new UserPhotoNode(key2, alternateKey2, filePath2);
+        upn2 = new UserPhotoNode(key2, alternateKey2, filePath2, false);
 
     }
 
