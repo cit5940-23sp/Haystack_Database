@@ -20,6 +20,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     private File file;
     private long EOF;
     private long curPointer;
+    private int curBytes;
     
     
     public HaystackObjectStore(String filePath) {
@@ -43,10 +44,14 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             }
             
             //convert new photo to bytes and write to file
-            convertPhotoToBytes(newPhoto, out);
+            int success = convertPhotoToBytes(newPhoto, out);
             
             out.flush();
             out.close();
+            
+            if(success == -1) {
+                return -1;
+            }
             
             return this.EOF;
         } catch (IOException e) {
@@ -74,7 +79,13 @@ public class HaystackObjectStore implements IHaystackObjectStore {
      * @param out out file 
      * @throws IOException
      */
-    public void convertPhotoToBytes(Photo p, FileOutputStream out) throws IOException {
+    public int convertPhotoToBytes(Photo p, FileOutputStream out) throws IOException {
+        //check if adding this file will max out the database
+        int afterWriteSize = IPhoto.META_DATA_LENGTH + p.getSize() + this.curBytes;
+        if(afterWriteSize > IHaystackObjectStore.MAXIMUM_BYTES) {
+            System.out.println("Cant add photo, this haystack don't have enough space!");
+            return -1;
+        }
         //convert MAGIC NUMBER to byte & write
         BigInteger magic = BigInteger.valueOf(IPhoto.HEADER_MAGIC_NUMBER);      
         byte[] magicB = magic.toByteArray();
@@ -121,10 +132,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         //write data bytes[] to out
         out.write(p.getData());
         
-//        //write padding
-//        out.write(p.getPadding());
-        
-        
+        return 0;
         
     }
     
@@ -344,8 +352,8 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         //read the size of 4 bytes
         byte[] sizeRead = new byte[4];
         rand.read(sizeRead);
-        
-        return 0;
+        int size = ByteBuffer.wrap(sizeRead).getInt();
+        return size;
     }
     
     @Override
@@ -353,10 +361,50 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         //read entire haystack and find the non-deleted photo and 
         //copy old to new index and new haystack in new index
         try {
-            RandomAccessFile oldFile = new RandomAccessFile(this.file, "rw");
+            RandomAccessFile oldFile = new RandomAccessFile(this.file, "r");
             File newFilePath = newIndex.getHaystack().getFile();
-            RandomAccessFile newFile = new RandomAccessFile(newFilePath, "rw");
-            checkMagicNumber(oldFile);
+            RandomAccessFile newFile = new RandomAccessFile(newFilePath, "w");
+            
+            while(true) {
+                this.curPointer = oldFile.getFilePointer();
+                if(checkMagicNumber(oldFile) < 0) {
+                    System.out.println("wrong magic number when reading");
+                    return -2;
+                }
+                this.checkKey(oldFile);
+                
+                //read flags <key 1 byte> <value 1 byte>
+                byte[] flag0 = new byte[2];
+                oldFile.read(flag0);
+                
+                //read flags <key 1 byte> <value 1 byte>
+                byte[] flag1 = new byte[2];
+                oldFile.read(flag1);
+                
+                int size = this.readSize(oldFile);
+                
+                //if this photo is not deleted, move the entire thing there
+                if(flag1[1] == 0x00) {
+//                    oldFile.seek(curPointer);
+//                    byte[] fullPhoto = new byte[IPhoto.META_DATA_LENGTH + size];
+//                    oldFile.read(fullPhoto);
+//                    newFile.write(fullPhoto);
+                    byte[] photoData = new byte[size];
+                    oldFile.read(photoData);
+                    Photo newPhoto = this.convertBytesToPhoto(photoData);
+                    if(newIndex.addPhoto(newPhoto) == -1) {
+                        return -1;
+                    }
+                }else {
+                    //if this photo is delete, read past this photo
+                    oldFile.seek(oldFile.getFilePointer() + size);
+                    //set the pointer to the start of next photo
+                    this.curPointer = oldFile.getFilePointer();
+                }
+                
+                
+            }
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

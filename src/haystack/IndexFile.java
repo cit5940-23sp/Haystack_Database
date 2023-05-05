@@ -98,16 +98,20 @@ public class IndexFile implements IIndexFile {
     }
 
     @Override
-    public void addPhoto(Photo inputPhoto) {
+    public int addPhoto(Photo inputPhoto) {
         long offset = haystack.appendPhoto(inputPhoto);
+        if(offset == -1) {
+            return -1;
+        }
         IndexVal indexVal = new IndexVal(offset, inputPhoto.getSize());
         IndexKey indexKey = new IndexKey(inputPhoto.getKey(), inputPhoto.getAlternateKey());
         addIndex(indexKey, indexVal);
+        return 0;
     }
 
     @Override
-    public void compress(IndexFile newIndexFile) {
-        this.haystack.compress(newIndexFile);
+    public int compress(IndexFile newIndexFile) {
+        return this.haystack.compress(newIndexFile);
     }
 
 }

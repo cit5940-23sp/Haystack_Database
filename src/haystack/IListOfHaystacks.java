@@ -11,7 +11,7 @@ public interface IListOfHaystacks {
     /**
      * Create a new haystack 
      */
-    public void createNewHaystack();
+    public IndexFile createNewHaystack();
     
     /**
      * Compaction of database by removing deleted photos 

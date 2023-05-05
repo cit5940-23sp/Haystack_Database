@@ -42,7 +42,7 @@ public interface IIndexFile {
     /**
      * Add the photo in haystack
      */
-    void addPhoto(Photo inputPhoto);
+    int addPhoto(Photo inputPhoto);
     
     /**
      * Update the photo in different haystack
@@ -57,7 +57,7 @@ public interface IIndexFile {
     /**
      * Move all not deleted photo in the next database
      */
-    void compress(IndexFile newIndexFile);
+    int compress(IndexFile newIndexFile);
 
 
 
