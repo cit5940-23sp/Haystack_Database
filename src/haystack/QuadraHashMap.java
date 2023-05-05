@@ -63,7 +63,6 @@ public class QuadraHashMap {
             
             int tmp = hash(key);
             
-            System.out.println("Hash added in HM: " + tmp);
             int i = tmp, h = 1;
             do
             {
@@ -72,8 +71,6 @@ public class QuadraHashMap {
                     keys[i] = key;
                     vals[i] = val;
                     currentSize++;
-                    System.out.println("Added into hm");
-                    System.out.println(currentSize);
                     return;
                 }
                 if (keys[i].equals(key)) 
@@ -89,16 +86,12 @@ public class QuadraHashMap {
         public IndexVal get(IndexKey key) 
         {
             int i = hash(key), h = 1;
-            System.out.println("Key: " + key.getKey());   
-            System.out.println("AltKey: " + key.getAlternateKey());     
-            System.out.println("Hash in HM: " + i);
-            System.out.println(keys[i]);
+
             
             while (keys[i] != null)
             {
                 if (keys[i].getKey() == key.getKey()) {
                     
-                    System.out.println("Found key");
                     return vals[i];                   
                 }
  

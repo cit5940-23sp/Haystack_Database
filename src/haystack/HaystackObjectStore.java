@@ -90,7 +90,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         BigInteger magic = BigInteger.valueOf(IPhoto.HEADER_MAGIC_NUMBER);      
         byte[] magicB = magic.toByteArray();
         out.write(magicB);
-        System.out.println("magic number size:" + magicB.length);
+//        System.out.println("magic number size:" + magicB.length);
         
         //get photo key & convert to byte & write
         int key = p.getKey();

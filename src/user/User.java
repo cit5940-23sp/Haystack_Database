@@ -83,7 +83,6 @@ public class User implements IUser {
         //add user photo node into userPhotoList 
         getUserPhotoList().addPhotoToUserList(upn);
       
-        System.out.println("Added into haystack: " + haystackID);
         
     }
     

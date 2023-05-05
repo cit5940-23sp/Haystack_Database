@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeMap;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -35,13 +37,17 @@ public class UserMain {
         nextUserID = 0;
 //        this.graphOfConnections = lou.getGraphOfConnections()
 //        this.userLocationMap = lou.getUserLocationMap();
-
         
         lou.addUser("Amy", 30, 180);
         lou.addUser("Tom", 30, 180);
         lou.addUser("Jim", 90, 180);
         lou.addUser("Kim", 30, 80);
         lou.addUser("Tim", 30, 90);
+        
+        
+        User testUser = lou.getUser(0);
+        testUser.addPhoto("./cat.jpeg", loh, true);
+        
         
     }
     
@@ -74,7 +80,8 @@ public class UserMain {
         System.out.println(" 2 -- Display Photo");
         System.out.println(" 3 -- Delete Photo");
         System.out.println(" 4 -- Make new friends");
-        System.out.println(" 5 -- Exit out of the system");
+        System.out.println(" 5 -- See photos of other users");
+        System.out.println(" 6 -- Exit out of the system");
         System.out.println("");
         System.out.println("Please enter your option, eg. '1'.");
         
@@ -93,7 +100,12 @@ public class UserMain {
         case "4":
             friendSuggestions(scan);
             break;
+            
         case "5":
+            displayOtherUserPhotos(scan);
+            break;
+            
+        case "6":
             System.out.println("Thanks for using the Haystack database!");
             break;
         }     
@@ -185,7 +197,31 @@ public class UserMain {
        
     }
 
-    
+    public void displayOtherUserPhotos(Scanner scan) {
+        
+        System.out.println("Whose photo do you want to see (enter the ID): ");
+        
+        TreeMap<Integer, User> listOfUsers = lou.getListOfUsers();
+        
+        for (Map.Entry<Integer, User> entry : listOfUsers.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue().getUserName());
+        }
+        
+        int userID = Integer.parseInt(scan.nextLine());
+        
+        User userToSeePhoto = lou.getUser(userID);
+        
+        System.out.println("Please choose one of the photos in the database: ");
+        userToSeePhoto.displayPhotoList();
+        
+        int photo = Integer.parseInt(scan.nextLine());
+        
+        userToSeePhoto.getPhoto(photo, loh, curUser);
+        
+        System.out.println("Please see other options you can perform: ");
+        userOptions(scan);   
+        
+    }
     
     public static void main(String[] args) {
         // TODO Auto-generated method stub

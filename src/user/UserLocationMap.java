@@ -152,14 +152,6 @@ public class UserLocationMap implements IUserLocationMap{
             
         }
         
-
-//        while (finalQ.size() < 3 ) {
-//           finalQ.add(queueOfClosestUsers.poll());
-//           
-//           if (queueOfClosestUsers.size() == 0) {
-//               break;
-//           }
-//        }
         
         return queueOfClosestUsers;
             
