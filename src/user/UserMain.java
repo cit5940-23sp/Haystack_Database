@@ -103,14 +103,18 @@ public class UserMain {
             deletePhoto(scan);
             break;
         case "4":
-            friendSuggestions(scan);
+            updatePhoto(scan);
             break;
             
         case "5":
-            displayOtherUserPhotos(scan);
+            friendSuggestions(scan);
             break;
             
         case "6":
+            displayOtherUserPhotos(scan);
+            break;
+            
+        case "7":
             System.out.println("Thanks for using the Haystack database!");
             break;
         }     
@@ -224,6 +228,23 @@ public class UserMain {
         
     }
     
+    public void updatePhoto(Scanner scan) {
+        System.out.println("Please choose one of the photos in the database to update: ");
+        curUser.displayPhotoList();
+        int photo = Integer.parseInt(scan.nextLine());
+        System.out.println("Choose the Photo path you would like to use to replace the selected photo: ");
+        StringBuilder sb = new StringBuilder();
+        String path = sb.append(Integer.toString(counter)).toString();
+        JFileChooser j = null;
+        path = IPhoto.chooseFile(j);
+        
+        curUser.updatePhoto(path, photo, loh);
+        System.out.println("Your photo is updated! ");
+        System.out.println("Please see other options you can perform: ");
+        userOptions(scan);  
+        
+    }
+
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         
