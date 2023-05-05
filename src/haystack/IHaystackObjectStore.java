@@ -9,7 +9,7 @@ public interface IHaystackObjectStore {
 
     // private int haystackID;
     // private List<String> haystackObject;
-    public static final int MAXIMUM_BYTES = Integer.MAX_VALUE;
+    public static final int MAXIMUM_BYTES = 30000;
 
     /**
      * Write to the end of disk file

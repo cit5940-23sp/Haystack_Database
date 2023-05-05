@@ -13,13 +13,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public interface IPhoto {
     
-    public static final int MAXIMUM_BYTES_DATA = 10000; 
+    public static final int MAXIMUM_BYTES_DATA = 20000; 
     public static final int HEADER_MAGIC_NUMBER = 123456789;
     
     public static final int EDITED = 0;
     public static final int DELETED = 1;
-    public static final int PRIVATE = 2;
-    public static final int NEXT = 3;
+    public static final int NEXT = 2;
     
     public static final int META_DATA_LENGTH = 16;
     
@@ -30,7 +29,7 @@ public interface IPhoto {
             buf_image = ImageIO.read(input);
             
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ImageIO.write(buf_image, "jpg", bos );
+            ImageIO.write(buf_image, "jpg", bos);
             
             byte [] data = bos.toByteArray();
             return data;
@@ -48,6 +47,7 @@ public interface IPhoto {
         ByteArrayInputStream input = new ByteArrayInputStream(data);
         try {
             BufferedImage res = ImageIO.read(input);
+            System.out.println("========:" + data.length + input);
             ImageIO.write(res, "jpg", new File("output" + uniqueID + ".jpg") );
             return res;
         } catch (IOException e) {

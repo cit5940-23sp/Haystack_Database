@@ -46,8 +46,12 @@ public class UserMain {
         
         
         User testUser = lou.getUser(0);
-        testUser.addPhoto("./cat.jpeg", loh, true);
-        
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, false);        
         
     }
     
@@ -79,9 +83,10 @@ public class UserMain {
         System.out.println(" 1 -- Insert Photo in the database");
         System.out.println(" 2 -- Display Photo");
         System.out.println(" 3 -- Delete Photo");
-        System.out.println(" 4 -- Make new friends");
-        System.out.println(" 5 -- See photos of other users");
-        System.out.println(" 6 -- Exit out of the system");
+        System.out.println(" 4 -- Update Photo");
+        System.out.println(" 5 -- Make new friends");
+        System.out.println(" 6 -- See photos of other users");
+        System.out.println(" 7 -- Exit out of the system");
         System.out.println("");
         System.out.println("Please enter your option, eg. '1'.");
         
@@ -121,7 +126,6 @@ public class UserMain {
         JFileChooser j = null;
         path = IPhoto.chooseFile(j);
         curUser.addPhoto(path, loh, false);
-        System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
         
         String answer = scan.nextLine();
         answer = answer.toLowerCase();
@@ -155,14 +159,14 @@ public class UserMain {
         int photo = Integer.parseInt(scan.nextLine());
         int photoAmt = curUser.getUserPhotoList().getAllPhotos().size();
 
-        if(photo>photoAmt-1 ||photo<0) {
-            deletePhoto(scan);
-        }else {
-            int deleteKey = curUser.getUserPhotoList().getAllPhotos().get(photo).getKey();
-            curUser.deletePhoto(deleteKey, loh);
+//        if(photo>photoAmt-1 ||photo<0) {
+//            deletePhoto(scan);
+//        }else {
+//            int deleteKey = curUser.getUserPhotoList().getAllPhotos().get(photo).getKey();
+            curUser.deletePhoto(photo, loh);
             System.out.println("The photo has been deleted! Please see rest of the photos in the database: ");
             curUser.displayPhotoList();
-        }
+//        }
         System.out.println("Please see other options you can perform: ");
         userOptions(scan);   
     }
