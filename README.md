@@ -2,7 +2,7 @@
 
 ## 5940 topics covered in code implemenation 
 
-Data structures 
+### Data structures 
 1. Hashset 
 2. Treeset 
 3. Priority Queue (with custom Comparator implementation) 
