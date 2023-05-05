@@ -44,8 +44,13 @@ public class UserLocationMap implements IUserLocationMap{
         int latitude = addressCoor.getLeft();
         int longitude = addressCoor.getRight();
         
-        HashSet<Integer> curSet = userLocationMap.get(latitude).get(longitude);
-        curSet.add(uniqueUserID);
+        if (latitude > 180 || latitude < 0 || longitude < 0 || longitude > 360) {
+            System.out.println("Latitude must be between 0 to 180, and longitude must be between 0 to 360");
+        } else {
+            HashSet<Integer> curSet = userLocationMap.get(latitude).get(longitude);
+            curSet.add(uniqueUserID);            
+        }
+
         
     }
 

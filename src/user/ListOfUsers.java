@@ -24,6 +24,7 @@ public class ListOfUsers implements IListOfUsers {
                 longitude, userLocationMap, graphOfConnections);
         
         listOfUsers.put(newUser.getUniqueUserID(), newUser);
+        
         Coordinates addressCoor = new Coordinates(latitude, longitude);
         userLocationMap.addUser(newUser.getUniqueUserID(), addressCoor);
         graphOfConnections.addNewUser();
