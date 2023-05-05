@@ -5,11 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import graph.Coordinates;
+import graph.DistUser;
 import haystack.ListOfHaystacks;
 
 class UserLocationMapTest {
@@ -57,8 +59,23 @@ class UserLocationMapTest {
         assertEquals(ulm.distBetweenUsers(curUser, curUser1), 33);
         assertEquals(ulm.distBetweenUsers(curUser, curUser2), 2);
 
-
     }
     
+    @Test
+    void getClosestUsers() {
+        
+        
+        ListOfUsers lou = new ListOfUsers();
+        lou.addUser("Alette", 90, 90);
+        lou.addUser("Elena", 66, 66);
+        lou.addUser("Ada", 100, 100);
+        
+        UserLocationMap userLM = lou.getUserLocationMap();
+        
+        assertEquals(2, userLM.getClosestUsers(90, 70, lou, lou.getUser(0)).size());
+        
+    }
+    
+        
 
 }

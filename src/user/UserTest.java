@@ -38,11 +38,11 @@ class UserTest {
     @Test
     void testAddPhoto() {
         
-        curUser.addPhoto(filePath, loh);
+        curUser.addPhoto(filePath, loh, false);
 
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 1);
 
-        curUser.addPhoto(filePath2, loh);
+        curUser.addPhoto(filePath2, loh, false);
         
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 2);
 
@@ -51,8 +51,8 @@ class UserTest {
     
     @Test
     void testDeletePhoto() {
-        curUser.addPhoto(filePath, loh);
-        curUser.addPhoto(filePath2, loh);
+        curUser.addPhoto(filePath, loh, false);
+        curUser.addPhoto(filePath2, loh, false);
         curUser.deletePhoto(0, loh);
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 2);
 
@@ -64,8 +64,8 @@ class UserTest {
 
     @Test
     void testUpdatePhoto() {
-        curUser.addPhoto(filePath, loh);
-        curUser.addPhoto(filePath2, loh);
+        curUser.addPhoto(filePath, loh, false);
+        curUser.addPhoto(filePath2, loh, false);
 
         curUser.updatePhoto(updateFile, 0, loh);
         
