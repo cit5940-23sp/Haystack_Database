@@ -178,6 +178,11 @@ public class User implements IUser {
         //get photo from user photo list using key 
         UserPhotoNode upn = getUserPhotoList().getPhoto(key);
         
+        if (upn == null) {
+            System.out.println("This is not your photo. You cannot delete it!");
+            return;
+        }
+        
         //get alternate key and haystackID 
         int alternateKey = upn.getAlternateKey();
 
