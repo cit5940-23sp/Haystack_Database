@@ -143,12 +143,9 @@ public class UserMain {
         int photo = Integer.parseInt(scan.nextLine());
         int photoAmt = curUser.getUserPhotoList().getAllPhotos().size();
 
-        if(photo>photoAmt-1 ||photo<0) {
-            displayPhoto(scan);
-        }else {
-            int displayKey = curUser.getUserPhotoList().getAllPhotos().get(photo).getKey();
-            curUser.getPhoto(displayKey, loh, curUser);
-        }
+
+//            int displayKey = curUser.getUserPhotoList().getAllPhotos().get(photo).getKey();
+            curUser.getPhoto(photo, loh, curUser);
         System.out.println("Please see the photo displayed. Please see other options you can perform: ");
         userOptions(scan);   
     }

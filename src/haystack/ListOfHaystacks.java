@@ -175,10 +175,7 @@ public class ListOfHaystacks implements IListOfHaystacks{
 
     @Override
     public int compressHaystacks() {
-        IndexFile index = new IndexFile(curKey);
-        
-
-        curKey++;
+        IndexFile index = createNewHaystack();
         for(IndexFile indexFile: listOfHaystacks) {
             if(indexFile.compress(index) == -1) {
                 //if indexFile return -1, that means that the pass-in newIndexFile is full, pass in new one try again

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import photo.IPhoto;
+import user.ListOfUsers;
 import user.User;
 import user.UserGraph;
 import user.UserLocationMap;
@@ -115,6 +116,7 @@ class HaystackTest {
         int latitude = 90;
         
         int longitude = 90;
+   
         
         UserGraph graphOfConnections = new UserGraph();
         
@@ -155,14 +157,20 @@ class HaystackTest {
         
         System.out.println("Photo added");
         
-        newUser.updatePhoto("./Puppy.jpeg", 3, loh);
-        
+        newUser.deletePhoto(1, loh);
+        newUser.deletePhoto(2, loh);
+        newUser.deletePhoto(3, loh);
+        newUser.deletePhoto(4, loh);
+        newUser.deletePhoto(5, loh);
+        newUser.deletePhoto(6, loh);
         System.out.println("Photo updated");
         
 
         System.out.println("Get photo");
         
-        newUser.getPhoto(3, loh, newUser);
+//        newUser.getPhoto(3, loh, newUser);
+       
+        loh.compressHaystacks();
         
     }
 
