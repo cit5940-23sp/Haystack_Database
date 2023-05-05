@@ -3,9 +3,11 @@ package user;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 
 import graph.DistUser;
 import graph.GraphL;
@@ -63,10 +65,10 @@ public class UserGraph implements IUserGraph {
             Integer d2 = dist2;
             
             if (dist1 - dist2 > 0) {
-                return -1;
+                return 1;
             //else, return 1 
             } else if (dist1 - dist2 < 0) {
-                return 1;
+                return -1;
             } else {
                 return d1.compareTo(d2);
             }
@@ -167,26 +169,55 @@ public class UserGraph implements IUserGraph {
     
    
     @Override
-    public PriorityQueue<DistUser> getFriendRecommondation(int uniqueUserID, ListOfUsers lou, UserLocationMap userMap) {
+    public List<DistUser> getFriendRecommondation(int uniqueUserID, 
+            ListOfUsers lou, UserLocationMap userMap, int numOfRec) {
         // TODO Auto-generated method stub
+        
+//        PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID, userMap, lou);
+//        
+//        while (setOfFof.size() > 3) {
+//            setOfFof.remove();
+//        }
+//       
+//        System.out.println("Recommended friends for " + lou.getUser(uniqueUserID).getUserName() + ":");
+//        
+//        for (DistUser ele : setOfFof) {
+//            
+//            User curUser = lou.getUser(ele.getRight());
+//            
+//            System.out.println(curUser.getUserName());
+//            
+//        }
+//     
+//        return setOfFof;
         
         PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID, userMap, lou);
         
-        while (setOfFof.size() > 3) {
-            setOfFof.remove();
+        List<DistUser> finalSet = new ArrayList<DistUser>();
+        
+        while (finalSet.size() < numOfRec) {
+            finalSet.add(setOfFof.remove());
+            
+            if (setOfFof.size() == 0) {
+                break;
+            }
         }
        
         System.out.println("Recommended friends for " + lou.getUser(uniqueUserID).getUserName() + ":");
         
-        for (DistUser ele : setOfFof) {
+        for (DistUser ele : finalSet) {
             
             User curUser = lou.getUser(ele.getRight());
             
-            System.out.println(curUser.getUserName());
+            System.out.println(curUser.getUserName() + ": " + curUser.getUniqueUserID());
             
         }
      
-        return setOfFof;
+        return finalSet;
+    }
+    
+    public GraphL getGOC() {
+        return graphOfConnections;
     }
     
 }

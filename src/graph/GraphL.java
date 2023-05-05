@@ -149,18 +149,21 @@ public class GraphL implements Graph {
         Edge curr;
         for (curr = nodeArray.get(v).next; curr != null; curr = curr.next)
             cnt++;
-        int[] temp = new int[cnt + 1];
+        int[] temp = new int[cnt];
         if (cnt == 0) {
             return temp;
         }
+
         cnt = 0;
         for (curr = nodeArray.get(v); curr != null; curr = curr.next) {
-//            System.out.println("Added neighbor: " + curr.vertex);
+            
             if (curr.vertex == -1) {
                 continue;
             }
+
             temp[cnt++] = curr.vertex;            
         }
+
 
         return temp;
     }

@@ -1,6 +1,7 @@
 package user;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.PriorityQueue;
 
 import graph.DistUser;
@@ -36,7 +37,7 @@ public interface IUserGraph {
      * @param userMap
      * @return priorityqueue with top three recommendation of friends based on location 
      */
-    PriorityQueue<DistUser> getFriendRecommondation(int uniqueUserID, ListOfUsers lou, UserLocationMap userMap);
+    List<DistUser> getFriendRecommondation(int uniqueUserID, ListOfUsers lou, UserLocationMap userMap, int numOfRec);
     
     /**
      * Add a new friend 
