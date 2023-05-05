@@ -36,7 +36,7 @@ An explanation of how we achieved meaningful and rigorous use of material from t
 1. Quadratic indexing 
 2. Linear indexing 
 
-### Graph 
+### Graphs 
 1. Graph represented in an adjacency list 
 2. BFS traversal
 3. Heuristic search 
