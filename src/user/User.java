@@ -147,6 +147,7 @@ public class User implements IUser {
         
         // get user photo node from user photo list
         UserPhotoNode upn = getUserPhotoList().getPhoto(key);
+        System.out.println("------" +  key);
         
         // if photo does not belong to user, print message
         if (upn == null) {
