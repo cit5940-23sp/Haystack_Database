@@ -6,8 +6,6 @@ import java.io.RandomAccessFile;
 
 public interface IHaystackObjectStore {
 
-    // private int haystackID;
-    // private List<String> haystackObject;
     public static final int MAXIMUM_BYTES = 30000;
 
     /**
@@ -45,12 +43,35 @@ public interface IHaystackObjectStore {
      */
     public int updatePhoto(long offset);
 
+    /**
+     * Check magic number 
+     * @param rand
+     * @return 0 for success; -1 for failed 
+     * @throws IOException
+     */
     public int checkMagicNumber(RandomAccessFile rand) throws IOException;
 
+    /**
+     * Check key 
+     * @param rand
+     * @return 0 for success; -1 for failed 
+     * @throws IOException
+     */
     public int checkKey(RandomAccessFile rand) throws IOException;
 
+    /**
+     * Reads the size of the photo 
+     * @param rand
+     * @return size of photo
+     * @throws IOException
+     */
     public int readSize(RandomAccessFile rand) throws IOException;
     
+    /**
+     * Compaction of databases 
+     * @param newIndex
+     * @return 0 for success; -1 for failed 
+     */
     public int compress(IndexFile newIndex);
     
 
