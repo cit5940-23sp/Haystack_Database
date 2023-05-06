@@ -16,7 +16,6 @@ class UserTest {
     String filePath2 = null;
     String updateFile = null;
 
-
     ListOfHaystacks loh;
     User curUser;
     List<UserPhotoNode> listOfPhotoNodes;
@@ -32,23 +31,22 @@ class UserTest {
         updateFile = "Puppy.jpeg";
 
         loh = new ListOfHaystacks();
-        
+
     }
 
     @Test
     void testAddPhoto() {
-        
+
         curUser.addPhoto(filePath, loh, false);
 
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 1);
 
         curUser.addPhoto(filePath2, loh, false);
-        
+
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 2);
 
     }
-    
-    
+
     @Test
     void testDeletePhoto() {
         curUser.addPhoto(filePath, loh, false);
@@ -57,10 +55,9 @@ class UserTest {
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 2);
 
         int deletedCount = 0;
-        assertEquals(curUser.getUserPhotoList().getPhoto(deletedCount).getDeleted(),1);
+        assertEquals(curUser.getUserPhotoList().getPhoto(deletedCount).getDeleted(), 1);
 
     }
-
 
     @Test
     void testUpdatePhoto() {
@@ -68,11 +65,11 @@ class UserTest {
         curUser.addPhoto(filePath2, loh, false);
 
         curUser.updatePhoto(updateFile, 0, loh);
-        
+
         UserPhotoNode upn = curUser.getUserPhotoList().getPhoto(0);
         upn.setFilename(updateFile);
-        
+
         assertEquals(curUser.getUserPhotoList().getPhoto(0).getFilename(), updateFile);
-        
+
     }
 }

@@ -1,18 +1,8 @@
 package haystack;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.awt.image.Raster;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import photo.IPhoto;
-
-import javax.imageio.ImageIO;
-
 import photo.IPhoto;
 
 public class Photo implements IPhoto {
@@ -30,7 +20,7 @@ public class Photo implements IPhoto {
         this.flags.put(IPhoto.DELETED, 0);
         this.flags.put(IPhoto.NEXT, 0);
     }
-    
+
     public Photo(byte[] incomingData, int key, int alternateKey) {
         this.data = incomingData;
         this.flags = new HashMap<Integer, Integer>();
@@ -77,19 +67,17 @@ public class Photo implements IPhoto {
     public void setData(byte[] data) {
         this.data = data;
     }
-    
+
     @Override
     public boolean equals(Object o) {
- 
-        if(this.size != ((Photo)o).getSize()) {
+
+        if (this.size != ((Photo) o).getSize()) {
             return false;
         }
-        if(!Arrays.equals(this.data, ((Photo)o).getData())){
+        if (!Arrays.equals(this.data, ((Photo) o).getData())) {
             return false;
         }
         return true;
     }
-    
-
 
 }
