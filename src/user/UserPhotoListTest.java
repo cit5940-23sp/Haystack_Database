@@ -9,18 +9,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserPhotoListTest {
-    
+
     List<UserPhotoNode> masterPhotoList;
-    int deletedPhotoCount;     
+    int deletedPhotoCount;
     UserPhotoList upl;
     UserPhotoNode upn;
     UserPhotoNode upn2;
 
-    private int key; 
-    private int alternateKey; 
+    private int key;
+    private int alternateKey;
     private String filePath;
-    private int key2; 
-    private int alternateKey2; 
+    private int key2;
+    private int alternateKey2;
     private String filePath2;
 
     @BeforeEach
@@ -42,22 +42,22 @@ class UserPhotoListTest {
         upl.addPhotoToUserList(upn);
         upl.addPhotoToUserList(upn2);
 
-        List<UserPhotoNode> masterPhotoList= new ArrayList<UserPhotoNode>();
+        List<UserPhotoNode> masterPhotoList = new ArrayList<UserPhotoNode>();
         masterPhotoList.add(upn);
         masterPhotoList.add(upn2);
 
-        assertEquals(upl.getPhoto(0),upn);
-        
-        assertEquals(upl.getPhoto(1),upn2);
+        assertEquals(upl.getPhoto(0), upn);
+
+        assertEquals(upl.getPhoto(1), upn2);
 
     }
-    
+
     @Test
     void testGetAllPhoto() {
         upl.addPhotoToUserList(upn);
         List<UserPhotoNode> allPhotos = new ArrayList<UserPhotoNode>();
         allPhotos.add(upn);
-        
+
         assertEquals(upl.getAllPhotos(), allPhotos);
     }
 }

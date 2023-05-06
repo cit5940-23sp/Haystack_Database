@@ -1,17 +1,8 @@
 package haystack;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.awt.image.Raster;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import photo.IPhoto;
-
-import javax.imageio.ImageIO;
-
 import photo.IPhoto;
 
 public class Photo implements IPhoto {
@@ -20,7 +11,6 @@ public class Photo implements IPhoto {
     private Map<Integer, Integer> flags;
     private int size;
     private byte[] data;
-    private byte padding;
 
     public Photo(String filePath) {
         this.data = IPhoto.loadImageToBytes(filePath);
@@ -28,16 +18,16 @@ public class Photo implements IPhoto {
         this.size = this.data.length;
         this.flags.put(IPhoto.EDITED, 0);
         this.flags.put(IPhoto.DELETED, 0);
-        this.flags.put(IPhoto.NEXT, -1);
+        this.flags.put(IPhoto.NEXT, 0);
     }
-    
+
     public Photo(byte[] incomingData, int key, int alternateKey) {
         this.data = incomingData;
         this.flags = new HashMap<Integer, Integer>();
         this.size = this.data.length;
         this.flags.put(IPhoto.EDITED, 0);
         this.flags.put(IPhoto.DELETED, 0);
-        this.flags.put(IPhoto.NEXT, -1);
+        this.flags.put(IPhoto.NEXT, 0);
         this.key = key;
         this.alternateKey = alternateKey;
     }
@@ -78,13 +68,16 @@ public class Photo implements IPhoto {
         this.data = data;
     }
 
-    public void setPadding(byte padding) {
-        this.padding = padding;
-    }
-    
-    public byte getPadding() {
-        return this.padding;
-    }
+    @Override
+    public boolean equals(Object o) {
 
+        if (this.size != ((Photo) o).getSize()) {
+            return false;
+        }
+        if (!Arrays.equals(this.data, ((Photo) o).getData())) {
+            return false;
+        }
+        return true;
+    }
 
 }

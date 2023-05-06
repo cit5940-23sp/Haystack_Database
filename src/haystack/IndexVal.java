@@ -9,7 +9,7 @@ public class IndexVal {
     private Map<Integer, Integer> flags;
     private long offset;
     private int size;
-    
+
     public IndexVal(long offset, int size) {
         this.flags = new HashMap<Integer, Integer>();
         flags.put(IPhoto.EDITED, 0);
@@ -21,7 +21,7 @@ public class IndexVal {
     public Map<Integer, Integer> getFlags() {
         return flags;
     }
-    
+
     public void setFlags(HashMap<Integer, Integer> flags) {
         this.flags = flags;
     }
@@ -33,7 +33,7 @@ public class IndexVal {
     public void setSize(int size) {
         this.size = size;
     }
-    
+
     public long getOffset() {
         return offset;
     }
@@ -41,16 +41,16 @@ public class IndexVal {
     public void setOffset(long offset) {
         this.offset = offset;
     }
-    
+
     public void updateFlag(int fs, int fi) {
         Map<Integer, Integer> updatedFlag = new HashMap<Integer, Integer>();
         updatedFlag.put(fs, fi);
         flags = updatedFlag;
     }
-    
+
     public void getPhoto() {
         long off = getOffset();
-        
+
     }
 
 }

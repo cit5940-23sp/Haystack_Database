@@ -11,7 +11,7 @@ public class IndexKey {
         this.key = key;
         this.alternateKey = alternateKey;
     }
-        
+
     public int getKey() {
         return key;
     }
@@ -27,6 +27,5 @@ public class IndexKey {
     public void setAlternateKey(int alternateKey) {
         this.alternateKey = alternateKey;
     }
-
 
 }

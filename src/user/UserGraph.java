@@ -16,11 +16,11 @@ import graph.GraphL;
 public class UserGraph implements IUserGraph {
 
     GraphL graphOfConnections;
-    
+
     /**
      * Constructor for UserGraph()
      */
-    public UserGraph(){
+    public UserGraph() {
         this.graphOfConnections = new GraphL();
     }
 
@@ -28,29 +28,30 @@ public class UserGraph implements IUserGraph {
     public void addNewUser() {
         // TODO Auto-generated method stub
         graphOfConnections.addNode();
-        
+
     }
-    
+
     @Override
     public void addNewFriend(User curUser, User newFriend, UserLocationMap userMap) {
         // TODO Auto-generated method stub
-        
+
         int distance = userMap.distBetweenUsers(curUser, newFriend);
-        
-        graphOfConnections.addEdge(curUser.getUniqueUserID(), newFriend.getUniqueUserID(), distance);
-        graphOfConnections.addEdge(newFriend.getUniqueUserID(), curUser.getUniqueUserID(), distance);
-        
+
+        graphOfConnections.addEdge(curUser.getUniqueUserID(),
+                newFriend.getUniqueUserID(), distance);
+        graphOfConnections.addEdge(newFriend.getUniqueUserID(),
+                curUser.getUniqueUserID(), distance);
+
     }
 
     @Override
     public int[] getFriends(int uniqueUserID) {
         // TODO Auto-generated method stub
         int[] neighbors = graphOfConnections.neighbors(uniqueUserID);
-        
-        return neighbors; 
-        
-    }
 
+        return neighbors;
+
+    }
 
     static class DistUserComparator implements Comparator<DistUser> {
 
@@ -58,16 +59,16 @@ public class UserGraph implements IUserGraph {
         public int compare(DistUser o1, DistUser o2) {
 
             int dist1 = o1.getLeft();
-            
+
             int dist2 = o2.getLeft();
-            
+
             Integer d1 = dist1;
-            
+
             Integer d2 = dist2;
-            
+
             if (dist1 - dist2 > 0) {
                 return 1;
-            //else, return 1 
+                // else, return 1
             } else if (dist1 - dist2 < 0) {
                 return -1;
             } else {
@@ -75,160 +76,148 @@ public class UserGraph implements IUserGraph {
             }
         }
     }
-    
+
     @Override
-    public PriorityQueue<DistUser> getFriendsOfFriends(int uniqueUserID, 
+    public PriorityQueue<DistUser> getFriendsOfFriends(int uniqueUserID,
             UserLocationMap userMap, ListOfUsers lou) {
         // TODO Auto-generated method stub
-        //if threshold is less than zero, return edge case -1 
-        
-        //initialize a set of vertices that have been visited 
-        HashSet <Integer> verticesVisited = new HashSet <Integer>();
-        
-        //initialize a queue to keep track of current generation nodes
-        Queue <Integer> vertexQueue = new LinkedList <Integer>();
-        
-        
-        //initialize a queue to keep track of next generation nodes 
-        Queue <Integer> tempQueue = new LinkedList <Integer>();
-        
+        // if threshold is less than zero, return edge case -1
 
-        //initialize a priority queue to keep track of top 3 friend recommendations 
-        PriorityQueue<DistUser> priorityQueue = new PriorityQueue<DistUser>(new DistUserComparator());
-        
-        //add seed into vertices visited 
+        // initialize a set of vertices that have been visited
+        HashSet<Integer> verticesVisited = new HashSet<Integer>();
+
+        // initialize a queue to keep track of current generation nodes
+        Queue<Integer> vertexQueue = new LinkedList<Integer>();
+
+        // initialize a queue to keep track of next generation nodes
+        Queue<Integer> tempQueue = new LinkedList<Integer>();
+
+        // initialize a priority queue to keep track of top 3 friend recommendations
+        PriorityQueue<DistUser> priorityQueue = 
+                new PriorityQueue<DistUser>(new DistUserComparator());
+
+        // add seed into vertices visited
         verticesVisited.add(uniqueUserID);
 
-        //add seed into vertexQueue 
+        // add seed into vertexQueue
         vertexQueue.add(uniqueUserID);
-        
-        int curLevel = 0;
-        
 
-            //while vertexQueue is not empty 
+        int curLevel = 0;
+
+        // while vertexQueue is not empty
+        while (vertexQueue.size() > 0) {
+
+            curLevel++;
+            // while vertexQueue is not empty
             while (vertexQueue.size() > 0) {
-               
-                curLevel ++;
-                //while vertexQueue is not empty 
-                while (vertexQueue.size() > 0) {
-                
-       
-                //remove vertex from queue 
+
+                // remove vertex from queue
                 int curVertex = vertexQueue.poll();
 
-                //get neighbors of curVertex 
+                // get neighbors of curVertex
                 int[] neighbors = getFriends(curVertex);
-                
-                //go through each neighbor 
+
+                // go through each neighbor
                 for (int i = 0; i < neighbors.length; i++) {
-                    
-                    //get neighbor 
+
+                    // get neighbor
                     int vertexToAdd = neighbors[i];
-//                    System.out.println("Vertex neighbor: " + vertexToAdd);
-                    //if vertex has not been visited 
+                    // if vertex has not been visited
                     if (!verticesVisited.contains(vertexToAdd)) {
-                        
-                        //add vertex into verticesVisited 
+
+                        // add vertex into verticesVisited
                         verticesVisited.add(vertexToAdd);
-//                        System.out.println("VertexToAdd: " + vertexToAdd);
-                        
-                        //add vertex into tempQueue 
+
+                        // add vertex into tempQueue
                         tempQueue.add(vertexToAdd);
-//                        System.out.println("curLevel: " + curLevel);
                         if (curLevel == 2) {
-                            
-                            
+
                             User user1 = lou.getUser(vertexToAdd);
                             User user2 = lou.getUser(uniqueUserID);
                             int distance = userMap.distBetweenUsers(user1, user2);
 
                             DistUser distUser = new DistUser(distance, vertexToAdd);
-                            
-                            priorityQueue.add(distUser);                            
+
+                            priorityQueue.add(distUser);
                         }
 
-                        
                     }
-                    
+
                 }
-                
 
             }
-                //go through each vertex in tempQueue and add into vertexQueue 
-                while (tempQueue.size() > 0 && curLevel == 1) {
-                    vertexQueue.add(tempQueue.poll());
-                }
+            // go through each vertex in tempQueue and add into vertexQueue
+            while (tempQueue.size() > 0 && curLevel == 1) {
+                vertexQueue.add(tempQueue.poll());
+            }
         }
-            
+
 //            
 
-                
         return priorityQueue;
-        
+
     }
 
-   
-   
     @Override
-    public List<DistUser> getFriendRecommondation(int uniqueUserID, 
-            ListOfUsers lou, UserLocationMap userMap, int numOfRec) {
+    public List<DistUser> getFriendRecommondation(int uniqueUserID,
+            ListOfUsers lou, UserLocationMap userMap,
+            int numOfRec) {
         // TODO Auto-generated method stub
-        
+
         PriorityQueue<DistUser> setOfFof = getFriendsOfFriends(uniqueUserID, userMap, lou);
-        
-        HashSet <User> friendsList = lou.getUser(uniqueUserID).getFriendsList();
-        
+
+        HashSet<User> friendsList = lou.getUser(uniqueUserID).getFriendsList();
+
         if (setOfFof.size() == 0) {
-            
+
             User curUser = lou.getUser(uniqueUserID);
             Coordinates userCoor = curUser.getUserCoor();
-            
+
             int latitude = userCoor.getLeft();
             int longitude = userCoor.getRight();
-            
+
             setOfFof = userMap.getClosestUsers(latitude, longitude, lou, curUser);
-            
-            
+
         }
 
         List<DistUser> finalSet = new ArrayList<DistUser>();
-        
+
         if (setOfFof.size() == 0) {
-            
+
             return finalSet;
-       
+
         }
- 
+
         while (finalSet.size() < numOfRec) {
-            
+
             DistUser curDistUser = setOfFof.remove();
-            
+
             User friendUser = lou.getUser(curDistUser.getRight());
-            
+
             if (!friendsList.contains(friendUser)) {
                 finalSet.add(curDistUser);
             }
-            
+
             if (setOfFof.size() == 0) {
                 break;
             }
         }
-       
+
         System.out.println("Recommended friends for " + lou.getUser(uniqueUserID).getUserName() + ":");
-        
+
         for (DistUser ele : finalSet) {
-            
+
             User curUser = lou.getUser(ele.getRight());
-            
+
             System.out.println(curUser.getUserName() + ": " + curUser.getUniqueUserID());
-            
+
         }
-     
+
         return finalSet;
     }
-    
+
     public GraphL getGOC() {
         return graphOfConnections;
     }
-    
+
 }

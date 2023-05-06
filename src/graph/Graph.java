@@ -4,8 +4,7 @@ package graph;
  * @author OpenDSA
  */
 
-public interface Graph
-{
+public interface Graph {
 //    /**
 //     * Initialize the graph with some number of vertices
 //     * 
