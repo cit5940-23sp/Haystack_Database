@@ -14,8 +14,6 @@ import haystack.ListOfHaystacks;
 
 public class UserMain {
 
-    // Graph of users with nodes as Users and edges as connections
-
     int nextUserID;
     ListOfUsers lou;
     ListOfHaystacks loh = new ListOfHaystacks();

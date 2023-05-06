@@ -65,11 +65,6 @@ public class ListOfUsers implements IListOfUsers {
 
     }
 
-//    
-//    @Override
-//    public void addFriendToFriendList(User friend) {
-//        friendsList.add(friend);
-//    }
     
     private PriorityQueue<DistUser> getClosestUsers(int latitude,
             int longitude, User requestUser) {
@@ -87,11 +82,12 @@ public class ListOfUsers implements IListOfUsers {
             }
 
             int distance = userLocationMap.distBetweenUsers(requestUser, user);
+            
+            if (distance > -1) {
+                DistUser distUser = new DistUser(distance, user.getUniqueUserID());
 
-            DistUser distUser = new DistUser(distance, user.getUniqueUserID());
-
-            queueOfClosestUsers.add(distUser);
-
+                queueOfClosestUsers.add(distUser);                
+            }
 
         }
 
