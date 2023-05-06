@@ -149,7 +149,7 @@ public class UserMain {
                 setToPrivate = false;
                 break;
             } else {
-                System.out.println("Please type either Y or N)");
+                System.out.println("Please type either Y or N");
             }
 
         }
@@ -303,7 +303,7 @@ public class UserMain {
                 scan.nextLine();
                 um.userOptions(scan);
             } else if (answer.startsWith("n")) {
-                System.out.println("Alright! No harsh feeling! Goodbye!");
+                System.out.println("Alright! No harsh feelings! Goodbye!");
                 break;
             } else if (answer.equals("exit")) {
                 break;
