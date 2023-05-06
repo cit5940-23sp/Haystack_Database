@@ -60,4 +60,19 @@ class UserPhotoListTest {
 
         assertEquals(upl.getAllPhotos(), allPhotos);
     }
+    
+    
+    @Test 
+    void testDeletePhotoFromUserPhotoList() {
+        
+        upl.addPhotoToUserList(upn);
+        assertEquals(upl.numberOfPhotos(), 1);
+        assertEquals(upl.getAllPhotos().size(), 1);
+        
+        upl.deletePhotoFromUserPhotoList(upn);
+
+        assertEquals(upl.numberOfPhotos(), 0);
+        assertEquals(upl.getAllPhotos().size(), 0);
+        
+    }
 }

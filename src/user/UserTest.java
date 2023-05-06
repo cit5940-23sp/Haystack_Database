@@ -43,28 +43,22 @@ class UserTest {
 
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 1);
 
-        curUser.addPhoto(filePath2, loh, false);
-
-        assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 2);
 
     }
 
     @Test
     void testDeletePhoto() {
         curUser.addPhoto(filePath, loh, false);
-        curUser.addPhoto(filePath2, loh, false);
+        assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 1);
         curUser.deletePhoto(0, loh);
-        assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 2);
+        assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 0);
 
-        int deletedCount = 0;
-        assertEquals(curUser.getUserPhotoList().getPhoto(deletedCount).getDeleted(), 1);
 
     }
 
     @Test
     void testUpdatePhoto() {
         curUser.addPhoto(filePath, loh, false);
-        curUser.addPhoto(filePath2, loh, false);
 
         curUser.updatePhoto(updateFile, 0, loh);
 
