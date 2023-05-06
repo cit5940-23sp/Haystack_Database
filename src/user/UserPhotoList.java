@@ -59,9 +59,7 @@ public class UserPhotoList implements IUserPhotoList {
 
         for (int i = 0; i < masterPhotoList.size(); i++) {
             UserPhotoNode curNode = masterPhotoList.get(i);
-//            if (curNode.getDeleted() == 0) {
-                allPhotos.add(curNode);
-//            }
+            allPhotos.add(curNode);
         }
 
         return allPhotos;

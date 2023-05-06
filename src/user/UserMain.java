@@ -156,20 +156,23 @@ public class UserMain {
 
         boolean successfulAdd = curUser.addPhoto(path, loh, setToPrivate);
 
-        if (successfulAdd) {
-            System.out.println("Photo added successfully. " + "Would you like to add more photos? (y/n)");
-        } else {
-            System.out.println("Photo too big to add! Please choose a photo that is less than 12kb,"
-                    + " would you like to add more photos? (y/n)");
-        }
-
-        String answer = scan.nextLine();
-        answer = answer.toLowerCase();
-        if (answer.equals("y")) {
-            insertPhoto(scan);
-        } else {
-            System.out.println("Thanks for adding the photos, please see other options you can perform: ");
-            userOptions(scan);
+        while (true) {
+            if (successfulAdd) {
+                System.out.println("Photo added successfully. " + "Would you like to add more photos? (y/n)");
+            } else {
+                System.out.println("Photo too big to add! Please choose a photo that is less than 12kb,"
+                        + " would you like to add more photos? (y/n)");
+            }
+            String answer = scan.nextLine();
+            answer = answer.toLowerCase();
+            if (answer.startsWith("y")) {
+                insertPhoto(scan);
+            } else if (answer.startsWith("n")) {
+                System.out.println("Thanks for adding the photos, please see other options you can perform: ");
+                userOptions(scan);
+            } else {
+                System.out.println("Please type either Y or N)");
+            }
         }
     }
 
