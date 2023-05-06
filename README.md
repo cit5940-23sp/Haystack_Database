@@ -21,9 +21,11 @@ Notably, we implemented Facebook’s photo storage system, as described in lectu
 3. Implementation of friend-making and friend-searching actions (Adding a friend, Getting a list of friend recommendations) 
 4. Implementation of public/private view of photos
 
-## Try out the features!
+
+## How to run the program
 1. Git clone the repository 
 2. Run "UserMain.java"
+
 
 ## 5940 topics covered in code implementation 
 An explanation of how we achieved meaningful and rigorous use of material from three units in this course
