@@ -4,9 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +22,6 @@ class IndexFileTest {
         ku = new IndexKey(0, 1);
         vu = new IndexVal(4, 5);
 
-
     }
 
     @Test
@@ -43,9 +39,7 @@ class IndexFileTest {
         Photo photo = new Photo("cat.jpeg");
         f.addPhoto(photo);
         assertEquals(f.getSize(ku),14406);
-        
-        
-        
+     
 
     }
 

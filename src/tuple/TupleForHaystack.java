@@ -3,7 +3,7 @@ package tuple;
 import haystack.HaystackObjectStore;
 import haystack.IndexFile;
 
-public class TupleForHaystack {
+public class TupleForHaystack implements ITupleForHaystack {
 
     private HaystackObjectStore haystack;
     private IndexFile index;

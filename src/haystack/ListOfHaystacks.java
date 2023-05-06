@@ -81,7 +81,6 @@ public class ListOfHaystacks implements IListOfHaystacks {
     }
 
     public byte[] getPhotoFromHaystack(int key, int alternateKey) {
-        // TODO Auto-generated method stub
 
         int haystackID = findHaystack(key, alternateKey);
 

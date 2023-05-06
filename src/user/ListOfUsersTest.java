@@ -2,16 +2,12 @@ package user;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.TreeMap;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ListOfUsersTest {
 
     ListOfUsers lou = new ListOfUsers();
     
-
     @Test
     void testAddUser() {
 
@@ -20,7 +16,6 @@ class ListOfUsersTest {
         lou.addUser("elena", 88, 88);
         
         assertEquals(lou.getListOfUsers().size(),3);
-
 
     }
     

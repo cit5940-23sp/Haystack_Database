@@ -18,7 +18,6 @@ class PhotoTest {
 
     @Test
     void loadImageRasterTest() {
-//        Photo photo = new Photo("cat.jpeg");
         // Create an ImageIcon from the image
         byte[] image = IPhoto.loadImageToBytes("cat.jpeg");
         ImageIcon icon = new ImageIcon(image);

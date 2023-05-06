@@ -8,8 +8,8 @@ class UserPhotoNodeTest {
 
     @Test
     void testGetKey() {
-      UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
-      assertEquals(1, upn.getKey());
+        UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
+        assertEquals(1, upn.getKey());
     }
 
     @Test
@@ -36,13 +36,13 @@ class UserPhotoNodeTest {
     void testSetPrivatePhoto() {
         UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
         upn.setPrivatePhoto(false);
-        assertEquals(false, upn.getPrivateSettings());
+        assertFalse(upn.getPrivateSettings());
     }
 
     @Test
     void testGetPrivateSettings() {
         UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
-        assertEquals(true, upn.getPrivateSettings());
+        assertTrue(upn.getPrivateSettings());
     }
 
 }

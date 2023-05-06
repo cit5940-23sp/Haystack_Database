@@ -48,9 +48,5 @@ public class IndexVal {
         flags = updatedFlag;
     }
 
-    public void getPhoto() {
-        long off = getOffset();
-
-    }
 
 }

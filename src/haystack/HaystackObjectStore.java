@@ -32,7 +32,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
 
     @Override
     public long appendPhoto(Photo newPhoto) {
-        // TODO Auto-generated method stub
+      
         try {
             // append write to the file
             FileOutputStream out = new FileOutputStream(this.file, true);
@@ -53,7 +53,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
 
             return this.eof;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
         return -1;

@@ -9,8 +9,6 @@ import photo.IPhoto;
 public class IndexFile implements IIndexFile {
 
     QuadraticHashMap hm = new QuadraticHashMap(HMMAXSIZE);
-
-    // EXAMPLE
     int indexID;
     private HaystackObjectStore haystack;
 
