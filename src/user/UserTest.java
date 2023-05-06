@@ -2,7 +2,6 @@ package user;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.Image;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,10 +42,13 @@ class UserTest {
 
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 1);
 
+<<<<<<< Updated upstream
         curUser.addPhoto(filePath2, loh, false);
 
         assertEquals(curUser.getUserPhotoList().numberOfPhotos(), 2);
 
+=======
+>>>>>>> Stashed changes
     }
 
     @Test
