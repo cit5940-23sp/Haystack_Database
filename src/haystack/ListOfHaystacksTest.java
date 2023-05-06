@@ -14,7 +14,7 @@ import photo.IPhoto;
 
 class ListOfHaystacksTest {
     ListOfHaystacks lohs = new ListOfHaystacks();
-    
+
     @BeforeEach
     void setUp() throws Exception {
     }
@@ -23,12 +23,12 @@ class ListOfHaystacksTest {
     void testAddPhotoToHaystack() {
         String filePath = "cat.jpeg";
         Photo photoToAdd = new Photo(filePath);
-        
+
         List<Integer> returnVal = new ArrayList<Integer>();
         returnVal.add(0);
         returnVal.add(0);
         returnVal.add(0);
-        
+
         assertEquals(returnVal, lohs.addPhotoToHaystack(photoToAdd));
     }
 
@@ -38,25 +38,25 @@ class ListOfHaystacksTest {
         Photo photoToAdd = new Photo(filePath);
         lohs.addPhotoToHaystack(photoToAdd);
         assertEquals(lohs.getPhotoFromHaystack(0, 0).length, 14406);
-        
+
     }
-    
+
     @Test
     void testDeletePhotoFromHaystack() {
         String filePath = "cat.jpeg";
         Photo photoToAdd = new Photo(filePath);
         lohs.addPhotoToHaystack(photoToAdd);
         lohs.deletePhotoFromHaystack(0, 0);
-        
+
         assertEquals(lohs.getPhotoFromHaystack(0, 0), null);
     }
-    
+
     @Test
     void testUpdatePhotoInHaystack() {
-        
+
         String filePath = "cat.jpeg";
         Photo photoToAdd = new Photo(filePath);
-        
+
         String filePathUpdate = "Puppy.jpeg";
         Photo photoToAddUpdate = new Photo(filePathUpdate);
 
@@ -64,26 +64,25 @@ class ListOfHaystacksTest {
         lohs.updatePhotoInHaystack(photoToAddUpdate, 0, 0);
         assertEquals(lohs.getPhotoFromHaystack(0, 0).length, 11894);
     }
-    
+
     @Test
     void testAssignHaystack() {
         String filePath = "cat.jpeg";
         Photo photoToAdd = new Photo(filePath);
         lohs.addPhotoToHaystack(photoToAdd);
-        
+
         assertEquals(lohs.assignHaystack(photoToAdd), 0);
-        
+
     }
-    
-    
+
     @Test
     void testCreateNewHaystack() {
         String filePath = "cat.jpeg";
         Photo photoToAdd = new Photo(filePath);
         lohs.addPhotoToHaystack(photoToAdd);
         lohs.createNewHaystack();
-        assertEquals(lohs.listOfHaystacks.size(),2 );
-            
+        assertEquals(lohs.listOfHaystacks.size(), 2);
+
     }
 
 }

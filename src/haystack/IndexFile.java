@@ -9,7 +9,7 @@ import photo.IPhoto;
 
 public class IndexFile implements IIndexFile {
 
-    QuadraticHashMap hm = new QuadraticHashMap(HMMaxSize);
+    QuadraticHashMap hm = new QuadraticHashMap(hmMaxSize);
 
     // EXAMPLE
     int indexID;
@@ -17,11 +17,11 @@ public class IndexFile implements IIndexFile {
 
     IndexFile(int indexID) {
         this.indexID = indexID;
-        String file_path = "Database_" + String.valueOf(indexID) + ".txt";
+        String file_path = "database_" + String.valueOf(indexID) + ".txt";
         haystack = new HaystackObjectStore(file_path);
 
     }
-    
+
     public HaystackObjectStore getHaystack() {
         return haystack;
     }
@@ -51,11 +51,8 @@ public class IndexFile implements IIndexFile {
     @Override
     public byte[] getPhoto(int key, int alternateKey) {
 
-        System.out.println("Key" + key);
-        System.out.println("AltKey" + alternateKey);
         IndexVal v = hm.get(new IndexKey(key, alternateKey));
         if (v.getFlags().get(1) == 1) {
-            System.out.println("Image wanted deleted");
             return null;
         }
         byte[] ans;
@@ -100,7 +97,7 @@ public class IndexFile implements IIndexFile {
     @Override
     public int addPhoto(Photo inputPhoto) {
         long offset = haystack.appendPhoto(inputPhoto);
-        if(offset == -1) {
+        if (offset == -1) {
             return -1;
         }
         IndexVal indexVal = new IndexVal(offset, inputPhoto.getSize());

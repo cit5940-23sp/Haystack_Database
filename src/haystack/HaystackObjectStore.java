@@ -18,13 +18,13 @@ import photo.IPhoto;
 public class HaystackObjectStore implements IHaystackObjectStore {
 
     private File file;
-    private long EOF;
+    private long eof;
     private long curPointer;
     private int curBytes;
 
     public HaystackObjectStore(String filePath) {
         this.file = new File(filePath);
-        this.EOF = 0;
+        this.eof = 0;
         this.curBytes = 0;
         this.curPointer = 0;
     }
@@ -41,7 +41,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             FileOutputStream out = new FileOutputStream(this.file, true);
 
             if (this.file.length() != 0) {
-                this.EOF = this.file.length();
+                this.eof = this.file.length();
             }
 
             // convert new photo to bytes and write to file
@@ -54,7 +54,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                 return -1;
             }
 
-            return this.EOF;
+            return this.eof;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -85,16 +85,13 @@ public class HaystackObjectStore implements IHaystackObjectStore {
     public int convertPhotoToBytes(Photo p, FileOutputStream out) throws IOException {
         // check if adding this file will max out the database
         int afterWriteSize = IPhoto.META_DATA_LENGTH + p.getSize() + this.curBytes;
-        System.out.println("======afterWRITE" + afterWriteSize);
         if (afterWriteSize > IHaystackObjectStore.MAXIMUM_BYTES) {
-            System.out.println("Cant add photo, this haystack don't have enough space!");
             return -1;
         }
         // convert MAGIC NUMBER to byte & write
         BigInteger magic = BigInteger.valueOf(IPhoto.HEADER_MAGIC_NUMBER);
         byte[] magicB = magic.toByteArray();
         out.write(magicB);
-//        System.out.println("magic number size:" + magicB.length);
 
         // get photo key & convert to byte & write
         int key = p.getKey();
@@ -124,7 +121,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         // get size & convert to byte & write
         // size is 32 bit/ 4 bytes long
         int size = p.getSize();
-        System.out.println("wirte size: " + size);
         BigInteger sizeInt = BigInteger.valueOf(size);
         byte[] sizeB = sizeInt.toByteArray();
 
@@ -155,7 +151,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         Arrays.fill(paddedKey, (byte) 0);
         System.arraycopy(incomingData, 8, paddedKey, 2, 1);
         int key = ByteBuffer.wrap(paddedKey).getInt();
-        System.out.println("key isssssss+++++ " + key);
 
         // add padding to make it 4bytes
         byte[] paddedAlterKey = new byte[4];
@@ -164,7 +159,8 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         int alterKey = ByteBuffer.wrap(paddedAlterKey).getInt();
 
         byte[] photoData = new byte[incomingData.length - IPhoto.META_DATA_LENGTH];
-        System.arraycopy(incomingData, IPhoto.META_DATA_LENGTH, photoData, 0, incomingData.length - IPhoto.META_DATA_LENGTH);
+        System.arraycopy(incomingData, IPhoto.META_DATA_LENGTH, photoData, 0, 
+                incomingData.length - IPhoto.META_DATA_LENGTH);
         Photo res = new Photo(photoData, key, alterKey);
         return res;
     }
@@ -175,18 +171,15 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             RandomAccessFile rand = new RandomAccessFile(this.file, "r");
 
             rand.seek(offset);
-            System.out.print(offset);
             // read things
             // read magic number for 4 bytes
             byte[] magic = new byte[4];
             rand.read(magic);
             int magicNumber = ByteBuffer.wrap(magic).getInt();
-            System.out.println(magicNumber);
             // check if the header is the same magic number
             // if it is not the same format, retrieve fail -1
             if (magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
                 rand.close();
-                System.out.println("Not the same Magic number");
                 return null;
             }
 
@@ -376,17 +369,15 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             while (true) {
                 this.curPointer = oldFile.getFilePointer();
                 //check current pointer
-                if(this.curPointer == this.EOF) {
+                if(this.curPointer == this.eof) {
                     oldFile.close();
                     return 0;
                 }
-                System.out.println("000000000000000============="+curPointer);
                 byte[] magic = new byte[4];
                 oldFile.read(magic);
                 int magicNumber = ByteBuffer.wrap(magic).getInt();
                 if (magicNumber != IPhoto.HEADER_MAGIC_NUMBER) {
                     oldFile.close();
-                    System.out.println("Not the same Magic number");
                     return -1;
                 }
 //                this.checkKey(oldFile);

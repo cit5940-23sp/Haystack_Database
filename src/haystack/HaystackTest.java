@@ -36,13 +36,11 @@ class HaystackTest {
         UserLocationMap userLocationMap = new UserLocationMap();
         
         User newUser = new User(userName, nextUserID, latitude, 
-                longitude, userLocationMap, graphOfConnections );
+                longitude, userLocationMap, graphOfConnections);
         
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
-        
-        System.out.println("Photo added");
-        
+                
         newUser.getPhoto(11, loh, newUser);
         
     }
@@ -72,14 +70,9 @@ class HaystackTest {
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
         newUser.addPhoto("./cat.jpeg", loh, false);
-
-        
-        System.out.println("Photo added");
-        
+             
         newUser.deletePhoto(3, loh);
-        
-        System.out.println("Photo deleted");
-        
+          
         newUser.getPhoto(3, loh, newUser);
         
         
@@ -104,39 +97,16 @@ class HaystackTest {
         UserLocationMap userLocationMap = new UserLocationMap();
         
         User newUser = new User(userName, nextUserID, latitude, 
-                longitude, userLocationMap, graphOfConnections );
+                longitude, userLocationMap, graphOfConnections);
         
-//        newUser.addPhoto("./DogOrange.jpeg", loh, false);
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
         
-//        newUser.addPhoto("./cat.jpeg", loh, false);
-//        newUser.addPhoto("./cat.jpeg", loh, false);
-//        newUser.addPhoto("./cat.jpeg", loh, false);
-
-
-        
-        System.out.println("Photo added");
-        
-//        newUser.deletePhoto(0, loh);
         newUser.deletePhoto(1, loh);
-//        newUser.deletePhoto(2, loh);
-//        newUser.deletePhoto(3, loh);
-        
-//        newUser.getPhoto(0, loh, newUser);
 
-        System.out.println("Photo updated");
-        
-
-        System.out.println("Compress photo");
-        
-        
        
         loh.compressHaystacks();
-        
-//        assertEquals(0, newUser.getUserPhotoList().getPhoto(0).getKey());
-//        assertEquals(1, newUser.getUserPhotoList().getAllPhotos().size());
-        
+          
     }
 
 }
