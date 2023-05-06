@@ -59,17 +59,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         return -1;
     }
 
-//    public long appendPhoto(byte[] incomingPhoto) {
-//        //append write to the file
-//        try {
-//            FileOutputStream out = new FileOutputStream(this.file, true);
-//        } catch (FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//      
-//        
-//    }
 
     /**
      * The function that convert Photo object's content to byte[] and write to out
@@ -295,27 +284,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         return 0;
     }
 
-//    @Override
-//    public long migrate() {
-//        try {
-//            RandomAccessFile og = new RandomAccessFile(this.file, "r");
-//            readMetaData(og);
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//        return 0;
-//    }
-
-//    @Override
-//    public int readMetaData(RandomAccessFile rand) throws IOException {
-//        checkMagicNumber(rand);
-//        checkKey(rand);
-//        checkFlags(rand);
-//        readSize(rand);
-//        return 0;
-//    }
-
     @Override
     public int checkMagicNumber(RandomAccessFile rand) throws IOException {
         // read magic number for 4 bytes
@@ -359,8 +327,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         // copy old to new index and new haystack in new index
         try {
             RandomAccessFile oldFile = new RandomAccessFile(this.file, "r");
-//            File newFilePath = newIndex.getHaystack().getFile();
-//            RandomAccessFile newFile = new RandomAccessFile(newFilePath, "w");
 
             while (true) {
                 this.curPointer = oldFile.getFilePointer();
@@ -376,7 +342,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                     oldFile.close();
                     return -1;
                 }
-//                this.checkKey(oldFile);
 
                 byte[] key = new byte[1];
                 oldFile.read(key);
@@ -402,9 +367,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                     oldFile.seek(curPointer);
                     byte[] fullPhoto = new byte[IPhoto.META_DATA_LENGTH + size];
                     oldFile.read(fullPhoto);
-//                    newFile.write(fullPhoto);
-//                    byte[] photoData = new byte[size];
-//                    oldFile.read(photoData);
                     Photo newPhoto = this.convertBytesToPhoto(fullPhoto);
                     if (newIndex.addPhoto(newPhoto) == -1) {
                         oldFile.close();
@@ -419,7 +381,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             }
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return 0;
