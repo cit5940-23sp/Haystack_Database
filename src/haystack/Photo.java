@@ -6,6 +6,7 @@ import java.awt.image.Raster;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import photo.IPhoto;
@@ -20,7 +21,6 @@ public class Photo implements IPhoto {
     private Map<Integer, Integer> flags;
     private int size;
     private byte[] data;
-    private byte padding;
 
     public Photo(String filePath) {
         this.data = IPhoto.loadImageToBytes(filePath);
@@ -77,14 +77,19 @@ public class Photo implements IPhoto {
     public void setData(byte[] data) {
         this.data = data;
     }
-
-    public void setPadding(byte padding) {
-        this.padding = padding;
+    
+    @Override
+    public boolean equals(Object o) {
+ 
+        if(this.size != ((Photo)o).getSize()) {
+            return false;
+        }
+        if(!Arrays.equals(this.data, ((Photo)o).getData())){
+            return false;
+        }
+        return true;
     }
     
-    public byte getPadding() {
-        return this.padding;
-    }
 
 
 }
