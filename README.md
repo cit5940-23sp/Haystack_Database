@@ -1,10 +1,10 @@
 # Haystack_Database
 
 ## Overview of project idea and reason for choosing this idea
-We implemented Facebook’s photo storage system, as described in lecture based on the following paper: https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf
 
-We found the setup and algorithm of Facebook’s photo storage system fascinating and decided to implement it for ourselves. We also used graphs to represent relationships between users for friend recommendation and public/private photo representation. 
+We implemented various social networking features using a wide range of data structures, indexing, and graph techniques. 
 
+Notably, we implemented Facebook’s photo storage system, as described in lecture based on the following paper: https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf. We also used graphs to represent relationships between users for friend recommendation and public/private photo representation. 
 
 ## Features implemented
 
@@ -53,42 +53,5 @@ An explanation of how we achieved meaningful and rigorous use of material from t
 https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Beaver.pdf
 
 ### Acknowledgements 
-We would like to thank our professor, Harry Smith, for the teachings and guidance throughout the semester. We would also like to thank the TAs of the course. 
+We would like to thank our Professor, Harry Smith, for the teachings and guidance throughout the semester. We would also like to thank the TAs of the course. 
 
-### To consider 
-1. Code review 
-2. Milestones 
-3. Use of branches 
-4. Documentation
-5. Style 
-6. Binary search trees 
-
-
-Files used by Ada
-
-
-
-
-
-Files used by Elena 
-1. Photo.java
-2. IPhoto.java
-3. HaystackObjectStore.java
-4. IHaystackObjectStore.java
-
-
-Files used by Alette
-1. User.java
-2. IUser.java
-3. IUserPhotoList.java
-4. UserPhotoList.java
-5. UserPhotoNode.java
-6. IUserPhotoNode.java
-
-
-# Potential enhancements 
-1. LRU caching in User 
-2. Public/Private views 
-3. Save each photo with different sizes (make alternate key and hashing with alternate key dynamic) 
-4. A* search for recommended friends 
-5. GUI 
