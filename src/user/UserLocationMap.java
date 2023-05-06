@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
-import graph.Coordinates;
-import graph.DistUser;
+import tuple.Coordinates;
+import tuple.DistUser;
 import user.UserGraph.DistUserComparator;
 
 public class UserLocationMap implements IUserLocationMap {

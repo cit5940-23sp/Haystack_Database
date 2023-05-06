@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import graph.Coordinates;
+import tuple.Coordinates;
 
 class UserLocationMapTest {
 

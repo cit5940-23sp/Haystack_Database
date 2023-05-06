@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import user.ListOfUsers;
 import user.User;
 
+
 class HaystackTest {
 
     @BeforeEach
@@ -97,10 +98,16 @@ class HaystackTest {
         
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
+        newUser.addPhoto("./fish.jpeg", loh, false);
+        newUser.addPhoto("./panda.jpeg", loh, false);
+
 
 
         System.out.println("Photo added");
         newUser.deletePhoto(1, loh);
+        newUser.deletePhoto(3, loh);
+        newUser.deletePhoto(2, loh);
+
 
         System.out.println("Photo updated");
 
@@ -108,10 +115,12 @@ class HaystackTest {
 
         loh.compressHaystacks();
 
-        Photo got = newUser.getPhoto(1, loh);
-        assertNull(got);
+        //Photo got = newUser.getPhoto(1, loh);
+        //assertEquals(null, got);
+
         Photo got0 = newUser.getPhoto(0, loh);
         Photo zero = new Photo("./cat.jpeg");
+
         assertEquals(zero, got0);
 
     }

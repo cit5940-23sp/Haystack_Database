@@ -3,8 +3,8 @@ package user;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
-import graph.Coordinates;
-import graph.DistUser;
+import tuple.Coordinates;
+import tuple.DistUser;
 
 public interface IUserLocationMap {
 

@@ -9,8 +9,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.TreeMap;
 
-import graph.Coordinates;
-import graph.DistUser;
+import tuple.Coordinates;
+import tuple.DistUser;
 import user.UserLocationMap.DistUserComparator;
 
 public class ListOfUsers implements IListOfUsers {

@@ -5,13 +5,6 @@ package graph;
  */
 
 public interface Graph {
-//    /**
-//     * Initialize the graph with some number of vertices
-//     * 
-//     * @param n the number of vertices
-//     */
-//    void init(int n);
-
 
     /**
      * @return the number of vertices
@@ -23,25 +16,6 @@ public interface Graph {
      * @return the current number of edges
      */
     int edgeCount();
-
-
-//    /**
-//     * Get the value of node with index v
-//     * 
-//     * @param v the index of the node
-//     * @return the value of node
-//     */
-//
-//    Object getValue(int v);
-
-
-//    /**
-//     * Set the value of node with index v
-//     * 
-//     * @param v   the index of the node
-//     * @param val the value of the node
-//     */
-//    void setValue(int v, Object val);
 
 
     /**
@@ -63,14 +37,14 @@ public interface Graph {
      */
     int weight(int v, int w);
 
-
-    /**
-     * Removes the edge from the graph
-     * 
-     * @param v - the from node
-     * @param w - the to node
-     */
-    void removeEdge(int v, int w);
+//
+//    /**
+//     * Removes the edge from the graph
+//     * 
+//     * @param v - the from node
+//     * @param w - the to node
+//     */
+//    void removeEdge(int v, int w);
 
 
     /**

@@ -9,9 +9,9 @@ import java.util.Queue;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 
-import graph.Coordinates;
-import graph.DistUser;
 import graph.GraphL;
+import tuple.Coordinates;
+import tuple.DistUser;
 
 public class UserGraph implements IUserGraph {
 
