@@ -8,6 +8,9 @@ import graph.DistUser;
 
 public interface IUserLocationMap {
 
+    public static final int LATITUDE_ADD = 90;
+    public static final int LONGITUDE_ADD = 180;
+    
     /**
      * Adds a new user into the 2D array
      * 

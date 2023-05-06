@@ -18,8 +18,15 @@ public class ListOfUsers implements IListOfUsers {
     }
 
     @Override
-    public int addUser(String userName, int latitude, int longitude) {
+    public int addUser(String userName, int latitudeGiven, int longitudeGiven) {
 
+        int latitude = latitudeGiven + IUserLocationMap.LATITUDE_ADD;
+        int longitude = longitudeGiven + IUserLocationMap.LONGITUDE_ADD;
+        
+        if (latitude > 180 || latitude < 0 || longitude < 0 || longitude > 360) {
+            return -1;
+        }
+        
         User newUser = new User(userName, listOfUsers.size(), latitude,
                 longitude, userLocationMap, graphOfConnections);
 

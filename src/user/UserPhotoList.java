@@ -29,11 +29,11 @@ public class UserPhotoList implements IUserPhotoList {
 
     }
 
-    @Override
-    public void deletePhotoFromUserList(UserPhotoNode upn) {
-        // TODO Auto-generated method stub
-        masterPhotoList.remove(upn);
-    }
+//    @Override
+//    public void deletePhotoFromUserList(UserPhotoNode upn) {
+//        // TODO Auto-generated method stub
+//        masterPhotoList.remove(upn);
+//    }
 
     @Override
     public UserPhotoNode getPhoto(int key) {

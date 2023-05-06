@@ -58,24 +58,20 @@ public class User implements IUser {
     }
 
     @Override
-    public void addPhoto(String filePath, ListOfHaystacks loh, boolean privatePhoto) {
+    public boolean addPhoto(String filePath, ListOfHaystacks loh, boolean privatePhoto) {
 
         // create photo object to be appended
         Photo photoToAdd = new Photo(filePath);
 
         // check photo size
         if (photoToAdd.getSize() > IPhoto.MAXIMUM_BYTES_DATA) {
-            System.out.println(
-                    "Photo too big to add! Please choose a photo that is less than 12kb,"
-                    + " would you like to add more photos? (y/n)");
-            return;
+            return false;
         }
 
         // add photo to list of haystacks and get return values
         List<Integer> returnVal = loh.addPhotoToHaystack(photoToAdd);
 
         // extract return values
-        int haystackID = returnVal.get(0);
         int key = returnVal.get(1);
         int alternateKey = returnVal.get(2);
 
@@ -85,8 +81,7 @@ public class User implements IUser {
         // add user photo node into userPhotoList
         getUserPhotoList().addPhotoToUserList(upn);
 
-        System.out.println("Photo is added successfully,"
-                + " would you like to add more photos? (y/n)");
+        return true;
 
     }
 
@@ -150,9 +145,11 @@ public class User implements IUser {
     }
 
     public Photo getPhoto(int key, ListOfHaystacks loh) {
+        
         // get user photo node from user photo list
         UserPhotoNode upn = getUserPhotoList().getPhoto(key);
-
+        
+        // if photo does not belong to user, print message
         if (upn == null) {
             System.out.println("Image cannot be found: Invalid user ownership.");
             return null;

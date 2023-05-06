@@ -1,11 +1,14 @@
 package user;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
 import javax.swing.JFileChooser;
+
+import graph.DistUser;
 import photo.IPhoto;
 import haystack.ListOfHaystacks;
 
@@ -38,26 +41,39 @@ public class UserMain {
         testUser.addPhoto("./cat.jpeg", loh, false);
         testUser.addPhoto("./cat.jpeg", loh, false);
         testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, true);
         testUser.addPhoto("./cat.jpeg", loh, false);
-        testUser.addPhoto("./cat.jpeg", loh, false);
-        testUser.addPhoto("./cat.jpeg", loh, false);
+        testUser.addPhoto("./cat.jpeg", loh, true);
+        
+        testUser.addFriend(1, lou);
+        testUser.addFriend(2, lou);
 
     }
 
     public void createNewUser(Scanner scan) {
 
         System.out.println("What is your name?");
-
+        
         String userName = scan.nextLine();
 
-        System.out.println("What is your address (latitude)?");
-        int latitude = scan.nextInt();
+        int uniqueUserID = -1;
 
-        System.out.println("What is your address (longitude)?");
-        int longitude = scan.nextInt();
+        while (uniqueUserID == -1) {
+            
+            System.out.println("What is your address (latitude: -90 to 90)?");
+            int latitude = scan.nextInt();
 
-        int uniqueUserID = lou.addUser(userName, latitude, longitude);
-
+            System.out.println("What is your address (longitude: -180 to 180)?");
+            int longitude = scan.nextInt();
+            
+            uniqueUserID = lou.addUser(userName, latitude, longitude);
+            
+            if (uniqueUserID == -1) {
+                System.out.println("Latitude must be between -90 to 90,"
+                        + " and longitude must be between -180 to 180");
+            }
+        }
+        
         curUser = lou.getUser(uniqueUserID);
 
     }
@@ -93,7 +109,12 @@ public class UserMain {
                 updatePhoto(scan);
                 break;
             case "5":
-                friendSuggestions(scan);
+                if ((curUser.getFriendsList().size() + 1 ) == lou.getListOfUsers().size()) {
+                    System.out.println("You are already friends with everyone.");
+                } else {
+                    friendSuggestions(scan);
+                }
+
                 break;
 
             case "6":
@@ -117,8 +138,17 @@ public class UserMain {
         counter++;
         JFileChooser j = null;
         path = IPhoto.chooseFile(j);
-        curUser.addPhoto(path, loh, false);
-
+        boolean successfulAdd = curUser.addPhoto(path, loh, false);
+        
+        if (successfulAdd) {
+            System.out.println("Photo added successfully. "
+                    + "Would you like to add more photos? (y/n)");
+        } else {
+            System.out.println(
+                    "Photo too big to add! Please choose a photo that is less than 12kb,"
+                    + " would you like to add more photos? (y/n)");
+        }
+        
         String answer = scan.nextLine();
         answer = answer.toLowerCase();
         if (answer.equals("y")) {
@@ -153,25 +183,50 @@ public class UserMain {
     }
 
     public void friendSuggestions(Scanner scan) {
-
+        
         System.out.println("Make a new friend. Please see your new friend suggestions: ");
 
         UserGraph graphOfConnections = lou.getGraphOfConnections();
 
         UserLocationMap userLocationMap = lou.getUserLocationMap();
 
-        graphOfConnections.getFriendRecommondation(
+        List<DistUser> finalList = graphOfConnections.getFriendRecommondation(
                 curUser.getUniqueUserID(), lou, userLocationMap, 3);
 
+        System.out.println("Recommended friend (ID) : distance from you");
+
+        for (DistUser ele : finalList) {
+
+            User curUser = lou.getUser(ele.getRight());
+
+            System.out.println(curUser.getUserName() 
+                    + " (" + curUser.getUniqueUserID() + ") : " + ele.getLeft());
+
+        }
+        
         System.out.println("Who do you want to become friends with (enter the ID): ");
 
         int friendID = Integer.parseInt(scan.nextLine());
-
-        curUser.addFriend(friendID, lou);
-
-        System.out.println("Congrats you made a new friend! Here is your current list of friends");
-
+        
         HashSet<User> friendList = curUser.getFriendsList();
+        
+        if (friendList.contains(lou.getUser(friendID))) {
+            System.out.println("You are already friends with this person. "
+                    + "Here is your current list of friends");
+        } else if (friendID == curUser.getUniqueUserID()){
+            System.out.println("It's great that you want to be friends with yourself! "
+                    + "Here is your current list of friends");
+            
+        } else {
+            curUser.addFriend(friendID, lou);
+
+            System.out.println("Congrats you made a new friend! "
+                    + "Here is your current list of friends");
+
+        }
+        
+        
+        friendList = curUser.getFriendsList();
 
         for (User user : friendList) {
             System.out.print(user.getUserName() + " || ");

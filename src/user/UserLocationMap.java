@@ -17,6 +17,7 @@ public class UserLocationMap implements IUserLocationMap {
     // 2D array showing the coordinates of users
     private ArrayList<ArrayList<HashSet<Integer>>> userLocationMap;
 
+
     /**
      * Constructor for UserLocationMap
      */
@@ -39,23 +40,19 @@ public class UserLocationMap implements IUserLocationMap {
 
     @Override
     public void addUser(int uniqueUserID, Coordinates addressCoor) {
-        // TODO Auto-generated method stub
+
         int latitude = addressCoor.getLeft();
         int longitude = addressCoor.getRight();
 
-        if (latitude > 180 || latitude < 0 || longitude < 0 || longitude > 360) {
-            System.out.println("Latitude must be between 0 to 180,"
-                    + " and longitude must be between 0 to 360");
-        } else {
-            HashSet<Integer> curSet = userLocationMap.get(latitude).get(longitude);
-            curSet.add(uniqueUserID);
-        }
+        HashSet<Integer> curSet = userLocationMap.get(latitude).get(longitude);
+        curSet.add(uniqueUserID);
+
 
     }
 
     @Override
     public HashSet<Integer> getUsersInLocation(int latitude, int longitude) {
-        // TODO Auto-generated method stub
+
         HashSet<Integer> curSet = userLocationMap.get(latitude).get(longitude);
         return curSet;
     }
@@ -113,44 +110,46 @@ public class UserLocationMap implements IUserLocationMap {
         PriorityQueue<DistUser> queueOfClosestUsers = 
                 new PriorityQueue<DistUser>(new DistUserComparator());
 
-//        PriorityQueue<DistUser> finalQ = new PriorityQueue<DistUser>(new DistUserComparator());
+//        HashSet<Integer> usersInSameLoc = getUsersInLocation(latitude, longitude);
 
-        HashSet<Integer> usersInSameLoc = getUsersInLocation(latitude, longitude);
-
-        for (Integer ele : usersInSameLoc) {
-
-            if (ele != requestUser.getUniqueUserID()) {
-                DistUser distUser = new DistUser(0, ele);
-
-                queueOfClosestUsers.add(distUser);
-            }
-
-        }
-
-        if (queueOfClosestUsers.size() > 2) {
-            return queueOfClosestUsers;
-        }
+//        for (Integer ele : usersInSameLoc) {
+//
+//            if (ele != requestUser.getUniqueUserID()) {
+//                DistUser distUser = new DistUser(0, ele);
+//
+//                queueOfClosestUsers.add(distUser);
+//            }
+//
+//        }
+//
+//        if (queueOfClosestUsers.size() > 2) {
+//            return queueOfClosestUsers;
+//        }
 
         TreeMap<Integer, User> listOfUsers = lou.getListOfUsers();
 
         for (Map.Entry<Integer, User> entry : listOfUsers.entrySet()) {
 
             User user = entry.getValue();
+            
+            if (user.getUniqueUserID() == requestUser.getUniqueUserID()) {
+                continue;
+            }
 
             Coordinates userCoor = user.getUserCoor();
 
-            int userLat = userCoor.getLeft();
-            int userLong = userCoor.getRight();
+//            int userLat = userCoor.getLeft();
+//            int userLong = userCoor.getRight();
 
-            if (userLat != latitude && userLong != longitude) {
+//            if (userLat != latitude && userLong != longitude) {
 
                 int distance = distBetweenUsers(requestUser, user);
 
                 DistUser distUser = new DistUser(distance, user.getUniqueUserID());
 
                 queueOfClosestUsers.add(distUser);
-
-            }
+//
+//            }
 
         }
 

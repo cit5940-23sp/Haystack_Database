@@ -21,7 +21,7 @@ public interface IUser {
      * @param filePath - name of file
      * @param loh      - list of haystacks
      */
-    void addPhoto(String filePath, ListOfHaystacks loh, boolean privatePhoto);
+    boolean addPhoto(String filePath, ListOfHaystacks loh, boolean privatePhoto);
 
     /**
      * Get a photo from the haystack

@@ -23,7 +23,6 @@ public interface IListOfHaystacks {
      * @param inputPhoto
      * @return haystackID of assigned haystack
      */
-    public int assignHaystack(Photo inputPhoto);
 
     int assignHaystack(Photo inputPhoto);
     
@@ -33,7 +32,7 @@ public interface IListOfHaystacks {
      * @param inputPhoto
      * @return a list of outputs
      */
-    public List<Integer> addPhotoToHaystack(Photo inputPhoto);
+    List<Integer> addPhotoToHaystack(Photo inputPhoto);
 
     
     /**

@@ -80,7 +80,7 @@ public class UserGraph implements IUserGraph {
     @Override
     public PriorityQueue<DistUser> getFriendsOfFriends(int uniqueUserID,
             UserLocationMap userMap, ListOfUsers lou) {
-        // TODO Auto-generated method stub
+
         // if threshold is less than zero, return edge case -1
 
         // initialize a set of vertices that have been visited
@@ -152,8 +152,6 @@ public class UserGraph implements IUserGraph {
             }
         }
 
-//            
-
         return priorityQueue;
 
     }
@@ -168,52 +166,62 @@ public class UserGraph implements IUserGraph {
 
         HashSet<User> friendsList = lou.getUser(uniqueUserID).getFriendsList();
 
-        if (setOfFof.size() == 0) {
+        HashSet<Integer> finalListCheck = new HashSet<Integer>();
+        
+        User curUser = lou.getUser(uniqueUserID);
+        Coordinates userCoor = curUser.getUserCoor();
 
-            User curUser = lou.getUser(uniqueUserID);
-            Coordinates userCoor = curUser.getUserCoor();
+        int latitude = userCoor.getLeft();
+        int longitude = userCoor.getRight();
+        
+        PriorityQueue<DistUser> closestDist = userMap.getClosestUsers(latitude, longitude, lou, curUser);
+        
 
-            int latitude = userCoor.getLeft();
-            int longitude = userCoor.getRight();
+        List<DistUser> finalList = new ArrayList<DistUser>();
 
-            setOfFof = userMap.getClosestUsers(latitude, longitude, lou, curUser);
+        while (finalList.size() < numOfRec) {
 
-        }
-
-        List<DistUser> finalSet = new ArrayList<DistUser>();
-
-        if (setOfFof.size() == 0) {
-
-            return finalSet;
-
-        }
-
-        while (finalSet.size() < numOfRec) {
-
+            if (setOfFof.size() == 0 ) {
+                break;
+            }
+            
             DistUser curDistUser = setOfFof.remove();
 
             User friendUser = lou.getUser(curDistUser.getRight());
 
             if (!friendsList.contains(friendUser)) {
-                finalSet.add(curDistUser);
+                if (!finalListCheck.contains(curDistUser.getRight())) {
+                    finalList.add(curDistUser);
+                    finalListCheck.add(curDistUser.getRight());
+                }
+
             }
 
-            if (setOfFof.size() == 0) {
+
+        }
+        
+        while (finalList.size() < numOfRec) {
+
+            if (closestDist.size() == 0) {
                 break;
             }
+            
+            DistUser curDistUser = closestDist.remove();
+
+            User friendUser = lou.getUser(curDistUser.getRight());
+
+            if (!friendsList.contains(friendUser)) {
+                if (!finalListCheck.contains(curDistUser.getRight())) {
+                    finalList.add(curDistUser);
+                    finalListCheck.add(curDistUser.getRight());
+                }
+
+            }
+
         }
 
-        System.out.println("Recommended friends for " + lou.getUser(uniqueUserID).getUserName() + ":");
 
-        for (DistUser ele : finalSet) {
-
-            User curUser = lou.getUser(ele.getRight());
-
-            System.out.println(curUser.getUserName() + ": " + curUser.getUniqueUserID());
-
-        }
-
-        return finalSet;
+        return finalList;
     }
 
     public GraphL getGOC() {
