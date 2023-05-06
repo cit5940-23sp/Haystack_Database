@@ -7,7 +7,7 @@ public class UserPhotoNode implements IUserPhotoNode {
 
     private int key;
     private int alternateKey;
-    private int deleted;
+//    private int deleted;
     private String filePath;
     Map<String, Integer> metaDataMap;
     private boolean privatePhoto;
@@ -23,7 +23,7 @@ public class UserPhotoNode implements IUserPhotoNode {
 
         this.key = key;
         this.alternateKey = alternateKey;
-        this.deleted = 0;
+//        this.deleted = 0;
         this.filePath = filePath;
         this.privatePhoto = privatePhoto;
 
@@ -31,7 +31,7 @@ public class UserPhotoNode implements IUserPhotoNode {
 
         this.metaDataMap.put("Key", key);
         this.metaDataMap.put("AlternateKey", alternateKey);
-        this.metaDataMap.put("Deleted", deleted);
+//        this.metaDataMap.put("Deleted", deleted);
 
     }
 
@@ -60,16 +60,16 @@ public class UserPhotoNode implements IUserPhotoNode {
     public void setFilename(String filePath) {
         this.filePath = filePath;
     }
-
-    @Override
-    public int getDeleted() {
-        return deleted;
-    }
-
-    @Override
-    public void setDeleted() {
-        this.deleted = 1;
-    }
+//
+//    @Override
+//    public int getDeleted() {
+//        return deleted;
+//    }
+//
+//    @Override
+//    public void setDeleted() {
+//        this.deleted = 1;
+//    }
 
     @Override
     public void setPrivatePhoto(boolean decision) {
