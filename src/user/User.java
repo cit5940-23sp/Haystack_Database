@@ -71,7 +71,7 @@ public class User implements IUser {
         
         //check photo size
         if(photoToAdd.getSize() > IPhoto.MAXIMUM_BYTES_DATA) {
-            System.out.println("Photo too big to add! Please choose a photo that is less than 12kb");
+            System.out.println("Photo too big to add! Please choose a photo that is less than 12kb, would you like to add more photos? (y/n)");
             return;
         }
         
@@ -89,7 +89,7 @@ public class User implements IUser {
         //add user photo node into userPhotoList 
         getUserPhotoList().addPhotoToUserList(upn);
         
-        System.out.println("Photo is added successfully, would you to add more photos? (y/n)");
+        System.out.println("Photo is added successfully, would you like to add more photos? (y/n)");
         
     }
     
