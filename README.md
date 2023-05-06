@@ -35,8 +35,8 @@ An explanation of how we achieved meaningful and rigorous use of material from t
 7. HashSet (To store the list of friends that a User has, and to store the Users located in a particular location in the 2D array) 
 
 ### Indexing 
-1. Quadratic indexing 
-2. Linear indexing 
+1. Quadratic indexing (In the implementation of IndexFile)
+2. Linear indexing (To keep track of which keys belong to which haystack)
 
 ### Graphs 
 1. Graph represented in an adjacency list 
