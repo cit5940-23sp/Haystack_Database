@@ -41,18 +41,11 @@ public class User implements IUser {
 
         // initialize the address coordinates of User
         addressCoor = new Coordinates(latitude, longitude);
-//
-//        // add user into userLocationMap
-//        userLocationMap.addUser(uniqueUserID, addressCoor);
-//
-//        // add user into graphOfConnections
-//        graphOfConnections.addNewUser();
 
     }
 
     @Override
     public UserPhotoList getUserPhotoList() {
-        // TODO Auto-generated method stub
         return userPhotoList;
     }
 
@@ -181,7 +174,7 @@ public class User implements IUser {
         for (int i = listOfPhotoNodes.size() - 1; i > -1; i--) {
             UserPhotoNode curNode = listOfPhotoNodes.get(i);
             System.out.print(curNode.getKey() + ": ");
-            String split[] = curNode.getFilename().split("/");
+            String[] split = curNode.getFilename().split("/");
             String ans = split[split.length - 1];
 
             System.out.println(ans);
@@ -241,32 +234,24 @@ public class User implements IUser {
 
     }
 
-//    
-//    @Override
-//    public void addFriendToFriendList(User friend) {
-//        friendsList.add(friend);
-//    }
-
     public HashSet<User> getUserFriendsList() {
-        // TODO Auto-generated method stub
         return friendsList;
     }
 
     @Override
     public String getUserName() {
-        // TODO Auto-generated method stub
         return this.userName;
     }
 
     @Override
     public int getUniqueUserID() {
-        // TODO Auto-generated method stub
+
         return this.uniqueUserID;
     }
 
     @Override
     public HashSet<User> getFriendsList() {
-        // TODO Auto-generated method stub
+
         return this.friendsList;
     }
 
