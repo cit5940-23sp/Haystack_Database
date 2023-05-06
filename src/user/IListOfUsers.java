@@ -8,30 +8,34 @@ public interface IListOfUsers {
 
     /**
      * Add new user
+     * 
      * @param userName
      * @param latitude
      * @param longitude
      */
-     int addUser(String userName, int latitude, int longitude);
-    
+    int addUser(String userName, int latitude, int longitude);
+
     /**
-     * Get User 
+     * Get User
+     * 
      * @param uniqueUserID
-     * @return User object 
+     * @return User object
      */
-     User getUser(int uniqueUserID);
-    
+    User getUser(int uniqueUserID);
+
     /**
      * Get graphOfConnections
+     * 
      * @return graphOfConnections
      */
-     UserGraph getGraphOfConnections();
-    
+    UserGraph getGraphOfConnections();
+
     /**
      * Get userLocationMap
+     * 
      * @return userLocationMap
      */
-     UserLocationMap getUserLocationMap();
-    
-     TreeMap<Integer, User> getListOfUsers();
+    UserLocationMap getUserLocationMap();
+
+    TreeMap<Integer, User> getListOfUsers();
 }

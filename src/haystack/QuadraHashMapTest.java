@@ -13,6 +13,7 @@ import haystack.QuadraHashMap.QuadraticHashMap;
 class QuadraHashMapTest {
     IndexKey k;
     IndexVal v;
+
     @BeforeEach
     void setUp() throws Exception {
         k = new IndexKey(0, 1);
@@ -24,13 +25,13 @@ class QuadraHashMapTest {
     @Test
     void test() {
         QuadraticHashMap qpht = new QuadraticHashMap(1000);
-        
+
         qpht.insert(k, v);
-        assertEquals(qpht.getHMSize(),1);
-        assertEquals(qpht.get(k).getOffset(),4);
+        assertEquals(qpht.getHMSize(), 1);
+        assertEquals(qpht.get(k).getOffset(), 4);
 
         qpht.makeEmpty();
-        assertEquals(qpht.getHMSize(),0);
+        assertEquals(qpht.getHMSize(), 0);
     }
 
 }

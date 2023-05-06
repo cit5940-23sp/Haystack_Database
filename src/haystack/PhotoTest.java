@@ -1,9 +1,5 @@
 package haystack;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.awt.image.BufferedImage;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +13,7 @@ class PhotoTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        
+
     }
 
     @Test
@@ -37,6 +33,5 @@ class PhotoTest {
         frame.pack();
         frame.setVisible(true);
     }
-    
 
 }

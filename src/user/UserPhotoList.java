@@ -9,13 +9,13 @@ import haystack.Photo;
 public class UserPhotoList implements IUserPhotoList {
 
     private List<UserPhotoNode> masterPhotoList;
-    int deletedPhotoCount;     
-     
+    int deletedPhotoCount;
+
     public UserPhotoList() {
         masterPhotoList = new LinkedList<UserPhotoNode>();
         deletedPhotoCount = 0;
     }
-    
+
     @Override
     public int numberOfPhotos() {
         // TODO Auto-generated method stub
@@ -26,7 +26,7 @@ public class UserPhotoList implements IUserPhotoList {
     public void addPhotoToUserList(UserPhotoNode upn) {
         // TODO Auto-generated method stub
         masterPhotoList.add(upn);
-        
+
     }
 
     @Override
@@ -35,34 +35,32 @@ public class UserPhotoList implements IUserPhotoList {
         masterPhotoList.remove(upn);
     }
 
-
-    @Override 
+    @Override
     public UserPhotoNode getPhoto(int key) {
         // TODO Auto-generated method stub
-        
+
         for (int i = 0; i < masterPhotoList.size(); i++) {
             if (masterPhotoList.get(i).getKey() == key) {
                 return masterPhotoList.get(i);
             }
         }
-        
+
         return null;
     }
 
-    @Override 
+    @Override
     public List<UserPhotoNode> getAllPhotos() {
-        
+
         List<UserPhotoNode> allPhotos = new ArrayList<UserPhotoNode>();
-        
+
         for (int i = 0; i < masterPhotoList.size(); i++) {
             UserPhotoNode curNode = masterPhotoList.get(i);
             if (curNode.getDeleted() == 0) {
                 allPhotos.add(curNode);
             }
         }
-        
+
         return allPhotos;
     }
-
 
 }
