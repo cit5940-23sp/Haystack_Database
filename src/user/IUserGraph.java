@@ -20,28 +20,6 @@ public interface IUserGraph {
      */
     int[] getFriends(int uniqueUserID);
 
-    /**
-     * Gets the list of friends of friends of a user
-     * 
-     * @param uniqueUserID
-     * @param userMap
-     * @param lou
-     * @return a list of Users
-     */
-    PriorityQueue<DistUser> getFriendsOfFriends(int uniqueUserID,
-            UserLocationMap userMap, ListOfUsers lou);
-
-    /**
-     * Gets recommendation of friends based on location
-     * 
-     * @param uniqueUserID
-     * @param lou
-     * @param userMap
-     * @return priorityqueue with top three recommendation of friends based on
-     *         location
-     */
-    List<DistUser> getFriendRecommondation(int uniqueUserID,
-            ListOfUsers lou, UserLocationMap userMap, int numOfRec);
 
     /**
      * Add a new friend

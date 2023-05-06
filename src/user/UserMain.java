@@ -41,8 +41,8 @@ public class UserMain {
         testUser.addPhoto("./cat.jpeg", loh, false);
         testUser.addPhoto("./cat.jpeg", loh, true);
         
-        testUser.addFriend(1, lou);
-        testUser.addFriend(2, lou);
+        lou.addFriend(1, 0);
+        lou.addFriend(2, 0);
 
     }
 
@@ -204,12 +204,9 @@ public class UserMain {
         
         System.out.println("Make a new friend. Please see your new friend suggestions: ");
 
-        UserGraph graphOfConnections = lou.getGraphOfConnections();
 
-        UserLocationMap userLocationMap = lou.getUserLocationMap();
-
-        List<DistUser> finalList = graphOfConnections.getFriendRecommondation(
-                curUser.getUniqueUserID(), lou, userLocationMap, 3);
+        List<DistUser> finalList = lou.getFriendRecommondation(
+                curUser.getUniqueUserID(), 3);
 
         System.out.println("Recommended friend (ID) : distance from you");
 
@@ -236,7 +233,7 @@ public class UserMain {
                     + "Here is your current list of friends");
             
         } else {
-            curUser.addFriend(friendID, lou);
+            lou.addFriend(friendID, curUser.getUniqueUserID());
 
             System.out.println("Congrats you made a new friend! "
                     + "Here is your current list of friends");

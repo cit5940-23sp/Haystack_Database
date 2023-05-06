@@ -64,14 +64,7 @@ public interface IUser {
     /**
      * Add a friend into User's friend list
      */
-    void addFriend(int uniqueFriendID, ListOfUsers lou);
-
-    /**
-     * Add a friend to a User's friend list
-     * 
-     * @param friend
-     */
-    void addFriendToFriendList(User friend);
+    void addFriend(User friend);
 
     /**
      * Returns name of user

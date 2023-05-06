@@ -99,6 +99,7 @@ public class GraphL implements Graph {
                 curr.next.next.prev = curr.next;
             }
         }
+        
         numEdge++;
     }
 

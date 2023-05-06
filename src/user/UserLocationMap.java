@@ -110,22 +110,6 @@ public class UserLocationMap implements IUserLocationMap {
         PriorityQueue<DistUser> queueOfClosestUsers = 
                 new PriorityQueue<DistUser>(new DistUserComparator());
 
-//        HashSet<Integer> usersInSameLoc = getUsersInLocation(latitude, longitude);
-
-//        for (Integer ele : usersInSameLoc) {
-//
-//            if (ele != requestUser.getUniqueUserID()) {
-//                DistUser distUser = new DistUser(0, ele);
-//
-//                queueOfClosestUsers.add(distUser);
-//            }
-//
-//        }
-//
-//        if (queueOfClosestUsers.size() > 2) {
-//            return queueOfClosestUsers;
-//        }
-
         TreeMap<Integer, User> listOfUsers = lou.getListOfUsers();
 
         for (Map.Entry<Integer, User> entry : listOfUsers.entrySet()) {
@@ -135,21 +119,16 @@ public class UserLocationMap implements IUserLocationMap {
             if (user.getUniqueUserID() == requestUser.getUniqueUserID()) {
                 continue;
             }
-
-            Coordinates userCoor = user.getUserCoor();
-
-//            int userLat = userCoor.getLeft();
-//            int userLong = userCoor.getRight();
-
-//            if (userLat != latitude && userLong != longitude) {
-
-                int distance = distBetweenUsers(requestUser, user);
-
-                DistUser distUser = new DistUser(distance, user.getUniqueUserID());
-
-                queueOfClosestUsers.add(distUser);
 //
-//            }
+//            Coordinates userCoor = user.getUserCoor();
+//
+
+            int distance = distBetweenUsers(requestUser, user);
+
+            DistUser distUser = new DistUser(distance, user.getUniqueUserID());
+
+            queueOfClosestUsers.add(distUser);
+
 
         }
 

@@ -74,4 +74,6 @@ class UserTest {
         assertEquals(curUser.getUserPhotoList().getPhoto(0).getFilename(), updateFile);
 
     }
+    
+    
 }
