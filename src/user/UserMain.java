@@ -304,6 +304,7 @@ public class UserMain {
                 um.userOptions(scan);
             } else if (answer.startsWith("n")) {
                 System.out.println("Alright! No harsh feeling! Goodbye!");
+                break;
             } else if (answer.equals("exit")) {
                 break;
             } else {
