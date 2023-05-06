@@ -3,14 +3,12 @@ package user;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 import tuple.Coordinates;
 import tuple.DistUser;
-import user.UserGraph.DistUserComparator;
 
 public class UserLocationMap implements IUserLocationMap {
 
@@ -60,7 +58,7 @@ public class UserLocationMap implements IUserLocationMap {
     @Override
     public int distBetweenUsers(User user1, User user2) {
         
-        if (user1 == null|| user2 == null) {
+        if (user1 == null || user2 == null) {
             return -1;
         }
         

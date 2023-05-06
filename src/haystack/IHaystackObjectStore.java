@@ -3,7 +3,6 @@ package haystack;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-import photo.IPhoto;
 
 public interface IHaystackObjectStore {
 

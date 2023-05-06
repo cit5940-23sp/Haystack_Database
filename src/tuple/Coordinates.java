@@ -1,6 +1,6 @@
 package tuple;
 
-public class Coordinates implements Tuple {
+public class Coordinates implements ITuple {
 
     private int latitude;
     private int longitude;
@@ -17,25 +17,21 @@ public class Coordinates implements Tuple {
 
     @Override
     public int getLeft() {
-        // TODO Auto-generated method stub
         return this.latitude;
     }
 
     @Override
     public int getRight() {
-        // TODO Auto-generated method stub
         return this.longitude;
     }
 
     @Override
     public void setLeft(int latitude) {
-        // TODO Auto-generated method stub
         this.latitude = latitude;
     }
 
     @Override
     public void setRight(int longitude) {
-        // TODO Auto-generated method stub
         this.longitude = longitude;
     }
     

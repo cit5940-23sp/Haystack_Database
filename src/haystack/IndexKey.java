@@ -1,7 +1,5 @@
 package haystack;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class IndexKey {
     private int key;

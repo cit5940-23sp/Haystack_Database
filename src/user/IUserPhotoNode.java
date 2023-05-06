@@ -1,14 +1,7 @@
 package user;
 
-import java.util.Map;
-
 public interface IUserPhotoNode {
 
-//    /**
-//     * Returns the metadata as a map of fields (key) and corresponding values
-//     * (value)
-//     */
-//    Map<String, Integer> getMetaData();
 
     /**
      * Get key
@@ -32,24 +25,9 @@ public interface IUserPhotoNode {
     String getFilename();
 
     /**
-     * Get filePath
-     * 
-     * @return filePath
+     * Set filePath
      */
     void setFilename(String filePath);
-
-//    /**
-//     * Get alternateKey
-//     * 
-//     * @return alternateKey
-//     */
-//    int getDeleted();
-//
-//    /**
-//     * Set photo as deleted
-//     * 
-//     */
-//    void setDeleted();
 
     /**
      * Set private photo based on decision
@@ -59,7 +37,7 @@ public interface IUserPhotoNode {
     void setPrivatePhoto(boolean decision);
 
     /**
-     * Get settings of photo
+     * Get private settings of photo
      * 
      * @return
      */

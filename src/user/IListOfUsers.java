@@ -1,10 +1,7 @@
 package user;
 
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.TreeMap;
-
-import tuple.Coordinates;
 import tuple.DistUser;
 
 public interface IListOfUsers {
@@ -27,7 +24,7 @@ public interface IListOfUsers {
     User getUser(int uniqueUserID);
     
     /**
-     * Adds a friendship bond betweeen two users
+     * Adds a friendship bond between two users
      * @param uniqueFriendID
      * @param requestUserID
      */

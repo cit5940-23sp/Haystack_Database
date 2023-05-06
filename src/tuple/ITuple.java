@@ -1,6 +1,6 @@
 package tuple;
 
-public interface Tuple {
+public interface ITuple {
     
     /**
      * Get the first item in the tuple 
@@ -25,6 +25,4 @@ public interface Tuple {
      * @param rightInput
      */
     void setRight(int rightInput);
-    
-    
 }

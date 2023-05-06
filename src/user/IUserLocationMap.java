@@ -30,7 +30,6 @@ public interface IUserLocationMap {
 
     /**
      * Calculate distance between two users
-     * 
      * @param user1
      * @param user2
      * @return distance

@@ -1,9 +1,6 @@
 package user;
 
-import java.util.List;
-import java.util.PriorityQueue;
-
-import tuple.DistUser;
+import graph.GraphL;
 
 public interface IUserGraph {
 
@@ -29,4 +26,10 @@ public interface IUserGraph {
      * @param userMap
      */
     void addNewFriend(User curUser, User newFriend, UserLocationMap userMap);
+    
+    /**
+     * Get graphL
+     * @return graphL
+     */
+    GraphL getGOC();
 }

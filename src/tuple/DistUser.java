@@ -1,6 +1,6 @@
 package tuple;
 
-public class DistUser implements Tuple {
+public class DistUser implements ITuple {
 
     int distance; 
     int userUniqueID;
@@ -19,25 +19,21 @@ public class DistUser implements Tuple {
     
     @Override
     public int getLeft() {
-        // TODO Auto-generated method stub
         return distance;
     }
 
     @Override
     public int getRight() {
-        // TODO Auto-generated method stub
         return userUniqueID;
     }
 
     @Override
     public void setLeft(int leftInput) {
-        // TODO Auto-generated method stub
         this.distance = leftInput;
     }
 
     @Override
     public void setRight(int rightInput) {
-        // TODO Auto-generated method stub
         this.userUniqueID = rightInput;
     }
 

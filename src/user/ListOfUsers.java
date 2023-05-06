@@ -156,11 +156,8 @@ public class ListOfUsers implements IListOfUsers {
 
                             priorityQueue.add(distUser);
                         }
-
                     }
-
                 }
-
             }
             // go through each vertex in tempQueue and add into vertexQueue
             while (tempQueue.size() > 0 && curLevel == 1) {
@@ -195,7 +192,7 @@ public class ListOfUsers implements IListOfUsers {
 
         while (finalList.size() < numOfRec) {
 
-            if (setOfFof.size() == 0 ) {
+            if (setOfFof.size() == 0) {
                 break;
             }
             
@@ -208,10 +205,7 @@ public class ListOfUsers implements IListOfUsers {
                     finalList.add(curDistUser);
                     finalListCheck.add(curDistUser.getRight());
                 }
-
             }
-
-
         }
         
         while (finalList.size() < numOfRec) {
@@ -229,9 +223,7 @@ public class ListOfUsers implements IListOfUsers {
                     finalList.add(curDistUser);
                     finalListCheck.add(curDistUser.getRight());
                 }
-
             }
-
         }
 
         return finalList;

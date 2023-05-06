@@ -2,8 +2,6 @@ package user;
 
 import java.util.List;
 
-import haystack.Photo;
-
 public interface IUserPhotoList {
 
     /**
@@ -14,11 +12,6 @@ public interface IUserPhotoList {
      */
     void addPhotoToUserList(UserPhotoNode upn);
     
-//    /**
-//     * Delete a photo from user list 
-//     * @param upn
-//     */
-//    void deletePhotoFromUserList(UserPhotoNode upn);
     
     /**
      * Returns number of photos in UserPhotoList 

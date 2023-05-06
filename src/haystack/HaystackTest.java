@@ -98,8 +98,8 @@ class HaystackTest {
         
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
-        newUser.addPhoto("./fish.jpeg", loh, false);
-        newUser.addPhoto("./panda.jpeg", loh, false);
+        newUser.addPhoto("./fish.jpg", loh, false);
+        newUser.addPhoto("./panda.jpg", loh, false);
 
 
 

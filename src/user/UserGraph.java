@@ -1,16 +1,8 @@
 package user;
 
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
 
 import graph.GraphL;
-import tuple.Coordinates;
 import tuple.DistUser;
 
 public class UserGraph implements IUserGraph {
@@ -77,7 +69,7 @@ public class UserGraph implements IUserGraph {
         }
     }
 
-
+    @Override
     public GraphL getGOC() {
         return graphOfConnections;
     }
