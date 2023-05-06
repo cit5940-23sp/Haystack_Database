@@ -3,8 +3,8 @@ package user;
 import java.awt.Image;
 import java.util.HashSet;
 
-import graph.Coordinates;
 import haystack.ListOfHaystacks;
+import tuple.Coordinates;
 
 public interface IUser {
 

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
-import graph.Coordinates;
-import graph.DistUser;
+import tuple.Coordinates;
+import tuple.DistUser;
 
 public interface IListOfUsers {
 

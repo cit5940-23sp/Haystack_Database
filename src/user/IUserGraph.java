@@ -3,7 +3,7 @@ package user;
 import java.util.List;
 import java.util.PriorityQueue;
 
-import graph.DistUser;
+import tuple.DistUser;
 
 public interface IUserGraph {
 

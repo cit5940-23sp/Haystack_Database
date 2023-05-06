@@ -8,8 +8,8 @@ import java.util.TreeMap;
 
 import javax.swing.JFileChooser;
 
-import graph.DistUser;
 import photo.IPhoto;
+import tuple.DistUser;
 import haystack.ListOfHaystacks;
 
 public class UserMain {

@@ -6,11 +6,11 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import graph.Coordinates;
 import haystack.ListOfHaystacks;
 import haystack.Photo;
 import photo.IPhoto;
 import photo.PhotoDisplay;
+import tuple.Coordinates;
 
 public class User implements IUser {
 
