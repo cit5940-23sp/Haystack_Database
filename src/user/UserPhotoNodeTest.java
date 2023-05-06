@@ -2,63 +2,50 @@ package user;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashMap;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class UserPhotoNodeTest {
 
-    @BeforeAll
-    static void setUpBeforeClass() throws Exception {
-    }
-
-    @Test
-    void testUserPhotoNode() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    void testGetMetaData() {
-        fail("Not yet implemented");
-    }
-
     @Test
     void testGetKey() {
-        fail("Not yet implemented");
+      UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
+      assertEquals(1, upn.getKey());
     }
 
     @Test
     void testGetAlternateKey() {
-        fail("Not yet implemented");
+        UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
+        assertEquals(0, upn.getAlternateKey());
     }
 
     @Test
     void testGetFilename() {
-        fail("Not yet implemented");
+        UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
+        assertEquals("./cat.jpeg", upn.getFilename());
     }
 
     @Test
     void testSetFilename() {
-        fail("Not yet implemented");
+        UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
+        upn.setFilename("./cat1.jpeg");
+        assertEquals("./cat1.jpeg", upn.getFilename());
     }
 
-    @Test
-    void testGetDeleted() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    void testSetDeleted() {
-        fail("Not yet implemented");
-    }
 
     @Test
     void testSetPrivatePhoto() {
-        fail("Not yet implemented");
+        UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
+        upn.setPrivatePhoto(false);
+        assertEquals(false, upn.getPrivateSettings());
     }
 
     @Test
     void testGetPrivateSettings() {
-        fail("Not yet implemented");
+        UserPhotoNode upn = new UserPhotoNode(1, 0, "./cat.jpeg", true);
+        assertEquals(true, upn.getPrivateSettings());
     }
 
 }

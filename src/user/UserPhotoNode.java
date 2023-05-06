@@ -23,7 +23,6 @@ public class UserPhotoNode implements IUserPhotoNode {
 
         this.key = key;
         this.alternateKey = alternateKey;
-//        this.deleted = 0;
         this.filePath = filePath;
         this.privatePhoto = privatePhoto;
 
@@ -31,15 +30,23 @@ public class UserPhotoNode implements IUserPhotoNode {
 
         this.metaDataMap.put("Key", key);
         this.metaDataMap.put("AlternateKey", alternateKey);
-//        this.metaDataMap.put("Deleted", deleted);
+
+        this.filePath = filePath;
+        this.privatePhoto = privatePhoto;
+//
+//        metaDataMap = new HashMap<String, Integer>();
+//
+//        this.metaDataMap.put("Key", key);
+//        this.metaDataMap.put("AlternateKey", alternateKey);
+
 
     }
-
-    @Override
-    public Map<String, Integer> getMetaData() {
-        // TODO Auto-generated method stub
-        return metaDataMap;
-    }
+//
+//    @Override
+//    public Map<String, Integer> getMetaData() {
+//        // TODO Auto-generated method stub
+//        return metaDataMap;
+//    }
 
     @Override
     public int getKey() {

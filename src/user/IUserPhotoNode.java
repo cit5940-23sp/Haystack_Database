@@ -4,11 +4,11 @@ import java.util.Map;
 
 public interface IUserPhotoNode {
 
-    /**
-     * Returns the metadata as a map of fields (key) and corresponding values
-     * (value)
-     */
-    Map<String, Integer> getMetaData();
+//    /**
+//     * Returns the metadata as a map of fields (key) and corresponding values
+//     * (value)
+//     */
+//    Map<String, Integer> getMetaData();
 
     /**
      * Get key
