@@ -46,21 +46,10 @@ public interface IHaystackObjectStore {
      */
     public int updatePhoto(long offset);
 
-//    /**
-//     * Set the photo as public or private 
-//     */
-//    void setPublicPrivate(int offset);
-
-    public int migrate();
-
-    public int readMetaData(RandomAccessFile rand) throws IOException;
-
     public int checkMagicNumber(RandomAccessFile rand) throws IOException;
 
     public int checkKey(RandomAccessFile rand) throws IOException;
 
-    public boolean checkIsDeleted(RandomAccessFile rand) throws IOException;
-    
     public int readSize(RandomAccessFile rand) throws IOException;
     
     public int compress(IndexFile newIndex);

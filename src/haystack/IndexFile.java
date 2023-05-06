@@ -1,6 +1,5 @@
 package haystack;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +8,7 @@ import photo.IPhoto;
 
 public class IndexFile implements IIndexFile {
 
-    QuadraticHashMap hm = new QuadraticHashMap(hmMaxSize);
+    QuadraticHashMap hm = new QuadraticHashMap(HMMAXSIZE);
 
     // EXAMPLE
     int indexID;
@@ -17,9 +16,8 @@ public class IndexFile implements IIndexFile {
 
     IndexFile(int indexID) {
         this.indexID = indexID;
-        String file_path = "database_" + String.valueOf(indexID) + ".txt";
-        haystack = new HaystackObjectStore(file_path);
-
+        String filePath = "database_" + String.valueOf(indexID) + ".txt";
+        haystack = new HaystackObjectStore(filePath);
     }
 
     public HaystackObjectStore getHaystack() {

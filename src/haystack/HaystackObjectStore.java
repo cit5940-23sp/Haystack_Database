@@ -1,15 +1,12 @@
 package haystack;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -145,7 +142,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
      *         alternate key
      */
     public Photo convertBytesToPhoto(byte[] incomingData) {
-        
+
         // add padding to make it 4bytes
         byte[] paddedKey = new byte[4];
         Arrays.fill(paddedKey, (byte) 0);
@@ -159,7 +156,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         int alterKey = ByteBuffer.wrap(paddedAlterKey).getInt();
 
         byte[] photoData = new byte[incomingData.length - IPhoto.META_DATA_LENGTH];
-        System.arraycopy(incomingData, IPhoto.META_DATA_LENGTH, photoData, 0, 
+        System.arraycopy(incomingData, IPhoto.META_DATA_LENGTH, photoData, 0,
                 incomingData.length - IPhoto.META_DATA_LENGTH);
         Photo res = new Photo(photoData, key, alterKey);
         return res;
@@ -200,7 +197,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
 
             byte[] flag2 = new byte[2];
             rand.read(flag2);
-            
+
             // if flag DELETED's value is 1, meaning photo is deleted
             // can't access deleted photo, return -1
             if (flag1[1] == 0x01) {
@@ -353,7 +350,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
         byte[] sizeRead = new byte[4];
         rand.read(sizeRead);
         int size = ByteBuffer.wrap(sizeRead).getInt();
-        System.out.println("READ SIZE: " + size);
         return size;
     }
 
@@ -368,8 +364,8 @@ public class HaystackObjectStore implements IHaystackObjectStore {
 
             while (true) {
                 this.curPointer = oldFile.getFilePointer();
-                //check current pointer
-                if(this.curPointer == this.eof) {
+                // check current pointer
+                if (this.curPointer == this.eof) {
                     oldFile.close();
                     return 0;
                 }
@@ -381,10 +377,10 @@ public class HaystackObjectStore implements IHaystackObjectStore {
                     return -1;
                 }
 //                this.checkKey(oldFile);
-                
+
                 byte[] key = new byte[1];
                 oldFile.read(key);
-                
+
                 byte[] alternateKey = new byte[1];
                 oldFile.read(alternateKey);
 
@@ -398,8 +394,7 @@ public class HaystackObjectStore implements IHaystackObjectStore {
 
                 byte[] flag2 = new byte[2];
                 oldFile.read(flag2);
-                
-                System.out.println("----------" + (flag2[1]));
+
                 int size = this.readSize(oldFile);
 
                 // if this photo is not deleted, move the entire thing there
@@ -427,29 +422,6 @@ public class HaystackObjectStore implements IHaystackObjectStore {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return 0;
-    }
-
-    @Override
-    public int migrate() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int readMetaData(RandomAccessFile rand) throws IOException {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public boolean checkIsDeleted(RandomAccessFile rand) throws IOException {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    public long appendPhoto(byte[] photoData) {
-        // TODO Auto-generated method stub
         return 0;
     }
 

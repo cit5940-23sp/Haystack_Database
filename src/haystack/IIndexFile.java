@@ -1,13 +1,9 @@
 package haystack;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import photo.IPhoto;
-
 public interface IIndexFile {
-    int hmMaxSize = 1000;
-    // private List<Map<String, ?>> indexFile;
+    int HMMAXSIZE = 1000;
 
     /**
      * Add a new index record
