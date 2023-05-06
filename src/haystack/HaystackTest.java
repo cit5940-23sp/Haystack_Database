@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import user.ListOfUsers;
 import user.User;
-import user.UserGraph;
-import user.UserLocationMap;
 
 class HaystackTest {
 
