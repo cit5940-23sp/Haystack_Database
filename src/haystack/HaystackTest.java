@@ -34,8 +34,6 @@ class HaystackTest {
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
 
-        System.out.println("Photo added");
-
         Photo p1 = newUser.getPhoto(1, loh);
         Photo zero = new Photo("./Puppy.jpeg");
         assertEquals(zero, p1);
@@ -66,11 +64,7 @@ class HaystackTest {
         newUser.addPhoto("./Puppy.jpeg", loh, false);
         newUser.addPhoto("./cat.jpeg", loh, false);
 
-        System.out.println("Photo added");
-
         newUser.deletePhoto(3, loh);
-
-        System.out.println("Photo deleted");
 
         Photo got = newUser.getPhoto(3, loh);
 
@@ -102,21 +96,15 @@ class HaystackTest {
         newUser.addPhoto("./panda.jpeg", loh, false);
 
 
-
-        System.out.println("Photo added");
         newUser.deletePhoto(1, loh);
         newUser.deletePhoto(0, loh);
         newUser.deletePhoto(2, loh);
 
 
-        System.out.println("Photo updated");
-
-        System.out.println("Compress photo");
-
         loh.compressHaystacks();
-        System.out.println("Done Compressing");
-        //Photo got = newUser.getPhoto(1, loh);
-        //assertEquals(null, got);
+        
+        Photo got = newUser.getPhoto(1, loh);
+        assertNull(got);
 
         Photo got0 = newUser.getPhoto(3, loh);
         Photo zero = new Photo("./panda.jpeg");
