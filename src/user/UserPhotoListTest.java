@@ -66,13 +66,22 @@ class UserPhotoListTest {
     void testDeletePhotoFromUserPhotoList() {
         
         upl.addPhotoToUserList(upn);
-        assertEquals(upl.numberOfPhotos(), 1);
-        assertEquals(upl.getAllPhotos().size(), 1);
+       
+        upn2 = new UserPhotoNode(1, alternateKey, filePath, false);
+        
+        upl.addPhotoToUserList(upn2);
+        
+        assertEquals(upl.numberOfPhotos(), 2);
+        assertEquals(upl.getAllPhotos().size(), 2);
+
+        assertEquals(upl.getAllPhotos().get(0).getKey(), 0);
         
         upl.deletePhotoFromUserPhotoList(upn);
 
-        assertEquals(upl.numberOfPhotos(), 0);
-        assertEquals(upl.getAllPhotos().size(), 0);
+        assertEquals(upl.numberOfPhotos(), 1);
+        assertEquals(upl.getAllPhotos().size(), 1);
+        
+        assertEquals(upl.getAllPhotos().get(0).getKey(), 1);
         
     }
 }
