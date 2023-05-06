@@ -51,7 +51,6 @@ public class UserPhotoList implements IUserPhotoList {
 
     @Override 
     public List<UserPhotoNode> getAllPhotos() {
-        // TODO Auto-generated method stub
         
         List<UserPhotoNode> allPhotos = new ArrayList<UserPhotoNode>();
         

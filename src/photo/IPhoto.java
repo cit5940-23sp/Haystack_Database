@@ -13,7 +13,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public interface IPhoto {
     
-    public static final int MAXIMUM_BYTES_DATA = 20000; 
+    public static final int MAXIMUM_BYTES_DATA = 15000; 
     public static final int HEADER_MAGIC_NUMBER = 123456789;
     
     public static final int EDITED = 0;

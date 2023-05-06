@@ -153,6 +153,31 @@ public class User implements IUser {
         return returnImg;
         
     }
+    
+    public Photo getPhoto(int key, ListOfHaystacks loh) {
+      //get user photo node from user photo list 
+        UserPhotoNode upn = getUserPhotoList().getPhoto(key);
+        
+        if (upn == null) {
+            System.out.println("Image cannot be found: Invalid user ownership.");
+            return null;
+        }
+        
+        //get alternate key and haystackID 
+        int alternateKey = upn.getAlternateKey();
+        
+        //get bytes of the photo from list of haystacks 
+        byte[] imageByte = loh.getPhotoFromHaystack(key, alternateKey);
+        
+        //if byte array is empty, notify that image cannot be found 
+        if (imageByte == null) {
+            System.out.println("Image cannot be found: Photo no longer available.");
+            return null;
+        }
+        
+        Photo resPhoto = new Photo(imageByte, key, alternateKey);
+        return resPhoto;
+    }
 
     
     @Override
