@@ -61,6 +61,7 @@ class UserLocationMapTest {
         
         assertEquals(ulm.distBetweenUsers(lou.getUser(0), lou.getUser(1)), 33);
         assertEquals(ulm.distBetweenUsers(lou.getUser(0), lou.getUser(2)), 2);
+        assertEquals(ulm.distBetweenUsers(lou.getUser(3), lou.getUser(2)), -1);
 
     }
 

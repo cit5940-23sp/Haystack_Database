@@ -59,7 +59,11 @@ public class UserLocationMap implements IUserLocationMap {
 
     @Override
     public int distBetweenUsers(User user1, User user2) {
-
+        
+        if (user1 == null|| user2 == null) {
+            return -1;
+        }
+        
         Coordinates user1Coor = user1.getUserCoor();
 
         Coordinates user2Coor = user2.getUserCoor();
@@ -119,9 +123,6 @@ public class UserLocationMap implements IUserLocationMap {
             if (user.getUniqueUserID() == requestUser.getUniqueUserID()) {
                 continue;
             }
-//
-//            Coordinates userCoor = user.getUserCoor();
-//
 
             int distance = distBetweenUsers(requestUser, user);
 
