@@ -79,7 +79,7 @@ class HaystackTest {
     }
 
     @Test
-    void updatePhotoTest() {
+    void updateAndCompressPhotoTest() {
 
         ListOfHaystacks loh = new ListOfHaystacks();
 
@@ -98,14 +98,14 @@ class HaystackTest {
         
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
-        newUser.addPhoto("./fish.jpeg", loh, false);
+        newUser.addPhoto("./facebook-logo.jpeg", loh, false);
         newUser.addPhoto("./panda.jpeg", loh, false);
 
 
 
         System.out.println("Photo added");
         newUser.deletePhoto(1, loh);
-        newUser.deletePhoto(3, loh);
+        newUser.deletePhoto(0, loh);
         newUser.deletePhoto(2, loh);
 
 
@@ -114,12 +114,12 @@ class HaystackTest {
         System.out.println("Compress photo");
 
         loh.compressHaystacks();
-
+        System.out.println("Done Compressing");
         //Photo got = newUser.getPhoto(1, loh);
         //assertEquals(null, got);
 
-        Photo got0 = newUser.getPhoto(0, loh);
-        Photo zero = new Photo("./cat.jpeg");
+        Photo got0 = newUser.getPhoto(3, loh);
+        Photo zero = new Photo("./panda.jpeg");
 
         assertEquals(zero, got0);
 
