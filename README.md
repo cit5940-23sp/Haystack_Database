@@ -19,6 +19,7 @@ Notably, we implemented Facebook’s photo storage system, as described in lectu
 1. Implementation of a graph of users (each node represent a user and each edges to represent mutual friendship)
 2. Implementation of a 2D array (to be used in heuristic search of friend recommendation)
 3. Implementation of friend-making and friend-searching actions (Adding a friend, Getting a list of friend recommendations) 
+4. Implementation of public/private view of photos
 
 
 ## 5940 topics covered in code implementation 
@@ -39,8 +40,8 @@ An explanation of how we achieved meaningful and rigorous use of material from t
 
 ### Graphs 
 1. Graph represented in an adjacency list 
-2. BFS traversal
-3. Heuristic search 
+2. BFS traversal (To find friends of current friends)
+3. Heuristic search (To optimize friend recommendation based on distance to user)
 
 ### Others 
 1. File I/O (Read and wrote to binary file, used RandomFileAccess)
