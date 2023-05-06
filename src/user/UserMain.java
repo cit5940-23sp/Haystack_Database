@@ -63,8 +63,8 @@ public class UserMain {
             uniqueUserID = lou.addUser(userName, latitude, longitude);
 
             if (uniqueUserID == -1) {
-                System.out
-                        .println("Latitude must be between -90 to 90," + " and longitude must be between -180 to 180");
+                System.out.println("Latitude must be between -90 to 90," 
+                        + " and longitude must be between -180 to 180");
             }
         }
 
@@ -90,36 +90,35 @@ public class UserMain {
         String option = scan.nextLine();
 
         switch (option) {
-        case "1":
-            insertPhoto(scan);
-            break;
-        case "2":
-            displayPhoto(scan);
-            break;
-        case "3":
-            deletePhoto(scan);
-            break;
-        case "4":
-            updatePhoto(scan);
-            break;
-        case "5":
-            if ((curUser.getFriendsList().size() + 1) == lou.getListOfUsers().size()) {
-                System.out.println("You are already friends with everyone.");
-            } else {
-                friendSuggestions(scan);
-            }
-
-            break;
-
-        case "6":
-            displayOtherUserPhotos(scan);
-            break;
-
-        case "7":
-            System.out.println("Thanks for using the Haystack database!");
-            break;
-        default:
-            break;
+            case "1":
+                insertPhoto(scan);
+                break;
+            case "2":
+                displayPhoto(scan);
+                break;
+            case "3":
+                deletePhoto(scan);
+                break;
+            case "4":
+                updatePhoto(scan);
+                break;
+            case "5":
+                if ((curUser.getFriendsList().size() + 1) == lou.getListOfUsers().size()) {
+                    System.out.println("You are already friends with everyone.");
+                } else {
+                    friendSuggestions(scan);
+                }
+                break;
+    
+            case "6":
+                displayOtherUserPhotos(scan);
+                break;
+    
+            case "7":
+                System.out.println("Thanks for using the Haystack database!");
+                break;
+            default:
+                break;
         }
     }
 
@@ -134,7 +133,8 @@ public class UserMain {
         JFileChooser j = null;
         path = IPhoto.chooseFile(j);
 
-        System.out.println("Do you want to set this photo as private (for friends only)? (Y/N)");
+        System.out.println("Do you want to set this photo as private "
+                + "(for friends only)? (Y/N)");
 
         boolean setToPrivate;
 
@@ -158,9 +158,11 @@ public class UserMain {
 
         while (true) {
             if (successfulAdd) {
-                System.out.println("Photo added successfully. " + "Would you like to add more photos? (y/n)");
+                System.out.println("Photo added successfully. " + "Would you "
+                        + "like to add more photos? (y/n)");
             } else {
-                System.out.println("Photo too big to add! Please choose a photo that is less than 12kb,"
+                System.out.println("Photo too big to add! Please choose a "
+                        + "photo that is less than 12kb,"
                         + " would you like to add more photos? (y/n)");
             }
             String answer = scan.nextLine();
@@ -168,7 +170,8 @@ public class UserMain {
             if (answer.startsWith("y")) {
                 insertPhoto(scan);
             } else if (answer.startsWith("n")) {
-                System.out.println("Thanks for adding the photos, please see other options you can perform: ");
+                System.out.println("Thanks for adding the photos, please "
+                        + "see other options you can perform: ");
                 userOptions(scan);
             } else {
                 System.out.println("Please type either Y or N)");
@@ -182,18 +185,21 @@ public class UserMain {
         int photo = Integer.parseInt(scan.nextLine());
         int photoAmt = curUser.getUserPhotoList().getAllPhotos().size();
         curUser.getPhoto(photo, loh, curUser);
-        System.out.println("Please see the photo displayed. Please see other options you can perform: ");
+        System.out.println("Please see the photo displayed. Please "
+                + "see other options you can perform: ");
         userOptions(scan);
     }
 
     public void deletePhoto(Scanner scan) {
-        System.out.println("Please choose one of the photos in the database to delete: ");
+        System.out.println("Please choose one of the photos in the "
+                + "database to delete: ");
         curUser.displayPhotoList();
         int photo = Integer.parseInt(scan.nextLine());
         int photoAmt = curUser.getUserPhotoList().getAllPhotos().size();
 
         curUser.deletePhoto(photo, loh);
-        System.out.println("The photo has been deleted! Please see rest of the photos in the database: ");
+        System.out.println("The photo has been deleted! Please "
+                + "see rest of the photos in the database: ");
         curUser.displayPhotoList();
         System.out.println("Please see other options you can perform: ");
         userOptions(scan);
@@ -201,7 +207,8 @@ public class UserMain {
 
     public void friendSuggestions(Scanner scan) {
 
-        System.out.println("Make a new friend. Please see your new friend suggestions: ");
+        System.out.println("Make a new friend. Please see your "
+                + "new friend suggestions: ");
 
         List<DistUser> finalList = lou.getFriendRecommondation(curUser.getUniqueUserID(), 3);
 
@@ -211,26 +218,30 @@ public class UserMain {
 
             User curUser = lou.getUser(ele.getRight());
 
-            System.out.println(curUser.getUserName() + " (" + curUser.getUniqueUserID() + ") : " + ele.getLeft());
+            System.out.println(curUser.getUserName() + " (" 
+                    + curUser.getUniqueUserID() + ") : " + ele.getLeft());
 
         }
 
-        System.out.println("Who do you want to become friends with (enter the ID): ");
+        System.out.println("Who do you want to become friends "
+                + "with (enter the ID): ");
 
         int friendID = Integer.parseInt(scan.nextLine());
 
         HashSet<User> friendList = curUser.getFriendsList();
 
         if (friendList.contains(lou.getUser(friendID))) {
-            System.out.println("You are already friends with this person. " + "Here is your current list of friends");
+            System.out.println("You are already friends with this person. " 
+                    + "Here is your current list of friends");
         } else if (friendID == curUser.getUniqueUserID()) {
-            System.out.println(
-                    "It's great that you want to be friends with yourself! " + "Here is your current list of friends");
+            System.out.println("It's great that you want to be friends with yourself! " 
+                    + "Here is your current list of friends");
 
         } else {
             lou.addFriend(friendID, curUser.getUniqueUserID());
 
-            System.out.println("Congrats you made a new friend! " + "Here is your current list of friends");
+            System.out.println("Congrats you made a new friend! " 
+                    + "Here is your current list of friends");
 
         }
 
@@ -273,14 +284,15 @@ public class UserMain {
     }
 
     public void updatePhoto(Scanner scan) {
-        System.out.println("Please choose one of the photos in the database to update: ");
+        System.out.println("Please choose one of the photos in "
+                + "the database to update: ");
         curUser.displayPhotoList();
         int photo = Integer.parseInt(scan.nextLine());
-        System.out.println("Choose the Photo path you would like to use to replace the selected photo: ");
+        System.out.println("Choose the Photo path you would "
+                + "like to use to replace the selected photo: ");
         StringBuilder sb = new StringBuilder();
         String path = sb.append(Integer.toString(counter)).toString();
-        JFileChooser j = null;
-        path = IPhoto.chooseFile(j);
+        path = IPhoto.chooseFile();
 
         curUser.updatePhoto(path, photo, loh);
         System.out.println("Your photo is updated! ");
