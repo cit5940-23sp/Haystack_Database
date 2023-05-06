@@ -17,8 +17,6 @@ public class UserMain {
     // Graph of users with nodes as Users and edges as connections
 
     int nextUserID;
-//    UserGraph graphOfConnections; 
-//    UserLocationMap userLocationMap;
     ListOfUsers lou;
     ListOfHaystacks loh = new ListOfHaystacks();
     User curUser;
@@ -28,8 +26,6 @@ public class UserMain {
         this.lou = new ListOfUsers();
 
         nextUserID = 0;
-//        this.graphOfConnections = lou.getGraphOfConnections()
-//        this.userLocationMap = lou.getUserLocationMap();
 
         lou.addUser("Amy", 30, 180);
         lou.addUser("Tom", 30, 180);
@@ -83,12 +79,12 @@ public class UserMain {
         System.out.println("--------------------------------");
         System.out.println("Haystack Photo Management System");
         System.out.println("--------------------------------");
-        System.out.println(" 1 -- Insert Photo in the database");
-        System.out.println(" 2 -- Display Photo");
-        System.out.println(" 3 -- Delete Photo");
-        System.out.println(" 4 -- Update Photo");
+        System.out.println(" 1 -- Insert Photo into the database");
+        System.out.println(" 2 -- Display own photo(s)");
+        System.out.println(" 3 -- Delete photo");
+        System.out.println(" 4 -- Update photo");
         System.out.println(" 5 -- Make new friends");
-        System.out.println(" 6 -- See photos of other users");
+        System.out.println(" 6 -- Display photos of other users");
         System.out.println(" 7 -- Exit out of the system");
         System.out.println("");
         System.out.println("Please enter your option, eg. '1'.");
@@ -134,11 +130,33 @@ public class UserMain {
     public void insertPhoto(Scanner scan) {
         System.out.println("Choose the Photo path you want to put in the database: ");
         StringBuilder sb = new StringBuilder();
+
         String path = sb.append(Integer.toString(counter)).toString();
         counter++;
         JFileChooser j = null;
         path = IPhoto.chooseFile(j);
-        boolean successfulAdd = curUser.addPhoto(path, loh, false);
+        
+        System.out.println("Do you want to set this photo as private (for friends only)? (Y/N)");
+        
+        boolean setToPrivate;
+        
+        while (true) {
+            
+            String privateInput = scan.nextLine();
+            
+            if (privateInput.charAt(0) == 'y' || privateInput.charAt(0) == 'Y') {
+                setToPrivate = true;
+                break;
+            } else if (privateInput.charAt(0) == 'n' || privateInput.charAt(0) == 'N') {
+                setToPrivate = false;
+                break;
+            } else {
+                System.out.println("Please type either Y or N)");
+            }
+            
+        }
+        
+        boolean successfulAdd = curUser.addPhoto(path, loh, setToPrivate);
         
         if (successfulAdd) {
             System.out.println("Photo added successfully. "
