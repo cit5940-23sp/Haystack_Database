@@ -2,17 +2,12 @@ package user;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.PriorityQueue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import graph.Coordinates;
-import graph.DistUser;
-import haystack.ListOfHaystacks;
 
 class UserLocationMapTest {
 
