@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import javax.swing.JFileChooser;
-
 import photo.IPhoto;
 import tuple.DistUser;
 import haystack.ListOfHaystacks;
@@ -130,8 +128,7 @@ public class UserMain {
 
         String path = sb.append(Integer.toString(counter)).toString();
         counter++;
-        JFileChooser j = null;
-        path = IPhoto.chooseFile(j);
+        path = IPhoto.chooseFile();
 
         System.out.println("Do you want to set this photo as private "
                 + "(for friends only)? (Y/N)");
