@@ -1,11 +1,13 @@
 package photo;
 
+import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
@@ -58,18 +60,34 @@ public interface IPhoto {
     }
 
     public static String chooseFile(JFileChooser j) {
-        j = new JFileChooser();
-        j.setDialogType(JFileChooser.OPEN_DIALOG);
-        j.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        int response = -1;
+        try {
+            EventQueue.invokeAndWait(new Runnable() {
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+                    JFileChooser j = new JFileChooser();
+                    j.setDialogType(JFileChooser.OPEN_DIALOG);
+                    j.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
-        j.setCurrentDirectory(new File("/Users/lala/eclipse-workspace/594Java/Haystack_Database"));
+                    j.setCurrentDirectory(new File(""
+                            + "/Users/lala/eclipse-workspace/594Java/Haystack_Database"));
 
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Format(.jpg/jpeg)",
-                "jpg", "jpeg");
-        j.setFileFilter(filter);
+                    FileNameExtensionFilter filter = 
+                            new FileNameExtensionFilter("Image Format(.jpg/jpeg)", "jpg",
+                            "jpeg");
+                    j.setFileFilter(filter);
 
-        int response = j.showOpenDialog(null);
-
+                    int response = j.showOpenDialog(null);
+                }
+            });
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         if (response == JFileChooser.APPROVE_OPTION) {
             return j.getSelectedFile().getAbsolutePath();
         }
