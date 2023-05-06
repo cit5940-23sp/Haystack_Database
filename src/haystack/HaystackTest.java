@@ -73,7 +73,7 @@ class HaystackTest {
 
         Photo got = newUser.getPhoto(3, loh);
 
-        assertEquals(null, got);
+        assertNull(got);
 
     }
 
@@ -109,7 +109,7 @@ class HaystackTest {
         loh.compressHaystacks();
 
         Photo got = newUser.getPhoto(1, loh);
-        assertEquals(null, got);
+        assertNull(got);
         Photo got0 = newUser.getPhoto(0, loh);
         Photo zero = new Photo("./cat.jpeg");
         assertEquals(zero, got0);

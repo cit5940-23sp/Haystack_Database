@@ -1,12 +1,10 @@
 package haystack;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import graph.TupleForHaystack;
 import photo.IPhoto;
 
 public class ListOfHaystacks implements IListOfHaystacks {
@@ -86,8 +84,6 @@ public class ListOfHaystacks implements IListOfHaystacks {
         // TODO Auto-generated method stub
 
         int haystackID = findHaystack(key, alternateKey);
-
-        System.out.println("HaystackID: " + haystackID);
 
         IndexFile index = listOfHaystacks.get(haystackID);
 
