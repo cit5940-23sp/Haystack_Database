@@ -38,18 +38,18 @@ public interface IUserPhotoNode {
      */
     void setFilename(String filePath);
 
-    /**
-     * Get alternateKey
-     * 
-     * @return alternateKey
-     */
-    int getDeleted();
-
-    /**
-     * Set photo as deleted
-     * 
-     */
-    void setDeleted();
+//    /**
+//     * Get alternateKey
+//     * 
+//     * @return alternateKey
+//     */
+//    int getDeleted();
+//
+//    /**
+//     * Set photo as deleted
+//     * 
+//     */
+//    void setDeleted();
 
     /**
      * Set private photo based on decision
