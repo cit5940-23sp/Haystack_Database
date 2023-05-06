@@ -92,13 +92,28 @@ public class UserMain {
                 insertPhoto(scan);
                 break;
             case "2":
-                displayPhoto(scan);
+                if (curUser.getUserPhotoList().numberOfPhotos() > 0) {
+                    displayPhoto(scan);
+                } else {
+                    System.out.println("You do not have any Photo, please add more");
+                    userOptions(scan);
+                }
                 break;
             case "3":
-                deletePhoto(scan);
+                if (curUser.getUserPhotoList().numberOfPhotos() > 0) {
+                    deletePhoto(scan);
+                } else {
+                    System.out.println("You do not have any Photo, please add one to delete");
+                    userOptions(scan);
+                }
                 break;
             case "4":
-                updatePhoto(scan);
+                if (curUser.getUserPhotoList().numberOfPhotos() > 0) {
+                    updatePhoto(scan);
+                } else {
+                    System.out.println("You do not have any Photo, please add one to update");
+                    userOptions(scan);
+                }
                 break;
             case "5":
                 if ((curUser.getFriendsList().size() + 1) == lou.getListOfUsers().size()) {
@@ -114,7 +129,7 @@ public class UserMain {
     
             case "7":
                 System.out.println("Thanks for using the Haystack database!");
-                break;
+                System.exit(0);
             default:
                 break;
         }
