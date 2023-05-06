@@ -20,6 +20,7 @@ public class ListOfUsers implements IListOfUsers {
     @Override
     public int addUser(String userName, int latitudeGiven, int longitudeGiven) {
 
+
         int latitude = latitudeGiven + IUserLocationMap.LATITUDE_ADD;
         int longitude = longitudeGiven + IUserLocationMap.LONGITUDE_ADD;
         
@@ -28,11 +29,12 @@ public class ListOfUsers implements IListOfUsers {
         }
         
         User newUser = new User(userName, listOfUsers.size(), latitude,
-                longitude, userLocationMap, graphOfConnections);
-
+                longitude);
+        
         listOfUsers.put(newUser.getUniqueUserID(), newUser);
 
         Coordinates addressCoor = new Coordinates(latitude, longitude);
+        
         userLocationMap.addUser(newUser.getUniqueUserID(), addressCoor);
         graphOfConnections.addNewUser();
 

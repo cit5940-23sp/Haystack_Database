@@ -38,9 +38,9 @@ class UserGraphTest {
 
         UserLocationMap ulm = new UserLocationMap();
 
-        User curUser = new User("Amy", 0, 90, 90, ulm, goc);
+        User curUser = new User("Amy", 0, 90, 90);
 
-        User newFriend = new User("Tom", 1, 100, 100, ulm, goc);
+        User newFriend = new User("Tom", 1, 100, 100);
 
         goc.addNewFriend(curUser, newFriend, ulm);
 
@@ -56,9 +56,9 @@ class UserGraphTest {
 
         UserLocationMap ulm = new UserLocationMap();
 
-        User curUser = new User("Amy", 0, 90, 90, ulm, goc);
+        User curUser = new User("Amy", 0, 90, 90);
 
-        User newFriend = new User("Tom", 1, 100, 100, ulm, goc);
+        User newFriend = new User("Tom", 1, 100, 100);
 
         goc.addNewFriend(curUser, newFriend, ulm);
 

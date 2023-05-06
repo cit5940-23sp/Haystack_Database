@@ -23,9 +23,11 @@ class UserTest {
     @BeforeEach
     void setUp() throws Exception {
 
-        UserGraph goc = new UserGraph();
-        UserLocationMap ulm = new UserLocationMap();
-        curUser = new User("Amy", 0, 90, 90, ulm, goc);
+        ListOfUsers lou = new ListOfUsers();
+        
+        lou.addUser("Amy", 90, 90);
+        curUser = lou.getUser(0);
+        
         filePath = "cat.jpeg";
         filePath2 = "DogOrange.jpeg";
         updateFile = "Puppy.jpeg";

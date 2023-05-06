@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import user.ListOfUsers;
 import user.User;
 import user.UserGraph;
 import user.UserLocationMap;
@@ -21,17 +22,15 @@ class HaystackTest {
 
         String userName = "Tim";
 
-        int nextUserID = 1;
-
         int latitude = 90;
 
         int longitude = 90;
-
-        UserGraph graphOfConnections = new UserGraph();
-
-        UserLocationMap userLocationMap = new UserLocationMap();
-
-        User newUser = new User(userName, nextUserID, latitude, longitude, userLocationMap, graphOfConnections);
+        
+        ListOfUsers lou = new ListOfUsers();
+        
+        lou.addUser(userName, latitude, longitude);
+        
+        User newUser = lou.getUser(0);
 
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
@@ -51,18 +50,17 @@ class HaystackTest {
 
         String userName = "Tim";
 
-        int nextUserID = 1;
 
         int latitude = 90;
 
         int longitude = 90;
 
-        UserGraph graphOfConnections = new UserGraph();
-
-        UserLocationMap userLocationMap = new UserLocationMap();
-
-        User newUser = new User(userName, nextUserID, latitude, longitude, userLocationMap, graphOfConnections);
-
+        ListOfUsers lou = new ListOfUsers();
+        
+        lou.addUser(userName, latitude, longitude);
+        
+        User newUser = lou.getUser(0);
+        
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./cat.jpeg", loh, false);
@@ -88,18 +86,17 @@ class HaystackTest {
 
         String userName = "Tim";
 
-        int nextUserID = 1;
 
         int latitude = 90;
 
         int longitude = 90;
 
-        UserGraph graphOfConnections = new UserGraph();
-
-        UserLocationMap userLocationMap = new UserLocationMap();
-
-        User newUser = new User(userName, nextUserID, latitude, longitude, userLocationMap, graphOfConnections);
-
+        ListOfUsers lou = new ListOfUsers();
+        
+        lou.addUser(userName, latitude, longitude);
+        
+        User newUser = lou.getUser(0);
+        
         newUser.addPhoto("./cat.jpeg", loh, false);
         newUser.addPhoto("./Puppy.jpeg", loh, false);
 

@@ -50,12 +50,17 @@ class UserLocationMapTest {
 
     @Test
     void testDistBetweenUsers() {
-        UserGraph goc = new UserGraph();
-        curUser = new User("Alette", 0, 90, 90, ulm, goc);
-        curUser1 = new User("Elena", 0, 66, 66, ulm, goc);
-        curUser2 = new User("Ada", 0, 88, 88, ulm, goc);
-        assertEquals(ulm.distBetweenUsers(curUser, curUser1), 33);
-        assertEquals(ulm.distBetweenUsers(curUser, curUser2), 2);
+        
+        ListOfUsers lou = new ListOfUsers();
+        
+        lou.addUser("Alette", 90, 90);
+        lou.addUser("Elena", 66, 66);
+        lou.addUser("Ada", 88, 88);
+
+        UserLocationMap ulm = lou.getUserLocationMap();
+        
+        assertEquals(ulm.distBetweenUsers(lou.getUser(0), lou.getUser(1)), 33);
+        assertEquals(ulm.distBetweenUsers(lou.getUser(0), lou.getUser(2)), 2);
 
     }
 
@@ -65,7 +70,7 @@ class UserLocationMapTest {
         ListOfUsers lou = new ListOfUsers();
         lou.addUser("Alette", 90, 90);
         lou.addUser("Elena", 66, 66);
-        lou.addUser("Ada", 100, 100);
+        lou.addUser("Ada", 88, 88);
 
         UserLocationMap userLM = lou.getUserLocationMap();
 

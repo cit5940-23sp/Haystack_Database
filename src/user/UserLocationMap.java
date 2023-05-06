@@ -46,7 +46,7 @@ public class UserLocationMap implements IUserLocationMap {
 
         HashSet<Integer> curSet = userLocationMap.get(latitude).get(longitude);
         curSet.add(uniqueUserID);
-
+        
 
     }
 

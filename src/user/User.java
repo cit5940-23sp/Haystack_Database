@@ -29,8 +29,7 @@ public class User implements IUser {
      * @param longitude,    which is an input from User
      */
     public User(String userName, int uniqueUserID, 
-            int latitude, int longitude, UserLocationMap userLocationMap,
-            UserGraph graphOfConnections) {
+            int latitude, int longitude) {
 
         // initialize unique user ID and username
         this.uniqueUserID = uniqueUserID;
@@ -42,12 +41,12 @@ public class User implements IUser {
 
         // initialize the address coordinates of User
         addressCoor = new Coordinates(latitude, longitude);
-
-        // add user into userLocationMap
-        userLocationMap.addUser(uniqueUserID, addressCoor);
-
-        // add user into graphOfConnections
-        graphOfConnections.addNewUser();
+//
+//        // add user into userLocationMap
+//        userLocationMap.addUser(uniqueUserID, addressCoor);
+//
+//        // add user into graphOfConnections
+//        graphOfConnections.addNewUser();
 
     }
 
@@ -191,8 +190,11 @@ public class User implements IUser {
     @Override
     public void deletePhoto(int key, ListOfHaystacks loh) {
 
+        
+        UserPhotoList upl = getUserPhotoList();
+        
         // get photo from user photo list using key
-        UserPhotoNode upn = getUserPhotoList().getPhoto(key);
+        UserPhotoNode upn = upl.getPhoto(key);
 
         if (upn == null) {
             System.out.println("This is not your photo. You cannot delete it!");
@@ -204,9 +206,8 @@ public class User implements IUser {
 
         // delete photo from list of haystacks
         loh.deletePhotoFromHaystack(key, alternateKey);
-
-        // set the user photo node as deleted
-        upn.setDeleted();
+        
+        upl.deletePhotoFromUserPhotoList(upn);
 
     }
 

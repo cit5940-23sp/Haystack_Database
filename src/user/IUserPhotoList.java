@@ -36,4 +36,10 @@ public interface IUserPhotoList {
      */
     List<UserPhotoNode> getAllPhotos();
     
+    /**
+     * Marks a photo in UserPhotoList as deleted and increase deletedCount
+     * @param upn
+     */
+    void deletePhotoFromUserPhotoList(UserPhotoNode upn);
+    
 }
